@@ -17,11 +17,9 @@
 
 ## Project Description
  > Your project description should summarize the project you are proposing. Be sure to include:
- > * Why is it important or interesting to you?
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
- > * What will be the input/output of your project?
- > * What are the features that the project provides?
- > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
+ > * Chat room will allow for a chat server to run and accept multiple clients at once. Chat room allows for admin users to moderate and keeps chat logs for later inspection by admin users.
+ > * Creating a client/server style chat room is an introduction to using C++ for socket programming and multithreading, both of which are important concepts in embedded systems. This project is also complex enough that it will require proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students. 
+ > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development.
  > 
  > You also need to set up an empty project board using GitHub projects (board view). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added.
  > ## Phase II
