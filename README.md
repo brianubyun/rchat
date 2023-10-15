@@ -4,7 +4,12 @@
 # R'Chat
  > Your author list below should include links to all members GitHub (remove existing author).
  
- > Authors: [Devin Shaw](https://github.com/DevinRShaw) \<[Mario Cuaya](https://github.com/mcuaya1)\> \<[Brian Byun](https://github.com/brianubyun)\> \<[Youssef Koreatam](https://github.com/YoussefKoreatam)\> 
+ > Authors:
+- [Devin Shaw](https://github.com/DevinRShaw)
+- [Mario Cuaya](https://github.com/mcuaya1)
+- [Brian Byun](https://github.com/brianubyun)
+- [Youssef Koreatam](https://github.com/YoussefKoreatam)
+
 
  > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list and start thinking about the features you will implement. If you want to propose your own original idea, you will have to contact your instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings.
 
@@ -16,7 +21,7 @@
 > * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two to three scrum/check-in meetings with your lab TA/reader at different times in addition to the final demo.
 
 ## Project Description
- > * R'Chat will allow for a chat server to run, authenticate, and accept multiple client users at once. R'Chat allows for admin users to moderate client users and keeps chat logs for later inspection by admin users.
+ > * R'Chat will allow for a chat server to run, authenticate, and accept multiple clients at once. R'Chat allows admin users to moderate clients and keeps chat logs for later inspection by admin users.
  > * Creating a client/server style chat room will serve as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in embedded systems. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it will require proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students. 
  > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development. The functionality is supported by <sys/socket.h> <netinet/in.h> <thread>
 
