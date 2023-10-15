@@ -22,10 +22,8 @@
 
 ## Project Description
  > * R'Chat will allow for a chat server to run, authenticate, and accept multiple clients at once. R'Chat allows admin users to moderate clients and keeps chat logs for later inspection by admin users.
- > * Creating a client/server style chat room will serve as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in embedded systems. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it will require proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students. 
+ > * Creating a client/server style chat room will serve as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in Embedded Systems, System Programming, Distributed Systems, and Cloud Computing. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it will require proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students. 
  > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development. The functionality is supported by <sys/socket.h> <netinet/in.h> <thread>
-
- > You also need to set up an empty project board using GitHub projects (board view). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added.
 
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
