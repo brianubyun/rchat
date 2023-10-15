@@ -1,7 +1,7 @@
  > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# Chat Room
+# R'Chat
  > Your author list below should include links to all members GitHub (remove existing author).
  
  > Authors: \<[Devin Shaw](https://github.com/DevinRShaw)\>
@@ -16,7 +16,7 @@
 > * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two to three scrum/check-in meetings with your lab TA/reader at different times in addition to the final demo.
 
 ## Project Description
- > * (Chat room) will allow for a chat server to run, authenticate, and accept multiple client users at once. (Chat room) allows for admin users to moderate client users and keeps chat logs for later inspection by admin users.
+ > * R'Chat will allow for a chat server to run, authenticate, and accept multiple client users at once. R'Chat allows for admin users to moderate client users and keeps chat logs for later inspection by admin users.
  > * Creating a client/server style chat room will serve as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in embedded systems. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it will require proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students. 
  > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development. The functionality is supported by <sys/socket.h> <netinet/in.h> <thread>
 
