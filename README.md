@@ -1,7 +1,6 @@
 
 # R'Chat
- > Your author list below should include links to all members GitHub (remove existing author).
- 
+
  > Authors:
 - [Devin Shaw](https://github.com/DevinRShaw)
 - [Mario Cuaya](https://github.com/mcuaya1)
@@ -9,7 +8,7 @@
 
 
 ## Project Description
- > * R'Chat allows for a chat server to run, authenticate, and accept multiple clients at once that can communicate with each other effectively. R'Chat allows admin users to moderate clients and keeps chat logs for later inspection by admin users.
+ > * R'Chat is a chat room that runs on a server, authenticates, and accepts multiple clients at once, allowing clients to chat in real-time with each other. R'Chat allows admin users to moderate clients and keeps chat logs for later inspection by admin users.
 >  * Discord is a common application that all of the team members use, which is a part of why we are interested in how programming for a chat application works. 
 >  * Clients will run client executable, with terminal prompts for user authentication upon connection. Upon connection, client messages will be broadcast and received by other clients. Client will disconnect upon specific user input format. Server will also terminate upon specific input format by a server admin.
  > * Creating a client/server style chat room serves as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in Embedded Systems, System Programming, Distributed Systems, and Cloud Computing. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it requires proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students.
