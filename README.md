@@ -21,7 +21,7 @@
 
 ## Project Description
  > * R'Chat allows for a chat server to run, authenticate, and accept multiple clients at once. R'Chat allows admin users to moderate clients and keeps chat logs for later inspection by admin users.
->  * Clients will run client executable, with terminal prompts for user authentication upon connection. Upon connection, client messages will be broadcast and received by other clients. 
+>  * Clients will run client executable, with terminal prompts for user authentication upon connection. Upon connection, client messages will be broadcast and received by other clients. Client will disconnect upon specific user input format. the server will also terminate upon specific input format by a server admin.
  > * Creating a client/server style chat room serves as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in Embedded Systems, System Programming, Distributed Systems, and Cloud Computing. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it requires proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students.
 >  * Discord is a common application that all of the team's members use, which is a part of why we are interested in how programming for a chat application works. 
  > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development. The functionality is supported by libraries for socket programming (networking), multithreading (multiple client handling), JSON file formatting for storing user credentials.
