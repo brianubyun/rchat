@@ -104,6 +104,7 @@ void Server::HandleClient(int clientSocket) {
         std::cout << "Received from client: " << buffer << std::endl;
 
         // You can implement message broadcasting here
+        BroadcastMessage(buffer, strlen(buffer));
     }
 
     close(clientSocket);
@@ -112,6 +113,10 @@ void Server::HandleClient(int clientSocket) {
 }
 
 
-void Server::BroadcastMessage(char message) {
+void Server::BroadcastMessage(char message, int messageLength) {
     //for client in clientsockets send the message to them
+    for(int client : clientSockets){
+        send(int client, char *message, int messageLength, int flags);
+    }
+
 }

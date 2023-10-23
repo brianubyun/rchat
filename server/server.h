@@ -25,7 +25,7 @@ public:
     void HandleClient(int clientSocket);
 
     // Broadcast a message to all connected clients
-    void BroadcastMessage(char message);
+    void BroadcastMessage(char message, int messageLength);
 
 private:
     int serverSocket; 
