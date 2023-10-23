@@ -116,7 +116,7 @@ void Server::HandleClient(int clientSocket) {
 void Server::BroadcastMessage(char message, int messageLength) {
     //for client in clientsockets send the message to them
     for(int client : clientSockets){
-        send(int client, char *message, int messageLength, int flags);
+        send(client, message, messageLength, 0);
     }
 
 }
