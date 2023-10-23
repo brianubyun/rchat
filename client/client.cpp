@@ -73,7 +73,7 @@ void Client::ReceiveLoop() {
             break;
         }
         std::string message(buffer, bytesRead);
-        std::cout << "Received message: " << message << std::endl;
+        std::cout << std::endl << "Received message: " << message << std::endl;
     }
 }
 
