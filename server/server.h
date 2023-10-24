@@ -6,6 +6,8 @@
 
 class Server {
 public:
+    bool isRunning;
+    
     // Constructor
     Server();
 
@@ -30,7 +32,6 @@ public:
 private:
     int serverSocket; 
     int port = 48566;
-    bool isRunning;
     std::vector<int> clientSockets;
 
 };
