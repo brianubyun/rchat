@@ -57,7 +57,10 @@ void Client::SendLoop() {
         // Prompt the user for input and read it into the buffer
         std::cout << "Enter a message: ";
         std::cin.getline(buffer, MAXBYTES);
-
+        if(strcmp(buffer, "//help") == 0)
+        {
+            ListCommands();
+        }
         // Send the message from the buffer
         SendMessage(buffer);
     }
@@ -83,6 +86,10 @@ void Client::SendMessage(const char* message) {
     if (bytesSent == -1) {
         std::cerr << "Error sending message." << std::endl;
     }
+}
+
+void Client::ListCommands(std::ostream out, char* command){
+    out << std::endl << "help commands go here" << std::endl;
 }
 
 void Client::Disconnect() {
