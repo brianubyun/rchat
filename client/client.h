@@ -37,7 +37,7 @@ private:
     // Function for receiving messages in a loop
     void ReceiveLoop();
 
-    void ListCommands(std::ostream, char*);
+    void ListCommands(char*);
 };
 
 #endif // CLIENT_H
