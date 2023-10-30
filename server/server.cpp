@@ -50,6 +50,10 @@ void Server::Start() {
     }
 
     isRunning = true;
+
+    //create shutoff command thread to check for shut off command
+    std::thread shutOffThread(&Server::ShutOffCommand, this);
+    shutOffThread.detach(); //detach shut off thread
     AcceptClients();
 }
 
@@ -67,6 +71,22 @@ void Server::Stop() {
     // Close the server socket
     close(serverSocket);
     isRunning = false;
+    exit(0);
+}
+
+void Server::ShutOffCommand(){
+    char* input;
+    while(isRunning){ //While server is running get input
+        cin.getline(input, 50);
+        if(strcmp(input, "//exit") == 0){ //If input is exit command
+            cin.clear();
+            std::cout<<"Shutting down server" << endl;
+            delete this; //call server destructor 
+        } 
+        else{
+            cin.clear(); //clear buffer for new input
+        }
+    }     
 }
 
 //Creates threads for each client 
