@@ -77,7 +77,7 @@ void Server::Stop() {
 void Server::ShutOffCommand(){
     char* input;
     while(isRunning){ //While server is running get input
-        cin.getline(input, 50);
+        cin.getline(input, 10);
         if(strcmp(input, "//exit") == 0){ //If input is exit command
             cin.clear();
             std::cout<<"Shutting down server" << endl;
