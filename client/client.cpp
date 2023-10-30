@@ -58,9 +58,11 @@ void Client::SendLoop() {
         std::cout << "Enter a message: ";
         std::cin.getline(buffer, MAXBYTES);
         //allows for more complex help commands (e.g. //help quit to get a description of the command)
-        if(strstr(buffer, "//help") != 0)
+        if(strstr(buffer, "//help") == buffer)
         {
             ListCommands(buffer);
+            //server doesnt need to see the help command request
+            continue;
         }
         // Send the message from the buffer
         SendMessage(buffer);
@@ -90,7 +92,34 @@ void Client::SendMessage(const char* message) {
 }
 
 void Client::ListCommands(char* command){
-    std::cout << std::endl << "help commands go here" << std::endl;
+    if(!strcmp(command, "//help"))
+    {
+        //basic help command, lists out available commands
+        std::cout << "Available commands:\n" <<
+                      "//quit\n" <<
+                      "//emote\n" <<
+                      //fill in others as needed
+                      "\nFor more information on a specific command, run //help <command>\n";
+        return;
+    }
+    //each command gets an if statement to see if it's the one being asked about
+    if(!strcmp(command, "//help quit"))
+    {
+        std::cout << "Leaves the server.\n";
+        return;
+    }
+    if(!strcmp(command, "//help help"))
+    {
+        std::cout << "Provides information about available commands.\n";
+        return;
+    }
+    if(!strcmp(command, "//help emote"))
+    {
+        //unsure of how the emote command will work, but this could give a list of available emotes and their names? If not, and we keep only these three commands, some of this could be consolidated
+        std::cout << "Displays an emote\n";
+        return;
+    }
+    std::cout << "Unrecognized command. Please run either //help, or //help <command>\n";
 }
 
 void Client::Disconnect() {
