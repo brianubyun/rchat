@@ -71,6 +71,7 @@ void Server::Stop() {
 
 //Creates threads for each client 
 void Server::AcceptClients() {
+    std::cout << "listening..." << std::endl;
     while (isRunning) {
         struct sockaddr_in clientAddr;
         socklen_t clientAddrLen = sizeof(clientAddr);
@@ -104,6 +105,7 @@ void Server::HandleClient(int clientSocket) {
         std::cout << "Received from client: " << buffer << std::endl;
 
         // You can implement message broadcasting here
+        BroadcastMessage(buffer, strlen(buffer), clientSocket);
     }
 
     close(clientSocket);
@@ -112,6 +114,12 @@ void Server::HandleClient(int clientSocket) {
 }
 
 
-void Server::BroadcastMessage(char message) {
+void Server::BroadcastMessage(char* message, int messageLength, int sendClient) {
     //for client in clientsockets send the message to them
+    for(int client : clientSockets){
+        if (client != sendClient){ //avoids having their message broadcasted back to them
+            send(client, message, messageLength, 0);
+        }
+    }
+
 }

@@ -55,7 +55,7 @@ void Client::SendLoop() {
         char buffer[MAXBYTES];
 
         // Prompt the user for input and read it into the buffer
-        std::cout << "Enter a message: ";
+        //std::cout << "Enter a message: ";
         std::cin.getline(buffer, MAXBYTES);
 
         // Send the message from the buffer
@@ -73,7 +73,8 @@ void Client::ReceiveLoop() {
             break;
         }
         std::string message(buffer, bytesRead);
-        std::cout << "Received message: " << message << std::endl;
+        std::cout << "Received message: " << message << std::endl << std::endl;
+        
     }
 }
 
