@@ -23,9 +23,9 @@ public:
     // Disconnect from the server
     void Disconnect();
 
-
-private:
+protected:
     int clientSocket;
+private:
     std::string serverDomainName = "xe-01.cs.ucr.edu";// Use domain name instead of IP address
     int serverPort = 48566; //the free port that will be used on the server 
     std::thread sendThread;
