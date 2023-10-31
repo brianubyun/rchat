@@ -6,3 +6,5 @@ cmake_install.cmake
 Makefile
 CMakeFiles
 .vscode
+skeleton_test
+*a
