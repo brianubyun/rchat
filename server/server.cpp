@@ -85,6 +85,7 @@ void Server::ShutOffCommand(){
         } 
         else{
             cin.clear(); //clear buffer for new input
+            
         }
     }     
 }
