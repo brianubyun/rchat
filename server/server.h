@@ -29,6 +29,9 @@ public:
     // Broadcast a message to all connected clients
     void BroadcastMessage(char * message, int messageLength, int sendClient);
 
+    // Monitor shut off command
+    void ShutOffCommand();
+
 private:
     int serverSocket; 
     int port = 48566;
