@@ -50,13 +50,20 @@ void Client::Start() {
     receiveThread.join();
 }
 
-void Client::SendLoop() {
+void Client::SendLoop() { //possibly add an outstream thing or print function so we can use it for unit tests as well
     while (true) {
         char buffer[MAXBYTES];
 
         // Prompt the user for input and read it into the buffer
         std::cout << "Enter a message: ";
         std::cin.getline(buffer, MAXBYTES);
+
+        // User sent //quit command and exits chat 
+        if (std::string(buffer) == "//quit") {  
+            SendMessage("Connection closed. Client disconnected.");
+            exit(0); //Terminates program since chat program is exited
+            std::cin.clear(); //Clears buffer
+        }
 
         // Send the message from the buffer
         SendMessage(buffer);
