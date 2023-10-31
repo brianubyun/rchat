@@ -62,7 +62,6 @@ TEST(BroadcastTest, Message) {
     TestClient listenClient;
     listenClient.Connect();
     EXPECT_TRUE(listenClient.TestReceive());
-    listenClient.Disconnect();
 }
 
 int main(int argc, char **argv) {
