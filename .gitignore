@@ -10,3 +10,5 @@ CMakeFiles
 
 skeleton_test
 broadcast_test
+user_run
+admin_run

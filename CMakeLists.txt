@@ -32,6 +32,20 @@ add_executable(broadcast_test
             client/client.cpp
             )
 
+add_executable(user_run
+            stubUser/main.cpp
+            stubUser/stubUser.h
+            stubUser/stubUser.cpp
+            )
+
+add_executable(admin_run
+            admin/main.cpp
+            admin/admin.h
+            admin/admin.cpp
+            stubUser/stubUser.h
+            stubUser/stubUser.cpp
+            )
+
                
 target_link_libraries(client_run PRIVATE pthread)
 target_link_libraries(server_run pthread)
