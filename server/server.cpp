@@ -9,7 +9,6 @@
 #include <netinet/in.h>
 #include <algorithm>
 
-using namespace std;
 #define MAXBYTES 4096
 
 
@@ -77,14 +76,14 @@ void Server::Stop() {
 void Server::ShutOffCommand(){
     char* input;
     while(isRunning){ //While server is running get input
-        cin.getline(input, 10);
+        std::cin.getline(input, 10);
         if(strcmp(input, "//exit") == 0){ //If input is exit command
-            cin.clear();
-            std::cout<<"Shutting down server" << endl;
+            std::cin.clear();
+            std::cout<<"Shutting down server" << std::endl;
             delete this; //call server destructor 
         } 
         else{
-            cin.clear(); //clear buffer for new input
+            std::cin.clear(); //clear buffer for new input
             
         }
     }     
