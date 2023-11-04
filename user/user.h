@@ -7,6 +7,7 @@ class User : private Client
     private:
         std::string username;
         std::string password;
+        const int breakChar = 17;
     public:
         User(std::string user, std::string pass) : username(user), password(pass) {};
         int hashPass(std::string);

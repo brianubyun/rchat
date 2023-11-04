@@ -13,7 +13,8 @@ class Userhandling
         const char nlChar = 10;
     public:
         const bool isUser (std::string username, std::string passhash);
-        bool isUser (std::string username);
+        const bool isUser (std::string username);
+        const bool isUser (char*);
         void writeUser (std::string username, std::string passhash);
 };
 #endif

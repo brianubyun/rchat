@@ -28,7 +28,7 @@ const bool Userhandling::isUser(std::string username, std::string passhash)
     return false;
 }
 
-bool Userhandling::isUser(std::string username)
+const bool Userhandling::isUser(std::string username)
 {
     in.open("users.txt");
     if(!in.is_open())
@@ -44,6 +44,20 @@ bool Userhandling::isUser(std::string username)
         }
     }
     in.close();
+    return false;
+}
+
+const bool Userhandling::isUser(char *message)
+{
+    string uAndP(message);
+    string curr;
+    while(getline(in, curr))
+    {
+        if(!curr.compare(uAndP))
+        {
+            return true;
+        }
+    }
     return false;
 }
 
