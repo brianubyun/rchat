@@ -83,8 +83,9 @@ void Client::ReceiveLoop() {
         std::string message(buffer, bytesRead);
         std::cout << "Received message: " << message << std::endl << std::endl;
         
+        }
     }
-}
+}  
 
 void Client::SendMessage(const char* message) {
     int messageLength = strlen(message);
