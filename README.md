@@ -19,12 +19,6 @@
 >  * Upon unsuccessful login user will be prompted with "That is not a user, try again (y), register(r) or quit(q)"
 >  * Messages from other users will be displayed in format "<username>: message contents"
 
- > ## Phase II
- > * Schedule two check-ins using Calendly. You need to pick both time slots on Tuesday of week 6. The check-ins will occur on Zoom. Your entire team must be present for both check-ins.
- >   * The first check-in needs to be scheduled with your lab TA. During that meeting, you will discuss your project design/class diagram from phase II.
- >   * The second check-in should be scheduled with a reader. During that meeting you will discuss:
- >     * The tasks you are planning for the first sprint
- >     * How work will be divided between the team members
 ## User Interface Specification
 
 ### Navigation Diagram
