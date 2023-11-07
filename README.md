@@ -23,7 +23,6 @@
  >     * The tasks you are planning for the first sprint
  >     * How work will be divided between the team members
 ## User Interface Specification
- > Include a navigation diagram for your screens and the layout of each of those screens as described below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
 
 ### Navigation Diagram
 ![navigation-graph drawio (1)](https://github.com/cs100/final-project-ykore001-dshaw013-bbyun004-mcuay001/assets/88609025/319e4c66-c13f-4744-99ee-30caf0e21ebc)
