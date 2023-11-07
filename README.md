@@ -5,6 +5,7 @@
 - [Devin Shaw](https://github.com/DevinRShaw)
 - [Mario Cuaya](https://github.com/mcuaya1)
 - [Brian Byun](https://github.com/brianubyun)
+- [Abraham Zambrano](https://github.com/StrickVax)
 
 
 ## Project Description
@@ -32,6 +33,8 @@
 
 ## Class Diagram
  > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
+> ![R'Chart class diagram drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/0cdcb53c-c3ec-4476-ae48-6a4e5c9a092c)
+
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on Zoom and should be conducted by Wednesday of week 8.
