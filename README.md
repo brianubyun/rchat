@@ -37,7 +37,8 @@
 ## Class Diagram
  > 
 > 
-> ![R'Chart class diagram drawio (2)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/fab9fcb3-7948-42dc-9349-c0f1f6cd152d)
+> ![R'Chart class diagram drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/9a40fc61-9ea9-438f-bcc2-df5ff6658f9a)
+
 
 
 
