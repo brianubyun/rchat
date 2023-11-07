@@ -15,6 +15,9 @@
 >  * Clients will run client executable, with terminal prompts for user authentication upon connection. Upon connection, client messages will be broadcast and received by other clients. Client will disconnect upon specific user input format. Server will also terminate upon specific input format by a server admin.
  > * Creating a client/server style chat room serves as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in Embedded Systems, System Programming, Distributed Systems, and Cloud Computing. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it requires proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students.
  > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development. The functionality is supported by libraries for socket programming (networking), multithreading (multiple client handling), JSON file formatting for storing user credentials.
+>  * Upon successful login user will be prompted with "Welcome to R'Chat"
+>  * Upon unsuccessful login user will be prompted with "That is not a user, try again (y), register(r) or quit(q)"
+>  * Messages from other users will be displayed in format "<username>: message contents"
 
  > ## Phase II
  > * Schedule two check-ins using Calendly. You need to pick both time slots on Tuesday of week 6. The check-ins will occur on Zoom. Your entire team must be present for both check-ins.
@@ -32,7 +35,7 @@
 > All interactions will occur via a Linux bash shell terminal. 
 
 ## Class Diagram
- > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
+ > 
 > 
 > ![R'Chart class diagram drawio (2)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/fab9fcb3-7948-42dc-9349-c0f1f6cd152d)
 
