@@ -6,6 +6,7 @@
 - [Mario Cuaya](https://github.com/mcuaya1)
 - [Brian Byun](https://github.com/brianubyun)
 - [Abraham Zambrano](https://github.com/StrickVax)
+- [Mac Boyd](https://github.com/mboyd020)
 
 
 ## Project Description
@@ -22,7 +23,7 @@
  >     * The tasks you are planning for the first sprint
  >     * How work will be divided between the team members
 ## User Interface Specification
- > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
+ > Include a navigation diagram for your screens and the layout of each of those screens as described below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
 
 ### Navigation Diagram
 ![navigation-graph drawio (1)](https://github.com/cs100/final-project-ykore001-dshaw013-bbyun004-mcuay001/assets/88609025/319e4c66-c13f-4744-99ee-30caf0e21ebc)
@@ -33,8 +34,9 @@
 
 ## Class Diagram
  > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
-> 
-![R'Chart class diagram drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/df4392ea-078f-4504-9768-21893b0eac92)
+> ![R'Chart class diagram drawio (2)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/fab9fcb3-7948-42dc-9349-c0f1f6cd152d)
+
+
 
  
  > ## Phase III
