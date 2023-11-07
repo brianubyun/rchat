@@ -40,6 +40,15 @@
 > 
 > ![R'Chart class diagram drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/9a40fc61-9ea9-438f-bcc2-df5ff6658f9a)
 
+> * The server class instantiates a server object that uses socket programming and creates threads to handle server input and client connection. 
+
+> * Server Authenticator takes username and password from client to search data file for user existences.
+
+> * Client class instantiates a client object that creates a connection to the server using sockets, server port, and server domain name. Also creates threads to handle sending and receiving messages from the server.
+
+> * Client Authenticator sends username and password to the server, then prompts user based on server response
+
+> * User class represents user information such as name and password. 
 
 
 
