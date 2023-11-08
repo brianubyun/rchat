@@ -3,6 +3,7 @@
 
 #include "user.h"
 #include "userCred.h"
+#include "clientAuth.h"
 
 #include <string>
 #include <functional>

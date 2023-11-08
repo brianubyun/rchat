@@ -1,4 +1,7 @@
-#include "client.h"
+#include "user.h"
+#include "userCred.h"
+#include "clientAuth.h"
+
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
