@@ -5,3 +5,9 @@ CMakeCache.txt
 cmake_install.cmake
 Makefile
 CMakeFiles
+admin_run
+broadcast_test
+skeleton_test
+user_run
+*.a
+.vscode
