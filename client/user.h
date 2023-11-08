@@ -9,23 +9,19 @@
 class User {
 public:
     User();
-    ~user();
+    ~User();
     
     //setters
-    setUsername();
-    setPassword();
+    void SetUsername();
+    void SetPassword();
 
     //getters
-    getUsername();
-    getPassword();
+    string GetUsername();
+    string GetPassword();
 
-    
-
-protected:
-    int clientSocket;
 private:
     std::string username;
     std::string password;
 };
 
-#endif // CLIENT_H
+#endif // USER_H

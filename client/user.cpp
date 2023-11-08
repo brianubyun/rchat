@@ -1,22 +1,22 @@
-#include "client.h"
+#include "user.h"
 #include <iostream>
 
-User::user() {}
+User::User() {}
 
 User::~User() {}
 
-void User::setUsername(std::string username) {
+void User::SetUsername(std::string username) {
     this->username = username;
 }
 
-void User::setUsername(std::string password) {
+void User::SetUsername(std::string password) {
     this->password = password;
 }
 
-string User::getUsername() {
+string User::GetUsername() {
     return this->username;
 }
 
-string User::setUsername() {
+string User::GetPassword() {
     return this->password;
 }

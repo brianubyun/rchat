@@ -1,6 +1,9 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
+#include "user.h"
+#include "userCred.h"
+
 #include <string>
 #include <functional>
 #include <thread>
