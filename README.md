@@ -24,14 +24,10 @@
 ### Navigation Diagram
 ![navigation-graph drawio (1)noadmin drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/6fe0d819-0e9d-4612-8666-7c9ef8236dff)
 
-
-
 ### Screen Layouts
 > All interactions will occur via a Linux bash shell terminal. 
 
 ## Class Diagram
- > 
-> 
 > ![R'Chart class diagram drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/9a40fc61-9ea9-438f-bcc2-df5ff6658f9a)
 
 > * The server class instantiates a server object that uses socket programming and creates threads to handle server input and client connection. 
@@ -43,9 +39,6 @@
 > * Client Authenticator sends username and password to the server, then prompts user based on server response
 
 > * User class represents user information such as name and password. 
-
-
-
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on Zoom and should be conducted by Wednesday of week 8.
