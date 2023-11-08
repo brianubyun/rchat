@@ -7,7 +7,43 @@ UserCred::UserCred() {}
 UserCred::~UserCred() {}
 
 void UserCred::InputCredentials() {
-    //logic to take input for use in the prompt method of client authenticator
+    std::string username;
+    std::string password;
+
+    while (true) {
+
+        std::cout << "Username: ";
+        std::cin >> username;
+
+        if (std::cin.fail()) {
+            cout << "Invalid input. Please enter a valid string." << endl;
+            std::cin.clear(); // Clear the error state
+            std::cin.ignore(); // Discard the input buffer
+        } 
+        
+        else {
+            break; // Exit the loop if a valid integer is entered
+        }
+    }
+
+    while (true) {
+        std::cout << "Password: ";
+        std::cin >> password;
+
+        if (std::cin.fail()) {
+            std::cout << "Invalid input. Please enter a valid string." << endl;
+            std::cin.clear(); // Clear the error state
+            std::cin.ignore(); // Discard the input buffer
+        } 
+        
+        else {
+            break; // Exit the loop if a valid integer is entered
+        }
+    }
+
+    credentialUser.SetUsername(userame);
+    credentialUser.SetPassword(password);
+
 }
 
 User UserCred::GetUser(){
