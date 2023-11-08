@@ -50,7 +50,7 @@ void Client::Start() {
     receiveThread.join();
 }
 
-void Client::SendLoop() { //possibly add an outstream thing or print function so we can use it for unit tests as well
+void Client::SendLoop() { 
     while (true) {
         char buffer[MAXBYTES];
 
