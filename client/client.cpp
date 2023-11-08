@@ -41,8 +41,10 @@ bool Client::Connect() {
 }
 
 void Client::Start() {
-    // Start the send and receive threads (you need to implement these)
-    //user autheticator thread
+    
+
+    //user autheticator code goes here 
+
     std::thread sendThread(&Client::SendLoop, this);
     std::thread receiveThread(&Client::ReceiveLoop, this);
 

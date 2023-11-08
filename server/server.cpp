@@ -85,7 +85,6 @@ void Server::ShutOffCommand(){
         } 
         else{
             cin.clear(); //clear buffer for new input
-            
         }
     }     
 }
@@ -103,7 +102,7 @@ void Server::AcceptClients() {
             std::cerr << "Error accepting client connection." << std::endl;
             continue;  // Continue to accept other connections
         }
-
+        //authicate that they are a user 
         clientSockets.push_back(clientSocket);
 
         std::thread clientThread(&Server::HandleClient, this, clientSocket);
