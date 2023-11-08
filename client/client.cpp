@@ -42,8 +42,9 @@ bool Client::Connect() {
 
 void Client::Start() {
     // Start the send and receive threads (you need to implement these)
-    sendThread = std::thread(&Client::SendLoop, this);
-    receiveThread = std::thread(&Client::ReceiveLoop, this);
+    //user autheticator thread
+    std::thread sendThread(&Client::SendLoop, this);
+    std::thread receiveThread(&Client::ReceiveLoop, this);
 
     // Wait for the threads to finish (you should add proper thread management)
     sendThread.join();
@@ -78,7 +79,6 @@ void Client::ReceiveLoop() {
         if (bytesRead <= 0) {
             std::cerr << std::endl << "Connection to the server closed." << std::endl;
             exit(0);
-
         
         std::string message(buffer, bytesRead);
         std::cout << "Received message: " << message << std::endl << std::endl;
