@@ -7,6 +7,7 @@ UserCred::UserCred() {}
 UserCred::~UserCred() {}
 
 void UserCred::InputCredentials() {
+    
     std::string username;
     std::string password;
 
