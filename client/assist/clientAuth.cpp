@@ -83,7 +83,8 @@ void ClientAuth::Prompt() {
 
 }
 
-
+//This is where we can have the message to be sent to server 
+/*
 bool ClientAuth::Register() {
     char message[] = "test";
     int messageLength = strlen(message);
@@ -95,7 +96,7 @@ bool ClientAuth::Register() {
     return true;
 }
 
-/*
+
 bool ClientAuth::Login() {
     //logic to take input for use in the prompt method of client authenticator
 }

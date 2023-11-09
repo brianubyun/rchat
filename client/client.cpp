@@ -50,7 +50,7 @@ void Client::Start() {
     ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
     authenticator.Prompt();
 
-    std::thread sendThread(&Client::SendLoop, this);
+    std::thread sendThread(&Client::SendLoop, this, std::string authenticator.GetUser().GetUsername());
     std::thread receiveThread(&Client::ReceiveLoop, this);
 
     // Wait for the threads to finish (you should add proper thread management)
