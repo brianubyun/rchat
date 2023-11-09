@@ -46,7 +46,8 @@ bool Client::Connect() {
 void Client::Start() {
     
 
-    //user autheticator code goes here 
+    //clientAuth authenticator
+    authenticator.Prompt();
 
     std::thread sendThread(&Client::SendLoop, this);
     std::thread receiveThread(&Client::ReceiveLoop, this);

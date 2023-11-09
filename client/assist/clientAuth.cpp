@@ -1,9 +1,40 @@
 #include "../user/user.h"
 #include "userCred.h"
 #include "clientAuth.h"
+
+#include <string>
 #include <iostream>
 
-ClientAuth::ClientAuth() {}
+ClientAuth::ClientAuth(int clientSocket, int serverport, std::string serverDomainName) {
+    this -> authSocket = clientSocket + 1;
+    this -> serverport = serverport;
+    this -> serverDomainName = serverDomainName;
+
+    authSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (authSocket == -1) {
+        std::cerr << "Error creating socket." << std::endl;
+    }
+
+    struct sockaddr_in serverAddr;
+    struct hostent* serverInfo;
+
+    // Resolve the domain name to an IP address
+    serverInfo = gethostbyname(serverDomainName.c_str());
+    if (serverInfo == nullptr) {
+        std::cerr << "Error resolving host name." << std::endl;
+        return false;
+    }
+
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_port = htons(serverPort);
+    memcpy(&serverAddr.sin_addr, serverInfo->h_addr, serverInfo->h_length);
+
+    if (connect(authSocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) == -1) {
+        std::cerr << "Error connecting to the server." << std::endl;
+        exit(0);
+    }
+
+}
 
 ClientAuth::~ClientAuth() {}
 
@@ -45,7 +76,12 @@ void ClientAuth::Prompt() {
 }
 
 bool ClientAuth::Register() {
-    //logic to take input for use in the prompt method of client authenticator
+    std::string message = "test"
+    int messageLength = strlen(message);
+    int bytesSent = send(clientSocket, message, messageLength, 0);
+    if (bytesSent == -1) {
+        std::cerr << "Error sending message." << std::endl;
+    }
 }
 
 bool ClientAuth::Login() {

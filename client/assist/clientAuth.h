@@ -11,7 +11,7 @@
 
 class ClientAuth {
 public:
-    ClientAuth();
+    ClientAuth(int clientSocket, int serverport, std::string serverDomainName);
     ~ClientAuth();
 
     void Prompt();
@@ -22,6 +22,9 @@ public:
     
 private:
     User authenticationUser;
+    int authSocket;
+    int serverport;
+    std::string serverDomainName;
 };
 
 #endif 
