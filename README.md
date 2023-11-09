@@ -5,6 +5,8 @@
 - [Devin Shaw](https://github.com/DevinRShaw)
 - [Mario Cuaya](https://github.com/mcuaya1)
 - [Brian Byun](https://github.com/brianubyun)
+- [Abraham Zambrano](https://github.com/StrickVax)
+- [Mac Boyd](https://github.com/mboyd020)
 
 
 ## Project Description
@@ -13,25 +15,31 @@
 >  * Clients will run client executable, with terminal prompts for user authentication upon connection. Upon connection, client messages will be broadcast and received by other clients. Client will disconnect upon specific user input format. Server will also terminate upon specific input format by a server admin.
  > * Creating a client/server style chat room serves as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in Embedded Systems, System Programming, Distributed Systems, and Cloud Computing. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it requires proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students.
  > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development. The functionality is supported by libraries for socket programming (networking), multithreading (multiple client handling), JSON file formatting for storing user credentials.
+>  * Upon successful login user will be prompted with "Welcome to R'Chat"
+>  * Upon unsuccessful login user will be prompted with "That is not a user, try again (y), register(r) or quit(q)"
+>  * Messages from other users will be displayed in format "<username>: message contents"
 
- > ## Phase II
- > * Schedule two check-ins using Calendly. You need to pick both time slots on Tuesday of week 6. The check-ins will occur on Zoom. Your entire team must be present for both check-ins.
- >   * The first check-in needs to be scheduled with your lab TA. During that meeting, you will discuss your project design/class diagram from phase II.
- >   * The second check-in should be scheduled with a reader. During that meeting you will discuss:
- >     * The tasks you are planning for the first sprint
- >     * How work will be divided between the team members
 ## User Interface Specification
- > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
 
 ### Navigation Diagram
-![navigation-graph drawio (1)](https://github.com/cs100/final-project-ykore001-dshaw013-bbyun004-mcuay001/assets/88609025/319e4c66-c13f-4744-99ee-30caf0e21ebc)
-
+![navigation-graph drawio (1)noadmin drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/6fe0d819-0e9d-4612-8666-7c9ef8236dff)
 
 ### Screen Layouts
 > All interactions will occur via a Linux bash shell terminal. 
 
 ## Class Diagram
- > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
+> ![SOLIDoutline drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/a23214ab-1a9c-43cc-9574-9dd5130dff96)
+
+
+> * The server class instantiates a server object that uses socket programming and creates threads to handle server input and client connection. 
+
+> * Server Authenticator takes username and password from client to search data file for user existences.
+
+> * Client class instantiates a client object that creates a connection to the server using sockets, server port, and server domain name. Also creates threads to handle sending and receiving messages from the server.
+
+> * Client Authenticator sends username and password to the server, then prompts user based on server response
+
+> * User class represents user information such as name and password. 
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on Zoom and should be conducted by Wednesday of week 8.
