@@ -1,5 +1,5 @@
 #include "user/user.h"
-#include "assist/userCred.h"
+#include "user/userCred.h"
 #include "assist/clientAuth.h"
 #include "client.h"
 
@@ -47,10 +47,10 @@ bool Client::Connect() {
 void Client::Start() {
     
 
-    ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
-    authenticator.Prompt();
+    //ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
+    //authenticator.Prompt();
 
-    std::thread sendThread(&Client::SendLoop, this, std::string authenticator.GetUser().GetUsername());
+    std::thread sendThread(&Client::SendLoop, this);
     std::thread receiveThread(&Client::ReceiveLoop, this);
 
     // Wait for the threads to finish (you should add proper thread management)

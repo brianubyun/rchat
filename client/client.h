@@ -2,7 +2,7 @@
 #define CLIENT_H
 
 #include "user/user.h"
-#include "assist/userCred.h"
+#include "user/userCred.h"
 #include "assist/clientAuth.h"
 
 #include <string>
