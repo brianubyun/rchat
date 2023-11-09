@@ -1,4 +1,4 @@
-#include "user/user.h"
+#include "../user/user.h"
 #include "userCred.h"
 #include "clientAuth.h"
 #include <iostream>

@@ -1,6 +1,6 @@
 #include "user/user.h"
-#include "userCred.h"
-#include "clientAuth.h"
+#include "assist/userCred.h"
+#include "assist/clientAuth.h"
 
 #include <iostream>
 #include <cstring>

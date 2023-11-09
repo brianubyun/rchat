@@ -1,7 +1,7 @@
 #ifndef USERCRED_H
 #define USERCRED_H
 
-#include "user/user.h"
+#include "../user/user.h"
 #include <string>
 #include <functional>
 #include <thread>
