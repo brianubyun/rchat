@@ -31,15 +31,21 @@
 > ![SOLIDoutline drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/a23214ab-1a9c-43cc-9574-9dd5130dff96)
 
 
-> * The server class instantiates a server object that uses socket programming and creates threads to handle server input and client connection. 
+> * The server class instantiates a server object that uses socket programming and creates threads to handle server input and client connections.
 
-> * Server Authenticator takes username and password from client to search data file for user existences.
+> * Server Authenticator validates registration/login requests from Client Authenticator
+>
+> * Command Handler executes commands by listening in a thread for server side input
 
 > * Client class instantiates a client object that creates a connection to the server using sockets, server port, and server domain name. Also creates threads to handle sending and receiving messages from the server.
 
+> * User class represents users as their username and password
+
+> * User Credentials class handles the input of user credentials in Client Authenticator
+
 > * Client Authenticator sends username and password to the server, then prompts user based on server response
 
-> * User class represents user information such as name and password. 
+
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on Zoom and should be conducted by Wednesday of week 8.
