@@ -2,7 +2,7 @@
 #define CLIENTAUTH_H
 
 #include "../user/user.h"
-#include "userCred.h"
+#include "../user/userCred.h"
 
 #include <iostream>
 #include <cstring>
