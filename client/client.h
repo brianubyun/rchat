@@ -1,7 +1,7 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include "user.h"
+#include "user/user.h"
 #include "userCred.h"
 #include "clientAuth.h"
 
