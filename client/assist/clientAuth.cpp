@@ -56,14 +56,15 @@ void ClientAuth::Prompt() {
         std::cout << "Register(0) or Login(1): ";
         std::cin >> choice;
 
-        if (choice != "0" || choice != "1") {
-            std::cout << "Invalid input. Please enter a valid string." << std::endl;
-            std::cin.clear(); // Clear the error state
-            std::cin.ignore(); // Discard the input buffer
+        if (choice == "0" || choice == "1") {
+            break; // Exit the loop if a valid integer is entered
+            
         } 
         
         else {
-            break; // Exit the loop if a valid integer is entered
+            std::cout << "Invalid input. Please enter a valid choice." << std::endl;
+            std::cin.clear(); // Clear the error state
+            std::cin.ignore(); // Discard the input buffer
         }
     }
 
@@ -71,8 +72,8 @@ void ClientAuth::Prompt() {
 
     this->authenticationUser = credentials.GetUser();
 
-    if (choice == "1"){
-        //Register();
+    if (choice == "0"){
+        Register();
     }
 
     else {
@@ -82,11 +83,19 @@ void ClientAuth::Prompt() {
 
 }
 
-/*
-bool ClientAuth::Register() {
 
+bool ClientAuth::Register() {
+    char message[] = "test";
+    int messageLength = strlen(message);
+    int bytesSent = send(authSocket, message, messageLength, 0);
+    if (bytesSent == -1) {
+        std::cerr << "Error sending message." << std::endl;
+        return false;
+    }
+    return true;
 }
 
+/*
 bool ClientAuth::Login() {
     //logic to take input for use in the prompt method of client authenticator
 }

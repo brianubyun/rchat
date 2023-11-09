@@ -48,7 +48,7 @@ void Client::Start() {
     
 
     ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
-    //authenticator.Prompt();
+    authenticator.Prompt();
 
     std::thread sendThread(&Client::SendLoop, this);
     std::thread receiveThread(&Client::ReceiveLoop, this);
