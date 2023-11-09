@@ -1,6 +1,7 @@
 #include "user/user.h"
 #include "assist/userCred.h"
 #include "assist/clientAuth.h"
+#include "client.h"
 
 #include <iostream>
 #include <cstring>
@@ -46,8 +47,8 @@ bool Client::Connect() {
 void Client::Start() {
     
 
-    //clientAuth authenticator
-    authenticator.Prompt();
+    //ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
+    //authenticator.Prompt();
 
     std::thread sendThread(&Client::SendLoop, this);
     std::thread receiveThread(&Client::ReceiveLoop, this);

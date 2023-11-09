@@ -9,14 +9,14 @@ void User::SetUsername(std::string username) {
     this->username = username;
 }
 
-void User::SetUsername(std::string password) {
+void User::SetPassword(std::string password) {
     this->password = password;
 }
 
-string User::GetUsername() {
+std::string User::GetUsername() {
     return this->username;
 }
 
-string User::GetPassword() {
+std::string User::GetPassword() {
     return this->password;
 }

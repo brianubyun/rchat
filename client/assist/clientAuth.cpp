@@ -2,12 +2,19 @@
 #include "userCred.h"
 #include "clientAuth.h"
 
-#include <string>
-#include <iostream>
 
-ClientAuth::ClientAuth(int clientSocket, int serverport, std::string serverDomainName) {
+#include <iostream>
+#include <cstring>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <string>
+#include <functional>
+#include <thread>
+
+ClientAuth::ClientAuth(int clientSocket, int serverPort, std::string serverDomainName) {
     this -> authSocket = clientSocket + 1;
-    this -> serverport = serverport;
+    this -> serverPort = serverPort;
     this -> serverDomainName = serverDomainName;
 
     authSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -22,7 +29,7 @@ ClientAuth::ClientAuth(int clientSocket, int serverport, std::string serverDomai
     serverInfo = gethostbyname(serverDomainName.c_str());
     if (serverInfo == nullptr) {
         std::cerr << "Error resolving host name." << std::endl;
-        return false;
+        exit(0);
     }
 
     serverAddr.sin_family = AF_INET;
@@ -50,7 +57,7 @@ void ClientAuth::Prompt() {
         std::cin >> choice;
 
         if (choice != "0" || choice != "1") {
-            cout << "Invalid input. Please enter a valid string." << endl;
+            std::cout << "Invalid input. Please enter a valid string." << std::endl;
             std::cin.clear(); // Clear the error state
             std::cin.ignore(); // Discard the input buffer
         } 
@@ -65,23 +72,19 @@ void ClientAuth::Prompt() {
     this->authenticationUser = credentials.GetUser();
 
     if (choice == "1"){
-        Register();
+        //Register();
     }
 
     else {
-        Login();
+        //Login();
     }
 
 
 }
 
+/*
 bool ClientAuth::Register() {
-    std::string message = "test"
-    int messageLength = strlen(message);
-    int bytesSent = send(clientSocket, message, messageLength, 0);
-    if (bytesSent == -1) {
-        std::cerr << "Error sending message." << std::endl;
-    }
+
 }
 
 bool ClientAuth::Login() {
@@ -92,7 +95,8 @@ bool ClientAuth::ServerResponse() {
     //logic to take input for use in the prompt method of client authenticator
 }
 
+*/
 
 User ClientAuth::GetUser(){
-    return this->credentialUser;
+    return this->authenticationUser;
 }

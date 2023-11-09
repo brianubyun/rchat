@@ -17,7 +17,7 @@ void UserCred::InputCredentials() {
         std::cin >> username;
 
         if (std::cin.fail()) {
-            cout << "Invalid input. Please enter a valid string." << endl;
+            std::cout << "Invalid input. Please enter a valid string." << std::endl;
             std::cin.clear(); // Clear the error state
             std::cin.ignore(); // Discard the input buffer
         } 
@@ -32,7 +32,7 @@ void UserCred::InputCredentials() {
         std::cin >> password;
 
         if (std::cin.fail()) {
-            std::cout << "Invalid input. Please enter a valid string." << endl;
+            std::cout << "Invalid input. Please enter a valid string." << std::endl;
             std::cin.clear(); // Clear the error state
             std::cin.ignore(); // Discard the input buffer
         } 
@@ -42,7 +42,7 @@ void UserCred::InputCredentials() {
         }
     }
 
-    credentialUser.SetUsername(userame);
+    credentialUser.SetUsername(username);
     credentialUser.SetPassword(password);
 
 }

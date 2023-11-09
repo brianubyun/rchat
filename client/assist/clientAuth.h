@@ -4,6 +4,11 @@
 #include "../user/user.h"
 #include "userCred.h"
 
+#include <iostream>
+#include <cstring>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <netdb.h>
 #include <string>
 #include <functional>
 #include <thread>
@@ -23,7 +28,7 @@ public:
 private:
     User authenticationUser;
     int authSocket;
-    int serverport;
+    int serverPort;
     std::string serverDomainName;
 };
 

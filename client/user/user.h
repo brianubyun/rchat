@@ -12,12 +12,12 @@ public:
     ~User();
     
     //setters
-    void SetUsername();
-    void SetPassword();
+    void SetUsername(std::string username);
+    void SetPassword(std::string password);
 
     //getters
-    string GetUsername();
-    string GetPassword();
+    std::string GetUsername();
+    std::string GetPassword();
 
 private:
     std::string username;
