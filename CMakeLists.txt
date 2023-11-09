@@ -29,16 +29,34 @@ add_executable(skeleton_test
             tests/skeleton_test.cpp
             server/server.h
             server/server.cpp
+            
             client/client.h
             client/client.cpp
+
+            client/user/user.h
+            client/user/user.cpp
+
+            client/assist/userCred.h
+            client/assist/userCred.cpp
+            client/assist/clientAuth.h
+            client/assist/clientAuth.cpp
             )
 
 add_executable(broadcast_test
             tests/broadcast_test.cpp
             server/server.h
             server/server.cpp
+            
             client/client.h
             client/client.cpp
+
+            client/user/user.h
+            client/user/user.cpp
+
+            client/assist/userCred.h
+            client/assist/userCred.cpp
+            client/assist/clientAuth.h
+            client/assist/clientAuth.cpp
             )
 
                
