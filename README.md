@@ -28,7 +28,8 @@
 > All interactions will occur via a Linux bash shell terminal. 
 
 ## Class Diagram
-> ![R'Chart class diagram drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/9a40fc61-9ea9-438f-bcc2-df5ff6658f9a)
+> ![SOLIDoutline drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/a23214ab-1a9c-43cc-9574-9dd5130dff96)
+
 
 > * The server class instantiates a server object that uses socket programming and creates threads to handle server input and client connection. 
 
