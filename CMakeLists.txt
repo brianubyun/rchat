@@ -13,6 +13,15 @@ add_executable(client_run
             client/main.cpp
             client/client.h
             client/client.cpp
+
+            client/user/user.h
+            client/user/user.cpp
+
+            client/assist/userCred.h
+            client/assist/userCred.cpp
+            client/assist/clientAuth.h
+            client/assist/clientAuth.cpp
+
             )
 
 
