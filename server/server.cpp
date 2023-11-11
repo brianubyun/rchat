@@ -8,6 +8,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <algorithm>
+#include "ServerAuthenticator.h"
 
 using namespace std;
 #define MAXBYTES 4096
@@ -102,9 +103,9 @@ void Server::AcceptClients() {
             std::cerr << "Error accepting client connection." << std::endl;
             continue;  // Continue to accept other connections
         }
-        //authicate that they are a user 
-        clientSockets.push_back(clientSocket);
-
+        //authicate that they are a user
+        //std::thread authenticationThread(&Server::Authenticate, this);
+        Authenticate(clientSocket);
         std::thread clientThread(&Server::HandleClient, this, clientSocket);
         clientThread.detach();  // Detach the thread to run independently
     }
@@ -142,4 +143,15 @@ void Server::BroadcastMessage(char* message, int messageLength, int sendClient) 
         }
     }
 
+}
+
+void Server::Authenticate(int clientSocket)
+{
+    //mildly insecure in that it allows infinite tries to login, but that can be fixed later
+    ServerAuthenticator auth;
+    while(!auth.authUser(clientSocket))
+    {}
+    cout << "IT WORKS!" << endl;
+    clientSockets.push_back(clientSocket);
+    return;
 }
