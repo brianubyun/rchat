@@ -14,8 +14,8 @@ class ServerAuthenticator
     public:
         const bool isUser (std::string username, std::string passhash);
         const bool isUser (std::string username);
-        const bool isUser (char[4096]);
-        bool writeUser (char[4096]);
+        const bool isUser (char[]);
+        bool writeUser (char[]);
         bool authUser (int);
 };
 #endif

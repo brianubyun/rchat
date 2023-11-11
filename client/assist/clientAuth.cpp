@@ -52,7 +52,7 @@ void ClientAuth::Prompt() {
 
 
     while (true) {
-
+        //going to steal this code for the first character of the sending message (0 for register, 1 for login)
         std::cout << "Register(0) or Login(1): ";
         std::cin >> choice;
 
@@ -84,7 +84,7 @@ void ClientAuth::Prompt() {
 }
 
 //This is where we can have the message to be sent to server 
-/*
+
 bool ClientAuth::Register() {
     char message[] = "test";
     int messageLength = strlen(message);
@@ -105,7 +105,6 @@ bool ClientAuth::ServerResponse() {
     //logic to take input for use in the prompt method of client authenticator
 }
 
-*/
 
 User ClientAuth::GetUser(){
     return this->authenticationUser;

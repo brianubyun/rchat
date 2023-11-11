@@ -55,10 +55,20 @@ const bool ServerAuthenticator::isUser(std::string username)
     return false;
 }
 
-const bool ServerAuthenticator::isUser(char message[4096])
+const bool ServerAuthenticator::isUser(char message[])
 {
+    in.open("users.txt");
+    if(!in.is_open())
+    {
+        abort;
+    }
     string uAndP(message);
     string curr;
+    for(int i = 0; i < (uAndP.length() - 1); ++i)
+    {
+        uAndP.at(i) = uAndP.at(i+1);
+    }
+    uAndP.pop_back();
     while(getline(in, curr))
     {
         if(!curr.compare(uAndP))
@@ -69,7 +79,7 @@ const bool ServerAuthenticator::isUser(char message[4096])
     return false;
 }
 
-bool ServerAuthenticator::writeUser(char message[4096])
+bool ServerAuthenticator::writeUser(char message[])
 {
     out.open("users.txt", ios::app);
     if(!out.is_open())
@@ -77,6 +87,11 @@ bool ServerAuthenticator::writeUser(char message[4096])
         abort;
     }
     string uAndP(message);
+    for(int i = 0; i < (uAndP.length() - 1); ++i)
+    {
+        uAndP.at(i) = uAndP.at(i+1);
+    }
+    uAndP.pop_back();
     if(!isUser(message))
     {
         out << uAndP;

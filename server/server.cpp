@@ -104,16 +104,19 @@ void Server::AcceptClients() {
             continue;  // Continue to accept other connections
         }
         //authicate that they are a user
-        //std::thread authenticationThread(&Server::Authenticate, this);
-        Authenticate(clientSocket);
-        std::thread clientThread(&Server::HandleClient, this, clientSocket);
-        clientThread.detach();  // Detach the thread to run independently
+        std::thread authenticationThread(&Server::Authenticate, this, clientSocket);
+        authenticationThread.detach();
+        //the two lines below were moved to the authentication thread to allow them to wait until the client is authenticated
+        //std::thread clientThread(&Server::HandleClient, this, clientSocket);
+        //clientThread.detach();  // Detach the thread to run independently
     }
 }
 
 //What the thread will do for each client 
 void Server::HandleClient(int clientSocket) {
     char buffer[MAXBYTES];
+    //clears out the buffer from any messages that may have been sent during the login process
+    ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
     while (true) {
         ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesReceived <= 0) {
@@ -149,9 +152,14 @@ void Server::Authenticate(int clientSocket)
 {
     //mildly insecure in that it allows infinite tries to login, but that can be fixed later
     ServerAuthenticator auth;
-    while(!auth.authUser(clientSocket))
-    {}
+    //while(!auth.authUser(clientSocket))
+    //{}
+    usleep(10000000);
+    cout << "ten seconds" << endl;
+    usleep(10000000);
     cout << "IT WORKS!" << endl;
+
     clientSockets.push_back(clientSocket);
-    return;
+    std::thread clientThread(&Server::HandleClient, this, clientSocket);
+    clientThread.detach();  // Detach the thread to run independently
 }
