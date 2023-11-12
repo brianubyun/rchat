@@ -113,14 +113,26 @@ bool ServerAuthenticator::authUser(int clientSocket)
         }
         // Process the received data (in this example, we just print it)
         buffer[bytesReceived] = '\0'; // Ensure null-termination
-        if(buffer[0])
+        if(buffer[0] == '1')
         {
             cout << "LOGIN RECIEVED" << endl;
-            return (isUser(buffer));
+            bool isuser = isUser(buffer);
+            char message [2];
+            if(isuser){message[0] = 1;}
+            else{message[0] = 0;}
+            message[1] = '\0';
+            send(clientSocket, message, 1, 0);
+            return isuser;
         }
         else
         {
-            return (writeUser(buffer));
+            bool writeuser = writeUser(buffer);
+            char message [2];
+            if(writeuser){message[0] = 1;}
+            else{message[0] = 0;}
+            message[1] = '\0';
+            send(clientSocket, message, 1, 0);
+            return writeuser;
         }
     }
     return false;

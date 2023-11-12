@@ -30,6 +30,7 @@ bool ClientAuthenticator::login()
     toSend[loginString.length()] = '\0';
     //send username+passhash to server
     //if it exists, return true, else return false
+    delete toSend [];
     return false;
 }
 

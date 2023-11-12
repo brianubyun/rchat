@@ -7,6 +7,8 @@ add_executable(server_run
             server/main.cpp
             server/server.h
             server/server.cpp
+            server/ServerAuthenticator.h
+            server/ServerAuthenticator.cpp
             )
 
 add_executable(client_run
@@ -17,8 +19,8 @@ add_executable(client_run
             client/user/user.h
             client/user/user.cpp
 
-            client/assist/userCred.h
-            client/assist/userCred.cpp
+            client/user/userCred.h
+            client/user/userCred.cpp
             client/assist/clientAuth.h
             client/assist/clientAuth.cpp
 
@@ -36,8 +38,8 @@ add_executable(skeleton_test
             client/user/user.h
             client/user/user.cpp
 
-            client/assist/userCred.h
-            client/assist/userCred.cpp
+            client/user/userCred.h
+            client/user/userCred.cpp
             client/assist/clientAuth.h
             client/assist/clientAuth.cpp
             )
@@ -53,8 +55,8 @@ add_executable(broadcast_test
             client/user/user.h
             client/user/user.cpp
 
-            client/assist/userCred.h
-            client/assist/userCred.cpp
+            client/user/userCred.h
+            client/user/userCred.cpp
             client/assist/clientAuth.h
             client/assist/clientAuth.cpp
             )

@@ -33,7 +33,7 @@ public:
     void ShutOffCommand();
 
     //Authenticates users before they are allowed to send messages
-    void Authenticate(int clientSocket);
+    void Authenticate(int);
 private:
     int serverSocket; 
     int port = 48566;

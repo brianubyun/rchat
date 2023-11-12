@@ -47,8 +47,8 @@ bool Client::Connect() {
 void Client::Start() {
     
 
-    //ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
-    //authenticator.Prompt();
+    ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
+    authenticator.Prompt();
 
     std::thread sendThread(&Client::SendLoop, this);
     std::thread receiveThread(&Client::ReceiveLoop, this);

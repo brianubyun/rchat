@@ -30,6 +30,7 @@ private:
     int authSocket;
     int serverPort;
     std::string serverDomainName;
+    std::string loginString();
 };
 
 #endif 

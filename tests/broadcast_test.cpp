@@ -1,5 +1,6 @@
 #include "../server/server.h"
 #include "../client/client.h"
+#include "../server/ServerAuthenticator.h"
 #include "gtest/gtest.h" //what is wrong with this 
 
 
@@ -63,6 +64,12 @@ TEST(BroadcastTest, Message) {
     listenClient.Connect();
     EXPECT_TRUE(listenClient.TestReceive());
 }
+/*TEST(AuthenticateTest, Serverauth){
+    ServerAuthenticator auth;
+    char test [5] = "abc";
+    auth.writeUser(test);
+    EXPECT_TRUE(auth.isUser(test));
+}*/
 
 int main(int argc, char **argv) {
     
