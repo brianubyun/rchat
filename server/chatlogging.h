@@ -4,11 +4,17 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <chrono>
+#include <ctime>
 
 
 class Logger {
 public:
     
+    Logger(std::string saveFileName = "R'ChatLogs.txt"){
+        this->saveFile = saveFileName;
+    }
+
     void logMessage(char message[] ){
 
       // Get the current time
@@ -19,13 +25,16 @@ public:
       std::strftime(timeString, sizeof(timeString), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
 
       // Open the file in append mode
-      std::ofstream ChatLog("filename.txt", std::ios_base::app);
+      std::ofstream ChatLog(this->saveFile, std::ios_base::app);
 
       // Write the timestamp and message to the file
       ChatLog << "[" << timeString << "] " << message << std::endl;
-      
+
       ChatLog.close();
     }
+
+private:
+    std::string saveFile;
 
 };
 

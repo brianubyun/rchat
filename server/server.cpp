@@ -124,7 +124,7 @@ void Server::HandleClient(int clientSocket) {
             break;
         }
         
-        chatLog.logMessage(buffer)
+        chatLog.logMessage(buffer);
 
         // Process the received data (in this example, we just print it)
         buffer[bytesReceived] = '\0'; // Ensure null-termination
