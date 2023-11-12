@@ -1,4 +1,4 @@
-
+![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/4845b4e9-ced6-42a3-8481-11732715eea3)
 # R'Chat
 
  > Authors:
@@ -25,7 +25,21 @@
 ![navigation-graph drawio (1)noadmin drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/6fe0d819-0e9d-4612-8666-7c9ef8236dff)
 
 ### Screen Layouts
-> All interactions will occur via a Linux bash shell terminal. 
+> All interactions will occur via a Linux bash shell terminal.
+>
+> This is what the terminal will look like when you are prompted when entering a message in the chat room.
+> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/7725059b-016f-442d-b2d6-1790e8511410)
+>
+> This is what the terminal will look like on the server side where all messages are sent to.
+> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/1cc00584-fb6d-40ac-a79b-d05b590ff2c7)
+>
+> This is what the terminal will look like on the server side when a client disconnects from the chat room.
+> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/2a371bae-355a-4fbc-8cfd-c8fade465940)
+
+
+
+
+ 
 
 ## Class Diagram
 > ![SOLIDoutline drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/a23214ab-1a9c-43cc-9574-9dd5130dff96)
