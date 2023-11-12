@@ -28,6 +28,7 @@ add_executable(skeleton_test
             server/commandhandler.h
             )
 
+            
 add_executable(broadcast_test
             tests/broadcast_test.cpp
             server/server.h
