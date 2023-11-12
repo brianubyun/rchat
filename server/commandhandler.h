@@ -7,17 +7,17 @@
 
 class CommandHandler {
 public:
-    void listenFor(Server* server){
+    void ListenFor(Server* server){
         char* input;
         while(server->isRunning){ //While server is running get input
           std::cin.getline(input, 10);
-          handleCommand(input, server);
+          HandleCommand(input, server);
           std::cin.clear();
         }   
     }
 
 
-    void handleCommand(char* command, Server* server) {
+    void HandleCommand(char* command, Server* server) {
          if(strcmp(command, "//exit") == 0){ //If input is exit command
             std::cin.clear();
             std::cout<<"Shutting down server" << std::endl;
