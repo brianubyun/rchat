@@ -8,6 +8,7 @@ add_executable(server_run
             server/server.h
             server/server.cpp
             server/chatlogging.h
+            server/commandhandler.h
             )
 
 add_executable(client_run
@@ -24,6 +25,7 @@ add_executable(skeleton_test
             client/client.h
             client/client.cpp
             server/chatlogging.h
+            server/commandhandler.h
             )
 
 add_executable(broadcast_test
@@ -33,6 +35,7 @@ add_executable(broadcast_test
             client/client.h
             client/client.cpp
             server/chatlogging.h
+            server/commandhandler.h
             )
 
 add_executable(chatlogging_test
