@@ -27,7 +27,7 @@
 ### Screen Layouts
 > All interactions will occur via a Linux bash shell terminal.
 >
-> This is what the terminal will look like when you are prompted when entering a message in the chat room.
+> This is what the terminal will look like when you are prompted to enter a message in the chat room.
 > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/7725059b-016f-442d-b2d6-1790e8511410)
 >
 > This is what the terminal will look like on the server side where all messages are sent to.
