@@ -1,4 +1,3 @@
-![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/4845b4e9-ced6-42a3-8481-11732715eea3)
 # R'Chat
 
  > Authors:
