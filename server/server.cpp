@@ -1,5 +1,7 @@
 #include "server.h"
 #include "chatlogging.h"
+#include "commandhandler.h"
+
 #include <iostream>
 #include <vector>
 #include <thread>
@@ -53,8 +55,10 @@ void Server::Start() {
     isRunning = true;
 
     //create shutoff command thread to check for shut off command
-    std::thread shutOffThread(&Server::ShutOffCommand, this);
-    shutOffThread.detach(); //detach shut off thread
+    //this is where we implement the command handler thread instead of the shut off thread
+    CommandHandler handler;
+    std::thread commandThread(&CommandHandler::ListenFor, &handler, this);
+    commandThread.detach(); //detach shut off thread
     AcceptClients();
 }
 
@@ -75,21 +79,6 @@ void Server::Stop() {
     exit(0);
 }
 
-void Server::ShutOffCommand(){
-    char* input;
-    while(isRunning){ //While server is running get input
-        cin.getline(input, 10);
-        if(strcmp(input, "//exit") == 0){ //If input is exit command
-            cin.clear();
-            std::cout<<"Shutting down server" << endl;
-            delete this; //call server destructor 
-        } 
-        else{
-            cin.clear(); //clear buffer for new input
-            
-        }
-    }     
-}
 
 //Creates threads for each client 
 void Server::AcceptClients() {
