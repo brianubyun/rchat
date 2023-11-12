@@ -1,6 +1,7 @@
 #include "../server/chatlogging.h"
 #include "gtest/gtest.h" 
 #include <fstream>
+#include <cstdio>
 
 
 // ensures that the logger takes input line by line 
@@ -23,6 +24,7 @@ TEST(loggerTest, writeTest) {
     
     EXPECT_EQ(buffer, logText);
     MyReadFile.close();
+    std::remove("testLog.txt");
 }
 
 int main(int argc, char **argv) {
