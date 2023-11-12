@@ -31,7 +31,7 @@
 > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/7725059b-016f-442d-b2d6-1790e8511410)
 >
 > This is what the terminal will look like on the server side where all messages are sent to.
-> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/1cc00584-fb6d-40ac-a79b-d05b590ff2c7)
+> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/a58a375a-e7b5-434f-ba03-c7192994abfe)
 >
 > This is what the terminal will look like on the server side when a client disconnects from the chat room.
 > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/2a371bae-355a-4fbc-8cfd-c8fade465940)
