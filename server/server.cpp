@@ -1,4 +1,5 @@
 #include "server.h"
+#include "chatlogging.h"
 #include <iostream>
 #include <vector>
 #include <thread>
@@ -114,12 +115,16 @@ void Server::AcceptClients() {
 //What the thread will do for each client 
 void Server::HandleClient(int clientSocket) {
     char buffer[MAXBYTES];
+    Logger chatLog;
+
     while (true) {
         ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesReceived <= 0) {
             // Handle client disconnection or error
             break;
         }
+        
+        chatLog.logMessage(buffer);
 
         // Process the received data (in this example, we just print it)
         buffer[bytesReceived] = '\0'; // Ensure null-termination
