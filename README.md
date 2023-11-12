@@ -34,7 +34,8 @@
 > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/a58a375a-e7b5-434f-ba03-c7192994abfe)
 >
 > This is what the terminal will look like on the server side when a client disconnects from the chat room.
-> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/2a371bae-355a-4fbc-8cfd-c8fade465940)
+> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/3e531912-9a45-44da-b062-affaf7a027a3)
+
 
 
 
