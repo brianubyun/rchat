@@ -79,21 +79,6 @@ void Server::Stop() {
     exit(0);
 }
 
-void Server::ShutOffCommand(){
-    char* input;
-    while(isRunning){ //While server is running get input
-        cin.getline(input, 10);
-        if(strcmp(input, "//exit") == 0){ //If input is exit command
-            cin.clear();
-            std::cout<<"Shutting down server" << endl;
-            delete this; //call server destructor 
-        } 
-        else{
-            cin.clear(); //clear buffer for new input
-            
-        }
-    }     
-}
 
 //Creates threads for each client 
 void Server::AcceptClients() {
