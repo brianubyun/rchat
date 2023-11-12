@@ -42,14 +42,18 @@
  
 
 ## Class Diagram
-> ![SOLIDoutline drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/a23214ab-1a9c-43cc-9574-9dd5130dff96)
+> ![Untitled Diagram drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/6b0aa781-c63e-449f-b252-8a234d5bbaa2)
+
+
 
 
 > * The server class instantiates a server object that uses socket programming and creates threads to handle server input and client connections.
 
 > * Server Authenticator validates registration/login requests from Client Authenticator
 >
-> * Command Handler executes commands by listening in a thread for server side input
+> * Command Handler executes commands by listening in a thread for server-side input
+
+> * Logger timestamps and records all messages sent to the server
 
 > * Client class instantiates a client object that creates a connection to the server using sockets, server port, and server domain name. Also creates threads to handle sending and receiving messages from the server.
 
