@@ -2,7 +2,7 @@
 #include "../user/userCred.h"
 #include "clientAuth.h"
 
-
+#include <fstream>
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
@@ -93,15 +93,17 @@ void ClientAuth::Prompt() {
 
 bool ClientAuth::Register() {
     //ALWAYS START REGISTER WITH A 0 AND END WITH A NEWLINE OR IT WONT WORK RIGHT
-    char message[] = "0test\n";
-    /*std::string login = loginString();
+    //char message[] = "0test\n";
+    std::string login = loginString();
     char *message = new char[login.length() + 1];
-    message[0] == 0;
-    for(int i = 1; i < login.length(); ++i)
+    message[0] = '0';
+    int j = 1;
+    for(char i : login)
     {
-        message[i] = login.at(i);
+        message[j] = i;
+        ++j;
     }
-    message[login.length()] = '\0';*/
+    message[login.length()] = '\0';
     int messageLength = strlen(message);
     int bytesSent = send(authSocket, message, messageLength, 0);
     if (bytesSent == -1) {
@@ -118,12 +120,13 @@ bool ClientAuth::Login() {
     //ALWAYS START LOGIN WITH A 1 AND END WITH A NEWLINE OR IT WONT WORK RIGHT
     //logic to take input for use in the prompt method of client authenticator
     //char message[] = "1test\n";
-    std::string login = loginString();
     char *message = new char[login.length() + 1];
-    message[0] == 1;
-    for(int i = 1; i < login.length(); ++i)
+    message[0] = '0';
+    int j = 1;
+    for(char i : login)
     {
-        message[i] = login.at(i);
+        message[j] = i;
+        ++j;
     }
     message[login.length()] = '\0';
     int messageLength = strlen(message);
@@ -154,9 +157,9 @@ User ClientAuth::GetUser(){
 std::string ClientAuth::loginString()
 {
     std::string login;
-    //login.append((char)0);
     login.append(authenticationUser.GetUsername());
-    //login.append((char)17);
+    login.push_back(17);
     login.append(authenticationUser.GetPassword());
+    login.push_back('\n');
     return login;
 }
