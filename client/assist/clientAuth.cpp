@@ -75,6 +75,7 @@ void ClientAuth::Prompt() {
         if (choice == "0"){
             if(!Register())
             {
+                //if register fails, and 
                 std::cout << "This user already exists, please login instead." << std::endl;
                 continue;
             }
@@ -108,10 +109,10 @@ bool ClientAuth::Register() {
     int bytesSent = send(authSocket, message, messageLength, 0);
     if (bytesSent == -1) {
         std::cerr << "Error sending message." << std::endl;
-        //delete message [];
+        delete [] message;
         return false;
     }
-    //delete message [];
+    delete [] message;
     return ServerResponse();
 }
 
@@ -120,6 +121,7 @@ bool ClientAuth::Login() {
     //ALWAYS START LOGIN WITH A 1 AND END WITH A NEWLINE OR IT WONT WORK RIGHT
     //logic to take input for use in the prompt method of client authenticator
     //char message[] = "1test\n";
+    std::string login = loginString();
     char *message = new char[login.length() + 1];
     message[0] = '0';
     int j = 1;
@@ -133,10 +135,10 @@ bool ClientAuth::Login() {
     int bytesSent = send(authSocket, message, messageLength, 0);
     if (bytesSent == -1) {
         std::cerr << "Error sending message." << std::endl;
-        //delete message[]
+        delete [] message;
         return false;
     }
-    //delete message[]
+    delete [] message;
     return ServerResponse();
 }
 
