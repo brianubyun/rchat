@@ -94,7 +94,7 @@ void ClientAuth::Prompt() {
 
 bool ClientAuth::Register() {
     //ALWAYS START REGISTER WITH A 0 AND END WITH A NEWLINE OR IT WONT WORK RIGHT
-    //char message[] = "0test\n";
+    //puts the username/password into a single message
     std::string login = loginString();
     char *message = new char[login.length() + 1];
     message[0] = '0';
@@ -105,6 +105,7 @@ bool ClientAuth::Register() {
         ++j;
     }
     message[login.length()] = '\0';
+    //sends the message to the server
     int messageLength = strlen(message);
     int bytesSent = send(authSocket, message, messageLength, 0);
     if (bytesSent == -1) {
@@ -119,8 +120,7 @@ bool ClientAuth::Register() {
 
 bool ClientAuth::Login() {
     //ALWAYS START LOGIN WITH A 1 AND END WITH A NEWLINE OR IT WONT WORK RIGHT
-    //logic to take input for use in the prompt method of client authenticator
-    //char message[] = "1test\n";
+    //puts the username/password into a single message
     std::string login = loginString();
     char *message = new char[login.length() + 1];
     message[0] = '0';
@@ -131,6 +131,7 @@ bool ClientAuth::Login() {
         ++j;
     }
     message[login.length()] = '\0';
+    //sends the message to the server
     int messageLength = strlen(message);
     int bytesSent = send(authSocket, message, messageLength, 0);
     if (bytesSent == -1) {
@@ -144,9 +145,10 @@ bool ClientAuth::Login() {
 
 bool ClientAuth::ServerResponse() {
     //logic to take input for use in the prompt method of client authenticator
+    //server only responds with a single character
     char success[2];
     recv(authSocket, success, sizeof(success), 0);
-    if(success[0] == 1){return true;}
+    if(success[0] == '1'){return true;}
     else{return false;}
     return false;
 }
