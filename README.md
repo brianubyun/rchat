@@ -21,7 +21,8 @@
 ## User Interface Specification
 
 ### Navigation Diagram
-![navigation-graph drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/4e687ac4-3a34-4b6d-9ce2-60f00959767a)
+!![navigation-graph drawio (1) drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/e1aca429-5433-4ced-91c9-f9f380410256)
+
 
 ### Screen Layouts
 > All interactions will occur via a Linux bash shell terminal.
