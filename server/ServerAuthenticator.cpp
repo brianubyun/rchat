@@ -20,14 +20,14 @@ const bool ServerAuthenticator::isUser(std::string username, std::string passhas
     {
         abort;
     }
-    stringstream userAndPass;
-    string uAndP;
-    userAndPass << username << breakChar << passhash;
-    userAndPass >> uAndP;
+    stringstream uAndP;
+    string userAndPass;
+    uAndP << username << breakChar << passhash;
+    uAndP >> userAndPass;
     string curr;
     while(getline(in, curr))
     {
-        if(!curr.compare(uAndP))
+        if(!curr.compare(userAndPass))
         {
             return true;
         }
@@ -62,16 +62,17 @@ const bool ServerAuthenticator::isUser(char message[])
     {
         abort;
     }
-    string uAndP(message);
+    string userAndPass(message);
     string curr;
-    for(int i = 0; i < (uAndP.length() - 1); ++i)
+    //puts the string in the right format
+    for(int i = 0; i < (userAndPass.length() - 1); ++i)
     {
-        uAndP.at(i) = uAndP.at(i+1);
+        userAndPass.at(i) = userAndPass.at(i+1);
     }
-    uAndP.pop_back();
+    userAndPass.pop_back();
     while(getline(in, curr))
     {
-        if(!curr.compare(uAndP))
+        if(!curr.compare(userAndPass))
         {
             return true;
         }
@@ -86,15 +87,16 @@ bool ServerAuthenticator::writeUser(char message[])
     {
         abort;
     }
-    string uAndP(message);
-    for(int i = 0; i < (uAndP.length() - 1); ++i)
+    string userAndPass(message);
+    for(int i = 0; i < (userAndPass.length() - 1); ++i)
     {
-        uAndP.at(i) = uAndP.at(i+1);
+        userAndPass.at(i) = userAndPass.at(i+1);
     }
-    uAndP.pop_back();
-    if(!isUser(message))
+    userAndPass.pop_back();
+    //searches for the username to see if the user already exists
+    if(!isUser(userAndPass.substr(0, userAndPass.find(breakChar))))
     {
-        out << uAndP;
+        out << userAndPass;
         out.close();
         return true;
     }
@@ -111,7 +113,6 @@ bool ServerAuthenticator::authUser(int clientSocket)
             // Handle client disconnection or error
             break;
         }
-        // Process the received data (in this example, we just print it)
         buffer[bytesReceived] = '\0'; // Ensure null-termination
         if(buffer[0] == '1')
         {
