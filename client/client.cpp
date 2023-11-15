@@ -77,15 +77,15 @@ void Client::ReceiveLoop() {
         int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesRead <= 0) {
             std::cerr << std::endl << "Connection to the server closed." << std::endl;
-            //edit here to fix this issue 
-            break;
+            exit(0);
         }
         
         std::string message(buffer, bytesRead);
         std::cout << "Received message: " << message << std::endl << std::endl;
         
+        
     }
-}
+}  
 
 void Client::SendMessage(const char* message) {
     int messageLength = strlen(message);
