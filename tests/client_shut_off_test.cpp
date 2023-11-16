@@ -1,6 +1,6 @@
-#include "../googletest/googletest/include/gtest/gtest.h"
 #include "../client/client.h"
 #include "../server/server.h"
+#include "/home/csmajs/bbyun004/final-project-ykore001-dshaw013-bbyun004-mcuay001/googletest/googletest/include/gtest/gtest.h"
 
 class testClient : public Client {
 public: 
@@ -8,7 +8,7 @@ public:
 };
 
 TEST(testClient, quitCommand) {
-    std::stringstream userInput("Hello I am Brian.\n I like to eat food. \n//quit")
+    std::stringstream userInput("Hello I am Brian.\n Welcome. \n//quit")
 
     testClient.SendLoop();
 }

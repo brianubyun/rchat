@@ -14,16 +14,13 @@ add_executable(client_run
             client/client.h
             client/client.cpp
             )
-
-add_executable(client_test_run
-            client/main.cpp
-            client/client.h
-            client/client.cpp
-            server/main.cpp
+  
+add_executable(client_shut_off_test
             server/server.h
             server/server.cpp
-            tests/client_shut_off_test.cpp
-            )       
+            client/client.h
+            client/client.cpp
+            )
             
             
 target_link_libraries(client_run PRIVATE pthread)
