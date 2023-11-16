@@ -28,6 +28,7 @@
 > All interactions will occur via a Linux bash shell terminal.
 >
 >  This is what the terminal will look like when you are prompted choose authentication methods and input credentials
+> 
 > ![image 1](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/c79db8a9-e26e-4011-8560-20a7819b79ba)
 > ![image,2](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/a5dab855-ed54-48cc-98d7-57f758ff4328)
 > 
