@@ -59,7 +59,7 @@ void Server::Start() {
     CommandHandler handler;
     std::thread commandThread(&CommandHandler::ListenFor, &handler, this);
     commandThread.detach(); //detach shut off thread
-    AcceptClients();
+    AcceptClients(cout);
 }
 
 //Stops the server and closes clients 
@@ -81,8 +81,8 @@ void Server::Stop() {
 
 
 //Creates threads for each client 
-void Server::AcceptClients() {
-    std::cout << "listening..." << std::endl;
+void Server::AcceptClients(ostream& out) {
+    out << "listening..." << std::endl;
     while (isRunning) {
         struct sockaddr_in clientAddr;
         socklen_t clientAddrLen = sizeof(clientAddr);
@@ -96,13 +96,13 @@ void Server::AcceptClients() {
 
         clientSockets.push_back(clientSocket);
 
-        std::thread clientThread(&Server::HandleClient, this, clientSocket);
+        std::thread clientThread(&Server::HandleClient, this, clientSocket, ref(cout));
         clientThread.detach();  // Detach the thread to run independently
     }
 }
 
 //What the thread will do for each client 
-void Server::HandleClient(int clientSocket) {
+void Server::HandleClient(int clientSocket, ostream& out) {
     char buffer[MAXBYTES];
     Logger chatLog;
 
@@ -117,7 +117,7 @@ void Server::HandleClient(int clientSocket) {
 
         // Process the received data (in this example, we just print it)
         buffer[bytesReceived] = '\0'; // Ensure null-termination
-        std::cout << "Received from client: " << buffer << std::endl;
+        out << "Received from client: " << buffer << std::endl;
 
         // You can implement message broadcasting here
         BroadcastMessage(buffer, strlen(buffer), clientSocket);

@@ -2,6 +2,7 @@
 #define SERVER_H
 #include <vector>
 #include <string>
+#include <iostream>
 
 
 class Server {
@@ -21,10 +22,10 @@ public:
     void Stop();
 
     // Accept client connections
-    void AcceptClients();
+    void AcceptClients(std::ostream& out);
 
     // Handle client communication
-    void HandleClient(int clientSocket);
+    void HandleClient(int clientSocket, std::ostream& out);
 
     // Broadcast a message to all connected clients
     void BroadcastMessage(char * message, int messageLength, int sendClient);
