@@ -4,6 +4,7 @@
 #include <string>
 #include <functional>
 #include <thread>
+#include <cmath>
 
 
 class User {

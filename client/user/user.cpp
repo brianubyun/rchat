@@ -1,6 +1,8 @@
 #include "user.h"
 #include <iostream>
-
+#include <cstdlib>
+#include <ctime>
+#include <numeric>
 User::User() {}
 
 User::~User() {}
@@ -18,5 +20,14 @@ std::string User::GetUsername() {
 }
 
 std::string User::GetPassword() {
-    return this->password;
+    
+    long long int hashedPassword = 0;
+    for(char i : password){
+        hashedPassword += (i * 10) % 177;
+        hashedPassword += i;
+    }
+    srand(hashedPassword);
+    unsigned long long randNum = (rand() % (1000) * rand() % (1000) * rand() % (1000) * rand() % (1000) * rand() % (1000));
+    hashedPassword *= randNum;
+    return std::to_string(hashedPassword);
 }
