@@ -4,11 +4,12 @@
 #include <string>
 #include <functional>
 #include <thread>
-
+#include <iostream>
 
 class Client {
 public:
     Client();
+    Client(Client& client){};
     ~Client();
 
     // Connect to the server
@@ -23,6 +24,12 @@ public:
     // Disconnect from the server
     void Disconnect();
 
+    // Function for sending messages in a loop
+    void SendLoop(std::istream& in);
+
+    // Function for receiving messages in a loop
+    void ReceiveLoop(std::ostream& out);
+
 protected:
     int clientSocket;
 private:
@@ -31,11 +38,7 @@ private:
     std::thread sendThread;
     std::thread receiveThread;
 
-    // Function for sending messages in a loop
-    void SendLoop();
-
-    // Function for receiving messages in a loop
-    void ReceiveLoop();
+    
 };
 
 #endif // CLIENT_H

@@ -5,7 +5,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #define MAXBYTES 4096
-
+using namespace std;
 Client::Client() {
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (clientSocket == -1) {
@@ -42,27 +42,27 @@ bool Client::Connect() {
 
 void Client::Start() {
     // Start the send and receive threads (you need to implement these)
-    sendThread = std::thread(&Client::SendLoop, this);
-    receiveThread = std::thread(&Client::ReceiveLoop, this);
+    sendThread = std::thread(&Client::SendLoop, this, ref(cin));
+    receiveThread = std::thread(&Client::ReceiveLoop, this, ref(cout));
 
     // Wait for the threads to finish (you should add proper thread management)
     sendThread.join();
     receiveThread.join();
 }
 
-void Client::SendLoop() { //possibly add an outstream thing or print function so we can use it for unit tests as well
+void Client::SendLoop(istream& in) { //possibly add an outstream thing or print function so we can use it for unit tests as well
     while (true) {
         char buffer[MAXBYTES];
 
         // Prompt the user for input and read it into the buffer
         //std::cout << "Enter a message: ";
-        std::cin.getline(buffer, MAXBYTES);
+        in.getline(buffer, MAXBYTES);
 
         // User sent //quit command and exits chat 
         if (std::string(buffer) == "//quit") {  
             SendMessage("Connection closed. Client disconnected.");
             exit(0); //Terminates program since chat program is exited
-            std::cin.clear(); //Clears buffer
+            in.clear(); //Clears buffer
         }
 
         // Send the message from the buffer
@@ -71,7 +71,7 @@ void Client::SendLoop() { //possibly add an outstream thing or print function so
 }
 
 //This wont work until Server::Broadcastmessage is completed 
-void Client::ReceiveLoop() {
+void Client::ReceiveLoop(ostream& out) {
     char buffer[MAXBYTES];
     while (true) {
         int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
@@ -81,7 +81,7 @@ void Client::ReceiveLoop() {
         }
         
         std::string message(buffer, bytesRead);
-        std::cout << "Received message: " << message << std::endl << std::endl;
+        out << "Received message: " << message << std::endl << std::endl;
         
         
     }
