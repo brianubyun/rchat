@@ -1,7 +1,6 @@
 #include "/home/csmajs/bbyun004/final-project-ykore001-dshaw013-bbyun004-mcuay001/client/client.h"
 #include "../server/server.h"
 #include "/home/csmajs/bbyun004/final-project-ykore001-dshaw013-bbyun004-mcuay001/googletest/googletest/include/gtest/gtest.h"
-#define MAXBYTES 4096
 
 class TestClient : public Client {
   public:
