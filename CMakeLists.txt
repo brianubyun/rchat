@@ -53,23 +53,8 @@ add_executable(server_shut_off_test
             client/client.cpp
             server/chatlogging.h
             server/commandhandler.h
-            )
-
+            )       
             
-add_executable(chatlogging_test
-            tests/chatlogging_test.cpp
-            server/chatlogging.h
-            )
-
-add_executable(server_shut_off_test
-            tests/server_shut_off_test.cpp
-            server/server.h
-            server/server.cpp
-            client/client.h
-            client/client.cpp
-            )
-
-               
 target_link_libraries(client_run PRIVATE pthread)
 target_link_libraries(server_run pthread)
 
