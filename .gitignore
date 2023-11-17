@@ -12,3 +12,4 @@ user_run
 *.a
 .vscode
 lib
+client_shut_off_test

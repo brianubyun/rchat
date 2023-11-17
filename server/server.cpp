@@ -50,6 +50,10 @@ void Server::Start() {
     }
 
     isRunning = true;
+
+    //create shutoff command thread to check for shut off command
+    std::thread shutOffThread(&Server::ShutOffCommand, this);
+    shutOffThread.detach(); //detach shut off thread
     AcceptClients();
 }
 
@@ -67,10 +71,28 @@ void Server::Stop() {
     // Close the server socket
     close(serverSocket);
     isRunning = false;
+    exit(0);
+}
+
+void Server::ShutOffCommand(){
+    char* input;
+    while(isRunning){ //While server is running get input
+        cin.getline(input, 10);
+        if(strcmp(input, "//exit") == 0){ //If input is exit command
+            cin.clear();
+            std::cout<<"Shutting down server" << endl;
+            delete this; //call server destructor 
+        } 
+        else{
+            cin.clear(); //clear buffer for new input
+            
+        }
+    }     
 }
 
 //Creates threads for each client 
 void Server::AcceptClients() {
+    std::cout << "listening..." << std::endl;
     while (isRunning) {
         struct sockaddr_in clientAddr;
         socklen_t clientAddrLen = sizeof(clientAddr);
@@ -104,6 +126,7 @@ void Server::HandleClient(int clientSocket) {
         std::cout << "Received from client: " << buffer << std::endl;
 
         // You can implement message broadcasting here
+        BroadcastMessage(buffer, strlen(buffer), clientSocket);
     }
 
     close(clientSocket);
@@ -112,6 +135,12 @@ void Server::HandleClient(int clientSocket) {
 }
 
 
-void Server::BroadcastMessage(char message) {
+void Server::BroadcastMessage(char* message, int messageLength, int sendClient) {
     //for client in clientsockets send the message to them
+    for(int client : clientSockets){
+        if (client != sendClient){ //avoids having their message broadcasted back to them
+            send(client, message, messageLength, 0);
+        }
+    }
+
 }

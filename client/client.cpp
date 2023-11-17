@@ -55,7 +55,7 @@ void Client::SendLoop() { //possibly add an outstream thing or print function so
         char buffer[MAXBYTES];
 
         // Prompt the user for input and read it into the buffer
-        std::cout << "Enter a message: ";
+        //std::cout << "Enter a message: ";
         std::cin.getline(buffer, MAXBYTES);
 
         // User sent //quit command and exits chat 
@@ -77,12 +77,15 @@ void Client::ReceiveLoop() {
         int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesRead <= 0) {
             std::cerr << std::endl << "Connection to the server closed." << std::endl;
-            break;
+            exit(0);
         }
+        
         std::string message(buffer, bytesRead);
-        std::cout << "Received message: " << message << std::endl;
+        std::cout << "Received message: " << message << std::endl << std::endl;
+        
+        
     }
-}
+}  
 
 void Client::SendMessage(const char* message) {
     int messageLength = strlen(message);

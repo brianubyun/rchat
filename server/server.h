@@ -6,6 +6,8 @@
 
 class Server {
 public:
+    bool isRunning;
+    
     // Constructor
     Server();
 
@@ -25,12 +27,14 @@ public:
     void HandleClient(int clientSocket);
 
     // Broadcast a message to all connected clients
-    void BroadcastMessage(char message);
+    void BroadcastMessage(char * message, int messageLength, int sendClient);
+
+    // Monitor shut off command
+    void ShutOffCommand();
 
 private:
     int serverSocket; 
     int port = 48566;
-    bool isRunning;
     std::vector<int> clientSockets;
 
 };
