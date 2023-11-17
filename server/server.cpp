@@ -57,7 +57,7 @@ void Server::Start() {
     //create shutoff command thread to check for shut off command
     //this is where we implement the command handler thread instead of the shut off thread
     CommandHandler handler;
-    std::thread commandThread(&CommandHandler::ListenFor, &handler, this);
+    std::thread commandThread(&CommandHandler::ListenFor, &handler, this, ref(cin));
     commandThread.detach(); //detach shut off thread
     AcceptClients(cout);
 }
