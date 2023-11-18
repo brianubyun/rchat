@@ -10,7 +10,8 @@
 
 //Created a test command handler class with a public bool that is set to true
 //When the //exit command has been called, indicating that the server has been stopped and deleted
-
+//https://www.youtube.com/watch?v=HNu-Rsno_wU
+    //video for death testing
 class TestCommandHandler : public CommandHandler{
     public:
         bool hasBeenDeleted = false;
@@ -53,29 +54,67 @@ class TestServer: public Server{
 */
 
 Server* temp_server;
+
+
 void RunServer() {
     temp_server = new Server();
     temp_server->Start(); 
-    std::this_thread::sleep_for(std::chrono::seconds(10)); // Sleep for 10 seconds
+    std::this_thread::sleep_for(std::chrono::seconds(1)); // Sleep for 10 seconds
 }
 
+void RunCommandHandler(){
+    TestCommandHandler commmandhandler;
+    //std::this_thread::sleep_for(std::chrono::seconds(2)); // Sleep for 10 seconds
+    std::string input = "//exit";
+    char command[input.length() + 1];
+    std::strcpy(command, input.c_str());
+    commmandhandler.HandleCommand(command, temp_server);
+    //std::this_thread::sleep_for(std::chrono::seconds(10)); // Sleep for 10 seconds
+}
+
+void TestThread(void){
+    //RunCommandHandler();
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    RunCommandHandler();
+    //EXPECT_FALSE(temp_server->isRunning);
+}
+
+void NormalExit(){
+    std::thread serverThread(RunServer);
+    //RunCommandHandler();
+    std::thread testThread(TestThread);
+    serverThread.join();
+    testThread.join();
+}
 
 TEST(ServerShutDown, testingServerShutOffCommand) {
-    Server* server = new Server();
-    //server->Start();
+    //std::thread serverThread(RunServer);
+    //std::thread testThread(NormalExit);
+    //serverThread.join();
+
+    /*
     TestCommandHandler commmandhandler;
     std::string input = "//exit";
     char command[input.length() + 1];
     std::strcpy(command, input.c_str());
-    commmandhandler.HandleCommand(command, server);
-    EXPECT_TRUE(commmandhandler.hasBeenDeleted);
-}
+    commmandhandler.HandleCommand(command, temp_server);
+    EXPECT_FALSE(temp_server->isRunning);
+    */
 
+   //testThread.join();
+   EXPECT_EXIT(NormalExit(),testing::ExitedWithCode(0),"");
+   //serverThread.join();
+   //testThread.join();
+   //serverThread.join();
+}
 
 int main(int argc, char **argv) {
     //std::thread serverThread(RunServer);
+    //std::thread commandThread(RunCommandHandler);
     ::testing::InitGoogleTest(&argc, argv);
     int result = RUN_ALL_TESTS();
+    //commandThread.join();
     //serverThread.join();
     return result;
+    //serverThread.join();
 }
