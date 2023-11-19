@@ -1,51 +1,20 @@
 #include "../server/server.h"
 #include "../client/client.h"
+#include "../server/chatlogging.h"
+#include "testClasses.h"
 #include "gtest/gtest.h" //what is wrong with this 
-
 
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <netdb.h>
+#include <fstream>
+#include <cstdio>
 #define MAXBYTES 4096
 
 
 
-class TestServer : public Server {
-public:
-    void TestStop (){
-        exit(0);
-    }
-};
-
-class TestClient : public Client {
-public:
-    void TestSend() {
-      int i = 1;
-      while (i >= 0) {
-        char testBuffer[] = "Hello, World!";
-        SendMessage(testBuffer);
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-        i--;
-      }
-    }
-
-
-    bool TestReceive() {
-      char buffer[MAXBYTES];
-      while (true) {
-        int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
-        if (bytesRead > 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-        
-      }
-    }
-};
 
 //runs server so that infinite listen loop doesnt prevent the connectioin test
 void RunServer(TestServer server) {
@@ -63,11 +32,39 @@ void RunSendClient() {
     sendClient.TestSend();
 }
 
+TEST(ConnectionTest, Connect) {
+    Client client;
+    EXPECT_TRUE(client.Connect());
+}
+
 
 TEST(BroadcastTest, Message) {
     TestClient listenClient;
     listenClient.Connect();
     EXPECT_TRUE(listenClient.TestReceive());
+}
+
+// ensures that the logger takes input line by line 
+TEST(loggerTest, writeTest) {
+    char buffer[] = "Hello world";
+    Logger testLog("testLog.txt");
+
+    testLog.logMessage(buffer);
+
+
+    std::string logText;
+    // Read from the text file
+    std::ifstream MyReadFile("testLog.txt");
+
+    //getline() function to read the file line by line
+    getline (MyReadFile, logText);
+
+    //removes the timestamp of the message
+    logText = logText.substr(22);
+    
+    EXPECT_EQ(buffer, logText);
+    MyReadFile.close();
+    std::remove("testLog.txt");
 }
 
 int main(int argc, char **argv) {
@@ -81,3 +78,4 @@ int main(int argc, char **argv) {
 
     return result;
 }
+
