@@ -5,10 +5,13 @@ CMakeCache.txt
 cmake_install.cmake
 Makefile
 CMakeFiles
-.vscode
-*a
-
-skeleton_test
+admin_run
 broadcast_test
+skeleton_test
+user_run
+*.a
+.vscode
+lib
+client_shut_off_test
 chatlogging_test
 server_shut_off_test
