@@ -2,11 +2,20 @@
 #include "../client/client.h"
 #include "gtest/gtest.h" //what is wrong with this 
 
+class TestServer : public Server {
+public:
+    void TestStop (){
+        exit(0);
+    }
+};
+
 //runs server so that infinite listen loop doesnt prevent the connectioin test
-void RunServer() {
-    Server server;
-    server.Start(); 
-    std::this_thread::sleep_for(std::chrono::seconds(10)); // Sleep for 10 seconds
+void RunServer(TestServer server) {
+    server.Start();
+}
+
+void KillServer(TestServer server) {
+    server.TestStop();
 }
 
 TEST(ConnectionTest, Connect) {
@@ -15,17 +24,19 @@ TEST(ConnectionTest, Connect) {
 }
 
 int main(int argc, char **argv) {
-
-    std::thread serverThread(RunServer);
+    TestServer server;
+    std::thread serverThread(std::bind(RunServer, server));
     ::testing::InitGoogleTest(&argc, argv);
     int result = RUN_ALL_TESTS();
-    serverThread.join();
-
+    std::thread shutoffThread(std::bind(KillServer, server));
+    shutoffThread.join();
     return result;
+
+    
 }
 
 
 
-
+ 
 
 
