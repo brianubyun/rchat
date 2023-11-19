@@ -13,3 +13,5 @@ user_run
 .vscode
 lib
 client_shut_off_test
+chatlogging_test
+server_shut_off_test

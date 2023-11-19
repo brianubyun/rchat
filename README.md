@@ -21,11 +21,17 @@
 ## User Interface Specification
 
 ### Navigation Diagram
-![navigation-graph drawio (1)noadmin drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/6fe0d819-0e9d-4612-8666-7c9ef8236dff)
+!![navigation-graph drawio (1) drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/e1aca429-5433-4ced-91c9-f9f380410256)
+
 
 ### Screen Layouts
 > All interactions will occur via a Linux bash shell terminal.
 >
+>  This is what the terminal will look like when you are prompted choose authentication methods and input credentials
+> 
+> ![image 1](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/c79db8a9-e26e-4011-8560-20a7819b79ba)
+> ![image,2](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/a5dab855-ed54-48cc-98d7-57f758ff4328)
+> 
 > This is what the terminal will look like when you are prompted to enter a message in the chat room.
 > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/7725059b-016f-442d-b2d6-1790e8511410)
 >
@@ -42,14 +48,18 @@
  
 
 ## Class Diagram
-> ![SOLIDoutline drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/a23214ab-1a9c-43cc-9574-9dd5130dff96)
+> ![Untitled Diagram drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/6b0aa781-c63e-449f-b252-8a234d5bbaa2)
+
+
 
 
 > * The server class instantiates a server object that uses socket programming and creates threads to handle server input and client connections.
 
 > * Server Authenticator validates registration/login requests from Client Authenticator
 >
-> * Command Handler executes commands by listening in a thread for server side input
+> * Command Handler executes commands by listening in a thread for server-side input
+
+> * Logger timestamps and records all messages sent to the server
 
 > * Client class instantiates a client object that creates a connection to the server using sockets, server port, and server domain name. Also creates threads to handle sending and receiving messages from the server.
 
