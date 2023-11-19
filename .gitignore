@@ -8,5 +8,5 @@ CMakeFiles
 .vscode
 *a
 
-test_run
+baseline_test_run
 R'ChatLogs.txt
