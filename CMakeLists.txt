@@ -74,7 +74,7 @@ TARGET_COMPILE_DEFINITIONS(broadcast_test PRIVATE gtest_disable_pthreads=ON)
 
 TARGET_LINK_LIBRARIES(client_shut_off_test gtest)
 TARGET_COMPILE_DEFINITIONS(client_shut_off_test PRIVATE gtest_disable_pthreads=ON)
-=======
+
 TARGET_LINK_LIBRARIES(chatlogging_test gtest)
 TARGET_COMPILE_DEFINITIONS(skeleton_test PRIVATE gtest_disable_pthreads=ON)
 
