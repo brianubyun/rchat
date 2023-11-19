@@ -18,7 +18,7 @@ add_executable(client_run
             )
 
 
-add_executable(test_run
+add_executable(baseline_test_run
             tests/tests.cpp
             server/server.h
             server/server.cpp
@@ -33,5 +33,5 @@ target_link_libraries(client_run PRIVATE pthread)
 target_link_libraries(server_run pthread)
 
 
-TARGET_LINK_LIBRARIES(test_run gtest)
-TARGET_COMPILE_DEFINITIONS(test_run PRIVATE gtest_disable_pthreads=ON)
+TARGET_LINK_LIBRARIES(baseline_test_run gtest)
+TARGET_COMPILE_DEFINITIONS(baseline_test_run PRIVATE gtest_disable_pthreads=ON)
