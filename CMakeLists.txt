@@ -51,6 +51,7 @@ add_executable(client_shut_off_test
             server/server.cpp
             client/client.h
             client/client.cpp
+            )
 
 add_executable(server_shut_off_test
             tests/server_shut_off_test.cpp
