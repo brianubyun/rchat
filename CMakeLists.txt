@@ -19,7 +19,7 @@ add_executable(client_run
 
 
 add_executable(baseline_test_run
-            tests/tests.cpp
+            tests/baseline_tests.cpp
             server/server.h
             server/server.cpp
             client/client.h
