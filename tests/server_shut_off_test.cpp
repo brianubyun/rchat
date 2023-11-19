@@ -3,7 +3,7 @@
 #include "../server/commandhandler.h"
 #include <string>
 #include <iostream>
-#include "gtest/gtest.h" //what is wrong with this 
+#include "gtest/gtest.h"
 
 
 //Global server object that is required for unit test
