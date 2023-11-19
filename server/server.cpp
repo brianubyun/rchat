@@ -18,11 +18,14 @@ using namespace std;
 
 //initialize a socket for the server 
 Server::Server() : isRunning(false) {
+    
     serverSocket = socket(AF_INET, SOCK_STREAM, 0);//AF_INET ---> Address Family Internet, SOCK_STREAM -- > Stream Socket, 0 is for default so it uses TCP 
     if (serverSocket == -1) {
         std::cerr << "Error creating server socket." << std::endl;
         exit(EXIT_FAILURE);
     }
+    int optval = 1;
+    setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(int));
 }
 
 //Will deconstruct the server using stop 
