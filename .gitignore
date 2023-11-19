@@ -8,6 +8,5 @@ CMakeFiles
 .vscode
 *a
 
-skeleton_test
-broadcast_test
-chatlogging_test
+test_run
+R'ChatLogs.txt
