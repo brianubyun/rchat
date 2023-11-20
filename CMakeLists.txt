@@ -42,6 +42,8 @@ add_executable(skeleton_test
             client/user/userCred.cpp
             client/assist/clientAuth.h
             client/assist/clientAuth.cpp
+            server/ServerAuthenticator.h
+            server/ServerAuthenticator.cpp
             )
 
 add_executable(broadcast_test
@@ -59,6 +61,8 @@ add_executable(broadcast_test
             client/user/userCred.cpp
             client/assist/clientAuth.h
             client/assist/clientAuth.cpp
+            server/ServerAuthenticator.h
+            server/ServerAuthenticator.cpp
             )
 
                
