@@ -93,6 +93,7 @@ void Server::ShutOffCommand(){
 //Creates threads for each client 
 void Server::AcceptClients() {
     std::cout << "listening..." << std::endl;
+    bool login = false;
     while (isRunning) {
         struct sockaddr_in clientAddr;
         socklen_t clientAddrLen = sizeof(clientAddr);
@@ -104,9 +105,20 @@ void Server::AcceptClients() {
             continue;  // Continue to accept other connections
         }
         //authicate that they are a user
-        std::cout << "USER CONNECTED\n";
-        std::thread authenticationThread(&Server::Authenticate, this, clientSocket);
-        authenticationThread.detach();
+        if(login)
+        {
+            login = false;
+            std::cout << "USER CONNECTED\n";
+            std::thread authenticationThread(&Server::Authenticate, this, clientSocket);
+            authenticationThread.detach();
+        }
+        else
+        {
+            login = true;
+            clientSockets.push_back(clientSocket);
+            std::thread clientThread(&Server::HandleClient, this, clientSocket);
+            clientThread.detach();
+        }
         //the two lines below were moved to the authentication thread to allow them to wait until the client is authenticated
         /*std::thread clientThread(&Server::HandleClient, this, clientSocket);
         clientThread.detach();  // Detach the thread to run independently*/
