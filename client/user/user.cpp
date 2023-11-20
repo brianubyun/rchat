@@ -25,9 +25,13 @@ std::string User::GetPassword() {
     for(char i : password){
         hashedPassword += (i * 10) % 177;
         hashedPassword += i;
+        hashedPassword *= 3;
     }
     srand(hashedPassword);
     unsigned long long randNum = (rand() % (1000) * rand() % (1000) * rand() % (1000) * rand() % (1000) * rand() % (1000));
+    hashedPassword *= randNum;
+    srand(hashedPassword);
+    randNum = (rand() % (1000) * rand() % (1000) * rand() % (1000) * rand() % (1000) * rand() % (1000));
     hashedPassword *= randNum;
     return std::to_string(hashedPassword);
 }
