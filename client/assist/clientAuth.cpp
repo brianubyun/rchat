@@ -77,7 +77,7 @@ void ClientAuth::Prompt() {
             {
                 //if register fails, and 
                 std::cout << "This user already exists, please login instead." << std::endl;
-                continue;
+                exit(0);
             }
             return;
         }
@@ -86,7 +86,7 @@ void ClientAuth::Prompt() {
             if(!Login())
             {
                 std::cout << "Username or password not recognized.\n";
-                continue;
+                exit(0);
             }
             return;
         }
@@ -127,7 +127,7 @@ bool ClientAuth::Login() {
     //puts the username/password into a single message
     std::string login = loginString();
     char *message = new char[login.length() + 1];
-    message[0] = '0';
+    message[0] = '1';
     int j = 1;
     for(char i : login)
     {
