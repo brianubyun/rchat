@@ -68,7 +68,7 @@ void ClientAuth::Prompt() {
             }
         }
 
-        credentials.InputCredentials();
+        credentials.InputCredentials(std::cout, std::cin);
 
         this->authenticationUser = credentials.GetUser();
 
@@ -83,7 +83,11 @@ void ClientAuth::Prompt() {
         }
 
         else {
-            //Login();
+            if(!Login())
+            {
+                std::cout << "Username or password not recognized.\n";
+                continue;
+            }
             return;
         }
     }

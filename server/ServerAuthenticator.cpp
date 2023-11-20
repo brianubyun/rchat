@@ -94,9 +94,10 @@ bool ServerAuthenticator::writeUser(char message[])
     }
     userAndPass.pop_back();
     //searches for the username to see if the user already exists
+    cout << userAndPass << endl;
     if(!isUser(userAndPass.substr(0, userAndPass.find(breakChar))))
     {
-        out << userAndPass;
+        out << userAndPass << endl;
         out.close();
         return true;
     }
@@ -118,8 +119,8 @@ bool ServerAuthenticator::authUser(int clientSocket)
         {
             bool isuser = isUser(buffer);
             char message [2];
-            if(isuser){message[0] = 1;}
-            else{message[0] = 0;}
+            if(isuser){message[0] = '1';cout << "1\n";}
+            else{message[0] = '0';cout << "0\n";}
             message[1] = '\0';
             send(clientSocket, message, 2, 0);
             return isuser;
@@ -128,8 +129,8 @@ bool ServerAuthenticator::authUser(int clientSocket)
         {
             bool writeuser = writeUser(buffer);
             char message [2];
-            if(writeuser){message[0] = 1;}
-            else{message[0] = 0;}
+            if(writeuser){message[0] = '1';cout << "1\n";}
+            else{message[0] = '0';cout << "0\n";}
             message[1] = '\0';
             send(clientSocket, message, 2, 0);
             return writeuser;

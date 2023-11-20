@@ -152,8 +152,8 @@ void Server::Authenticate(int clientSocket)
 {
     //mildly insecure in that it allows infinite tries to login, but that can be fixed later
     ServerAuthenticator auth;
-    /*while(!auth.authUser(clientSocket))
-    {}*/
+    while(!auth.authUser(clientSocket))
+    {}
     clientSockets.push_back(clientSocket);
     std::thread clientThread(&Server::HandleClient, this, clientSocket);
     clientThread.detach();  // Detach the thread to run independently
