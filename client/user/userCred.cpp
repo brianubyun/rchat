@@ -6,7 +6,7 @@ UserCred::UserCred() {}
 
 UserCred::~UserCred() {}
 
-void UserCred::InputCredentials(std::ostream out, std::istream in) {
+void UserCred::InputCredentials(std::ostream &out, std::istream &in) {
     
     std::string username;
     std::string password;

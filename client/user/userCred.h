@@ -12,7 +12,7 @@ public:
     UserCred();
     ~UserCred();
 
-    void InputCredentials();
+    void InputCredentials(std::ostream &out, std::istream &in);
     User GetUser();
     
 private:
