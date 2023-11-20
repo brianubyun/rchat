@@ -104,11 +104,12 @@ void Server::AcceptClients() {
             continue;  // Continue to accept other connections
         }
         //authicate that they are a user
+        std::cout << "USER CONNECTED\n";
         std::thread authenticationThread(&Server::Authenticate, this, clientSocket);
         authenticationThread.detach();
         //the two lines below were moved to the authentication thread to allow them to wait until the client is authenticated
-        //std::thread clientThread(&Server::HandleClient, this, clientSocket);
-        //clientThread.detach();  // Detach the thread to run independently
+        /*std::thread clientThread(&Server::HandleClient, this, clientSocket);
+        clientThread.detach();  // Detach the thread to run independently*/
     }
 }
 
@@ -151,9 +152,13 @@ void Server::BroadcastMessage(char* message, int messageLength, int sendClient) 
 void Server::Authenticate(int clientSocket)
 {
     //mildly insecure in that it allows infinite tries to login, but that can be fixed later
+    //update: that has been fixed user-side. now a failed login closes the client program
     ServerAuthenticator auth;
-    while(!auth.authUser(clientSocket))
-    {}
+    bool authenticated = auth.authUser(clientSocket);
+    if(!authenticated)
+    {
+        return;
+    }
     clientSockets.push_back(clientSocket);
     std::thread clientThread(&Server::HandleClient, this, clientSocket);
     clientThread.detach();  // Detach the thread to run independently
