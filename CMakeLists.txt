@@ -63,8 +63,25 @@ add_executable(broadcast_test
             client/assist/clientAuth.cpp
             server/ServerAuthenticator.h
             server/ServerAuthenticator.cpp
-            )
+            )        
+add_executable(auth_test
+            tests/auth_test.cpp
+            server/server.h
+            server/server.cpp
+            
+            client/client.h
+            client/client.cpp
 
+            client/user/user.h
+            client/user/user.cpp
+
+            client/user/userCred.h
+            client/user/userCred.cpp
+            client/assist/clientAuth.h
+            client/assist/clientAuth.cpp
+            server/ServerAuthenticator.h
+            server/ServerAuthenticator.cpp
+            )
                
 target_link_libraries(client_run PRIVATE pthread)
 target_link_libraries(server_run pthread)

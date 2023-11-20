@@ -14,6 +14,7 @@ using namespace std;
 #define MAXBYTES 4096
 
 
+
 //initialize a socket for the server 
 Server::Server() : isRunning(false) {
     serverSocket = socket(AF_INET, SOCK_STREAM, 0);//AF_INET ---> Address Family Internet, SOCK_STREAM -- > Stream Socket, 0 is for default so it uses TCP 
