@@ -6,20 +6,20 @@ UserCred::UserCred() {}
 
 UserCred::~UserCred() {}
 
-void UserCred::InputCredentials() {
+void UserCred::InputCredentials(std::ostream out, std::istream in) {
     
     std::string username;
     std::string password;
 
     while (true) {
 
-        std::cout << "Username: ";
-        std::cin >> username;
+        out << "Username: ";
+        in >> username;
 
-        if (std::cin.fail()) {
-            std::cout << "Invalid input. Please enter a valid string." << std::endl;
-            std::cin.clear(); // Clear the error state
-            std::cin.ignore(); // Discard the input buffer
+        if (in.fail()) {
+            out << "Invalid input. Please enter a valid string." << std::endl;
+            in.clear(); // Clear the error state
+            in.ignore(); // Discard the input buffer
         } 
         
         else {
@@ -28,13 +28,13 @@ void UserCred::InputCredentials() {
     }
 
     while (true) {
-        std::cout << "Password: ";
-        std::cin >> password;
+        out << "Password: ";
+        in >> password;
 
-        if (std::cin.fail()) {
-            std::cout << "Invalid input. Please enter a valid string." << std::endl;
-            std::cin.clear(); // Clear the error state
-            std::cin.ignore(); // Discard the input buffer
+        if (in.fail()) {
+            out << "Invalid input. Please enter a valid string." << std::endl;
+            in.clear(); // Clear the error state
+            in.ignore(); // Discard the input buffer
         } 
         
         else {
