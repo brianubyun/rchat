@@ -108,7 +108,6 @@ void Server::AcceptClients() {
         if(login)
         {
             login = false;
-            std::cout << "USER CONNECTED\n";
             std::thread authenticationThread(&Server::Authenticate, this, clientSocket);
             authenticationThread.detach();
         }
