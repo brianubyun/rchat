@@ -11,3 +11,5 @@ CMakeFiles
 skeleton_test
 broadcast_test
 chatlogging_test
+server_shut_off_test
+users.txt
