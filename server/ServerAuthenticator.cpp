@@ -12,29 +12,6 @@
 #include "ServerAuthenticator.h"
 //#define MAXBYTES 4096
 using namespace std;
-const bool ServerAuthenticator::isUser(std::string username, std::string passhash)
-{
-    ifstream in;
-    in.open("users.txt");
-    if(!in.is_open())
-    {
-        abort;
-    }
-    stringstream uAndP;
-    string userAndPass;
-    uAndP << username << breakChar << passhash;
-    uAndP >> userAndPass;
-    string curr;
-    while(getline(in, curr))
-    {
-        if(!curr.compare(userAndPass))
-        {
-            return true;
-        }
-    }
-    in.close();
-    return false;
-}
 
 const bool ServerAuthenticator::isUser(std::string username)
 {
