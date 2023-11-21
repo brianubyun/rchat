@@ -6,9 +6,6 @@
 - [Brian Byun](https://github.com/brianubyun)
 - [Abraham Zambrano](https://github.com/StrickVax)
 - [Mac Boyd](https://github.com/mboyd020)
-- [Abraham Zambrano](https://github.com/StrickVax)
-- [Mac Boyd](https://github.com/mboyd020)
-
 
 ## Project Description
  > * R'Chat is a chat room that runs on a server, authenticates, and accepts multiple clients at once, allowing clients to chat in real-time with each other. R'Chat allows admin users to moderate clients and keeps chat logs for later inspection by admin users.
