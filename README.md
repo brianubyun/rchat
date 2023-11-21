@@ -48,7 +48,10 @@
  
 
 ## Class Diagram
-> ![Untitled Diagram drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/6b0aa781-c63e-449f-b252-8a234d5bbaa2)
+> ![oldold drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/95ceda37-f2a5-48bd-9eb3-110bc317d5a8)
+
+
+
 
 
 
@@ -72,16 +75,25 @@
 
  
  > ## Phase III
- > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on Zoom and should be conducted by Wednesday of week 8.
- 
+
+> ![newnew drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/c2634155-70f6-4342-983f-fd768ae87b64)
+
+
+
  > BEFORE the meeting you should do the following:
- > * Update your class diagram from Phase II to include any feedback you received from your TA/grader.
+
  > * Considering the SOLID design principles, reflect back on your class diagram and think about how you can use the SOLID principles to improve your design. You should then update the README.md file by adding the following:
- >   * A new class diagram incorporating your changes after considering the SOLID principles.
  >   * For each update in your class diagram, you must explain in 3-4 sentences:
  >     * What SOLID principle(s) did you apply?
  >     * How did you apply it? i.e. describe the change.
  >     * How did this change help you write better code?
+>    ##### What SOLID principle(s) did you apply?
+ > * 1) Client command handler: We applied single responsibility principle by deriving a new class from client to handle all the commands for user input. Helped with simplifying unit tests and maintain scalability as a whole.
+ > * 2)  Emoji class: Applies Open Closed principle by closing off Client command handler for modification and making it open for extension by creating the Emoji class.
+ > * 3) Client Authentication system: The authentication system fits the OCP because adding new functionality to the users (e.g. a friends list) can be done without changing the systems that accept or change user credentials. Also fits the single responsibility principle because each class involved in the authentication of users has a specific responsibility, from taking credentials, to sending them to the server, to encrypting the password.
+ > * 4) Logger: Uses single responsibility principle and interface segregation principle by removing the issue of saving a text file to the server.
+ >     
+ > 
  > * Perform a new sprint plan like you did in Phase II.
  > * You should also make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
  
