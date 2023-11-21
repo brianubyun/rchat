@@ -27,7 +27,7 @@
 ### Screen Layouts
 > All interactions will occur via a Linux bash shell terminal.
 >
->  This is what the terminal will look like when you are prompted choose authentication methods and input credentials
+>  This is what the terminal will look like when you are prompted to choose authentication methods and input credentials
 > 
 > ![image 1](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/c79db8a9-e26e-4011-8560-20a7819b79ba)
 > ![image,2](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/a5dab855-ed54-48cc-98d7-57f758ff4328)
@@ -35,11 +35,19 @@
 > This is what the terminal will look like when you are prompted to enter a message in the chat room.
 > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/7725059b-016f-442d-b2d6-1790e8511410)
 >
-> This is what the terminal will look like on the server side where all messages are sent to.
+> This is what the terminal will look like on the server side where all messages are sent.
 > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/a58a375a-e7b5-434f-ba03-c7192994abfe)
 >
 > This is what the terminal will look like on the server side when a client disconnects from the chat room.
 > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/3e531912-9a45-44da-b062-affaf7a027a3)
+>
+> This is what the terminal will look like when the user connects to the chat system and is asked to register (successful).
+> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/b709d257-c12c-4bea-ade0-3ffeefc3dbad)
+>
+> This is what the terminal will look like when the user connects to the chat system and is asked to log in (successful).
+> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/0fa691b0-42f0-4168-ba46-63315589166d)
+
+
 
 
 
