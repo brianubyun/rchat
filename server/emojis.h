@@ -1,6 +1,10 @@
 #ifndef EMOJI_H
 #define EMOJI_H
 
-#include <
+#include <string>
+
+class Emoji {
+    getEmoji()
+}
 
 #endif
