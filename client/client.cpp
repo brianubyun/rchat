@@ -87,8 +87,10 @@ void Client::ReceiveLoop() {
             std::cerr << std::endl << "Connection to the server closed." << std::endl;
             exit(0);
         }
+        
         std::string message(buffer, bytesRead);
         std::cout << "Received message: " << message << std::endl << std::endl;
+        
         
     }
 }  

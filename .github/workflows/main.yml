@@ -1,0 +1,27 @@
+name: build on main  #the name of the workflow (continuous integration lab = CI) 
+
+on:  #when actions run (triggering events)
+  push:  #activates on push to main and pull to main 
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps: 
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    
+    - name: Build executables
+      run: |
+            cmake .
+            make

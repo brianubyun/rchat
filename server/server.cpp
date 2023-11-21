@@ -1,4 +1,7 @@
 #include "server.h"
+#include "chatlogging.h"
+#include "commandhandler.h"
+
 #include <iostream>
 #include <vector>
 #include <thread>
@@ -17,11 +20,14 @@ using namespace std;
 
 //initialize a socket for the server 
 Server::Server() : isRunning(false) {
+    
     serverSocket = socket(AF_INET, SOCK_STREAM, 0);//AF_INET ---> Address Family Internet, SOCK_STREAM -- > Stream Socket, 0 is for default so it uses TCP 
     if (serverSocket == -1) {
         std::cerr << "Error creating server socket." << std::endl;
         exit(EXIT_FAILURE);
     }
+    int optval = 1;
+    setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(int));
 }
 
 //Will deconstruct the server using stop 
@@ -54,8 +60,10 @@ void Server::Start() {
     isRunning = true;
 
     //create shutoff command thread to check for shut off command
-    std::thread shutOffThread(&Server::ShutOffCommand, this);
-    shutOffThread.detach(); //detach shut off thread
+    //this is where we implement the command handler thread instead of the shut off thread
+    CommandHandler handler;
+    std::thread commandThread(&CommandHandler::ListenFor, &handler, this);
+    commandThread.detach(); //detach shut off thread
     AcceptClients();
 }
 
@@ -76,20 +84,6 @@ void Server::Stop() {
     exit(0);
 }
 
-void Server::ShutOffCommand(){
-    char* input;
-    while(isRunning){ //While server is running get input
-        cin.getline(input, 10);
-        if(strcmp(input, "//exit") == 0){ //If input is exit command
-            cin.clear();
-            std::cout<<"Shutting down server" << endl;
-            delete this; //call server destructor 
-        } 
-        else{
-            cin.clear(); //clear buffer for new input
-        }
-    }     
-}
 
 //Creates threads for each client 
 void Server::AcceptClients() {
@@ -130,12 +124,16 @@ void Server::HandleClient(int clientSocket) {
     char buffer[MAXBYTES];
     //clears out the buffer from any messages that may have been sent during the login process
     //ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
+    Logger chatLog;
+
     while (true) {
         ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesReceived <= 0) {
             // Handle client disconnection or error
             break;
         }
+        
+        chatLog.logMessage(buffer);
 
         // Process the received data (in this example, we just print it)
         buffer[bytesReceived] = '\0'; // Ensure null-termination
