@@ -4,7 +4,7 @@
 #include <string>
 #include <cstring>
 #include "server.h"
-#include "emoji.h"
+#include "emojis.h"
 
 class CommandHandler {
 public:

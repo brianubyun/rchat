@@ -8,6 +8,10 @@ class Emoji {
     {
         if (command == "//test")
             return ("=w=");
+
+        if (command == "//test2")
+            return ("=______=");
+        
         return "";
     }
 };
