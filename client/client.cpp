@@ -1,4 +1,5 @@
 #include "client.h"
+#include "client_command_handler.h"
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
@@ -7,6 +8,7 @@
 #define MAXBYTES 4096
 
 Client::Client() {
+    bool isRunning = true;
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (clientSocket == -1) {
         std::cerr << "Error creating socket." << std::endl;
@@ -51,22 +53,18 @@ void Client::Start() {
 }
 
 void Client::SendLoop() { //possibly add an outstream thing or print function so we can use it for unit tests as well
-    while (true) {
+    while (isRunning) {
         char buffer[MAXBYTES];
 
         // Prompt the user for input and read it into the buffer
         //std::cout << "Enter a message: ";
         std::cin.getline(buffer, MAXBYTES);
 
-        // User sent //quit command and exits chat 
-        if (std::string(buffer) == "//quit") {  
-            SendMessage("Connection closed. Client disconnected.");
-            exit(0); //Terminates program since chat program is exited
+        // Continue or end client
+        if (ClientCommandHandler::HandleCommand(buffer) == false) {  
+            exit(0);
             std::cin.clear(); //Clears buffer
         }
-
-        // Send the message from the buffer
-        SendMessage(buffer);
     }
 }
 
@@ -96,6 +94,7 @@ void Client::SendMessage(const char* message) {
 }
 
 void Client::Disconnect() {
+    isRunning = false;
     close(clientSocket);
 }
 

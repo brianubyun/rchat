@@ -8,21 +8,17 @@
 
 class ClientCommandHandler {
 public:
-    void ListenFor(Client* client){
-        char* input;
-        while(client->isRunning){ //While client is running get input
-          std::cin.getline(input, 100);
-          HandleCommand(input, client); 
-          std::cin.clear();
-        }   
-    }
-
-     void HandleCommand(char* command, Client* client) {
-         if(strcmp(command, "//exit") == 0) { //If input is exit command
+     bool HandleCommand(char* message, Client* client) {
+         if (strcmp(message, "//exit") == 0) { //If input is exit command
             std::cin.clear();
-            std::cout<<"Shutting down client" << std::endl;
-            delete Client; //call client destructor 
-            std::cin.clear(); //Clears buffer
+            std::cout<< "Shutting down client" << std::endl;
+            return false;
+          }
+          else { // process the emoji(s) (if any)
+            std::string processedMesssage;
+            processedMesssage = Emoji::ProcessMessage(message);
+            client->SendMessage(processedMesssage);
+            return true;
           }
      }
 };
