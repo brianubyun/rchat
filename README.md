@@ -47,22 +47,8 @@
 > This is what the terminal will look like when the user connects to the chat system and is asked to log in (successful).
 > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/0fa691b0-42f0-4168-ba46-63315589166d)
 
-
-
-
-
-
-
- 
-
 ## Class Diagram
 > ![oldold drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/95ceda37-f2a5-48bd-9eb3-110bc317d5a8)
-
-
-
-
-
-
 
 > * The server class instantiates a server object that uses socket programming and creates threads to handle server input and client connections.
 
@@ -81,14 +67,16 @@
 > * Client Authenticator sends username and password to the server, then prompts user based on server response
 
 
- 
- > ## Phase III
+> ## Phase III
 
 > ![newnew drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/c2634155-70f6-4342-983f-fd768ae87b64)
 
-
-
- > BEFORE the meeting you should do the following:
+> BEFORE the meeting you should do the following:
+> ##### What SOLID principle(s) did we apply?
+> 1) One of the updates in our class diagram was the addition of a Client Command Handler class which applied the **single responsibility principle**. We applied it by creating a relationship with the Client class to handle all of the commands the client inputs via a "//..." format. This change helped us write better code by simplifying and making it easier to write unit tests as well as maintaining scalability if we ever want to add more commands in the future that the user can input.
+> 2) Another update in our class diagram was the addition of the Emoji class which applied the **open closed principle**. We applied it by creating a relationship with the Client Command Handler class to handle all of the current and potential emojis that we are adding in the future via a "//[emoji_name]" format. This change helped us write better code by making the Client Command Handler open to extensions for all the emojis in the Emojis class we created, but closed for modification in the Client Command Handler class itself.
+> 3) Some other updates we did that were already modified in the Phase II diagram after being acknowledged about the SOLID principles were creating a Logger class that follows the **single responsibility principle**. We applied it by creating a relationship with the Server class to handle the specific responsibility of just logging all messages sent in the chat room. This change helped us write better code by creating more clarity for what the responsibility of the Logger and the Server class is and possibly creating more member variables and methods within the Logger class itself to the file.txt.
+> 4) 
 
  > * Considering the SOLID design principles, reflect back on your class diagram and think about how you can use the SOLID principles to improve your design. You should then update the README.md file by adding the following:
  >   * For each update in your class diagram, you must explain in 3-4 sentences:
@@ -102,7 +90,7 @@
  > * 4) Logger: Uses single responsibility principle and interface segregation principle by removing the issue of saving a text file to the server.
  >     
  > 
- > * Perform a new sprint plan like you did in Phase II.
+ > 
  > * You should also make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
  
 > During the meeting with your reader you will discuss: 
