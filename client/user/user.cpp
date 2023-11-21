@@ -20,7 +20,6 @@ std::string User::GetUsername() {
 }
 
 std::string User::GetPassword() {
-    
     long long int hashedPassword = 0;
     for(char i : password){
         hashedPassword += (i * 10) % 177;
