@@ -48,7 +48,8 @@
  
 
 ## Class Diagram
-> ![Untitled Diagram drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/6b0aa781-c63e-449f-b252-8a234d5bbaa2)
+> ![RChatUML drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/5bf699dd-02fa-4e03-93d1-b2a78c620a3e)
+
 
 
 
