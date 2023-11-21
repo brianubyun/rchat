@@ -20,7 +20,7 @@
 ## User Interface Specification
 
 ### Navigation Diagram
-!![navigation-graph drawio (1) drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/e1aca429-5433-4ced-91c9-f9f380410256)
+![navigation-graph drawio (1) drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/e1aca429-5433-4ced-91c9-f9f380410256)
 
 
 ### Screen Layouts
