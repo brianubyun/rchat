@@ -87,8 +87,12 @@
  >     * What SOLID principle(s) did you apply?
  >     * How did you apply it? i.e. describe the change.
  >     * How did this change help you write better code?
->     
- > 
+>    ##### What SOLID principle(s) did you apply?
+ > * 1) Client command handler: We applied single responsibility principle by deriving a new class from client to handle all the commands for user input. Helped with simplifying unit tests and maintain scalability as a whole.
+ > * 2)  Emoji class: Applies Open Closed principle by closing off Client command handler for modification and making it open for extension by creating the Emoji class.
+ > * 3) Client Authentication system: The authentication system fits the OCP because adding new functionality to the users (e.g. a friends list) can be done without changing the systems that accept or change user credentials. Also fits the single responsibility principle because each class involved in the authentication of users has a specific responsibility, from taking credentials, to sending them to the server, to encrypting the password.
+ > * 4) Logger: Uses single responsibility principle and interface segregation principle by removing the issue of saving a text file to the server.
+ >     
  > 
  > * Perform a new sprint plan like you did in Phase II.
  > * You should also make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
