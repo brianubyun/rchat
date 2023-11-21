@@ -48,7 +48,7 @@
  
 
 ## Class Diagram
-> ![Untitled Diagram drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/9a5b3eb3-d0e0-4430-bc0e-644090c018be)
+> ![before drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/912aeb89-6d36-4baa-b10a-929b7382fa46)
 
 
 
@@ -75,7 +75,8 @@
  
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on Zoom and should be conducted by Wednesday of week 8.
- > ![before drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/500906b2-07f1-42f0-bdaf-838152a1ddea)
+ > ![RChatUML drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/d950fb32-64e9-4827-a9c2-0e0548f81f2e)
+
 
 
  > BEFORE the meeting you should do the following:
