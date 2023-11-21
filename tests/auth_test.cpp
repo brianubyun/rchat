@@ -16,60 +16,65 @@
 #include <sstream>
 #include <fstream>
 using namespace std;
-TEST(userTests, username/password)
+TEST(userTests, usernamePassword)
 {
-    User user();
+    User user;
     user.SetUsername("test");
     user.SetPassword("test");
-    ASSERT_TRUE(user.GetUsername().compare("test"));
-    ASSErt_TRUE(user.GetPassword().compare("-841574"));
+    ASSERT_TRUE(!user.GetUsername().compare("test"));
+    ASSERT_TRUE(!user.GetPassword().compare("4700203200"));
 }
 TEST(userTests, getCred)
 {
     UserCred usercred;
     istringstream in("test\ntest");
     ostringstream out;
-    usercred.InputCredentials(in, out);
+    usercred.InputCredentials(out, in);
     User user;
     user = usercred.GetUser();
-    ASSERT_TRUE(user.GetUsername().compare("test"));
-    ASSERt_TRUE(user.GetPassword().compare("-841574"));
+    ASSERT_TRUE(!user.GetUsername().compare("test"));
+    ASSERT_TRUE(!user.GetPassword().compare("4700203200"));
 }
+
 TEST(serverAuthTests, isUserUsernameOnlyTrue)
 {
     ofstream out("users.txt");
     out << "test4700203200\n";
+    out.close();
     ServerAuthenticator auth;
-    ASSERT_TRUE(auth.isUser(to_string("test")));
+    string str("test");
+    ASSERT_TRUE(auth.isUser(str));
 }
 TEST(serverAuthTests, isUserUsernameOnlyFalse)
 {
     ofstream out("users.txt");
     out << "test4700203200\n";
+    out.close();
     ServerAuthenticator auth;
-    ASSERT_TRUE(!auth.isUser(to_string("fake")));
+    string str("fake");
+    ASSERT_TRUE(!(auth.isUser(str)));
 }
-TEST(serverAuthTests, isUserUsernameAndPasswordTrue)
+TEST(serverAuthTests, signUp)
 {
     ofstream out("users.txt");
-    out << "test4700203200\n";
+    out << "";
+    out.close();
     ServerAuthenticator auth;
-    ASSERT_TRUE(auth.isUser("test4700203200\n"));
+    char str [19] = "1ttest4700203200\n";
+    ASSERT_TRUE(auth.writeUser(str));
 }
-TEST(serverAuthTests, isUserUsernameAndPasswordFalse)
-{
-    ofstream out("users.txt");
-    out << "test4700203200\n";
-    ServerAuthenticator auth;
-    ASSERT_TRUE(auth.isUser("test4700202200\n"));
-}
-TEST(serverAuthTests, writeUser)
+TEST(serverAuthTests, noDoubleSignUp)
 {
     ServerAuthenticator auth;
-    auth.writeUser("test\n");
-    ASSERT_TRUE(auth.isUser("test\n"));
+    char str [19] = "1ttest4700203200\n";
+    ASSERT_TRUE(!(auth.writeUser(str)));
 }
-
+TEST(serverAuthTests, login)
+{
+    ServerAuthenticator auth;
+    char str [18] = "1ttest4700203200";
+    ASSERT_TRUE(auth.isUser(str));
+}
 int main(int argc, char **argv) {
     
     ::testing::InitGoogleTest(&argc, argv);

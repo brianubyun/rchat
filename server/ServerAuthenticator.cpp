@@ -25,6 +25,7 @@ const bool ServerAuthenticator::isUser(std::string username)
     {
         if(!curr.substr(0, curr.find(breakChar)).compare(username))
         {
+            in.close();
             return true;
         }
     }
@@ -52,9 +53,11 @@ const bool ServerAuthenticator::isUser(char message[])
         in.ignore();
         if(!curr.compare(userAndPass))
         {
+            in.close();
             return true;
         }
     }
+    in.close();
     return false;
 }
 

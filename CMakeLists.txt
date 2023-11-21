@@ -92,3 +92,6 @@ TARGET_COMPILE_DEFINITIONS(skeleton_test PRIVATE gtest_disable_pthreads=ON)
 
 TARGET_LINK_LIBRARIES(broadcast_test gtest)
 TARGET_COMPILE_DEFINITIONS(broadcast_test PRIVATE gtest_disable_pthreads=ON)
+
+TARGET_LINK_LIBRARIES(auth_test gtest)
+TARGET_COMPILE_DEFINITIONS(auth_test PRIVATE gtest_disable_pthreads=ON)
