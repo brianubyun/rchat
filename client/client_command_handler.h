@@ -8,8 +8,8 @@
 
 class ClientCommandHandler {
 public:
-     bool HandleCommand(char* message, Client* client) {
-         if (strcmp(message, "//exit") == 0) { //If input is exit command
+     static bool HandleCommand(const std::string& message, Client* client) {
+         if (message == "//exit") { //If input is exit command
             std::cin.clear();
             std::cout<< "Shutting down client" << std::endl;
             return false;
@@ -17,7 +17,7 @@ public:
           else { // process the emoji(s) (if any)
             std::string processedMesssage;
             processedMesssage = Emoji::ProcessMessage(message);
-            client->SendMessage(processedMesssage);
+            client->SendMessage(processedMesssage.c_str());
             return true;
           }
      }

@@ -8,7 +8,7 @@
 #define MAXBYTES 4096
 
 Client::Client() {
-    bool isRunning = true;
+    isRunning = true;
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (clientSocket == -1) {
         std::cerr << "Error creating socket." << std::endl;
@@ -61,7 +61,7 @@ void Client::SendLoop() { //possibly add an outstream thing or print function so
         std::cin.getline(buffer, MAXBYTES);
 
         // Continue or end client
-        if (ClientCommandHandler::HandleCommand(buffer) == false) {  
+        if (ClientCommandHandler::HandleCommand(std::string(buffer), this) == false) {  
             exit(0);
             std::cin.clear(); //Clears buffer
         }
