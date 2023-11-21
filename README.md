@@ -6,6 +6,8 @@
 - [Brian Byun](https://github.com/brianubyun)
 - [Abraham Zambrano](https://github.com/StrickVax)
 - [Mac Boyd](https://github.com/mboyd020)
+- [Abraham Zambrano](https://github.com/StrickVax)
+- [Mac Boyd](https://github.com/mboyd020)
 
 
 ## Project Description

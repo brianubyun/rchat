@@ -11,9 +11,11 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <algorithm>
+#include "ServerAuthenticator.h"
 
 using namespace std;
 #define MAXBYTES 4096
+
 
 
 //initialize a socket for the server 
@@ -86,6 +88,7 @@ void Server::Stop() {
 //Creates threads for each client 
 void Server::AcceptClients() {
     std::cout << "listening..." << std::endl;
+    bool login = false;
     while (isRunning) {
         struct sockaddr_in clientAddr;
         socklen_t clientAddrLen = sizeof(clientAddr);
@@ -96,17 +99,31 @@ void Server::AcceptClients() {
             std::cerr << "Error accepting client connection." << std::endl;
             continue;  // Continue to accept other connections
         }
-
-        clientSockets.push_back(clientSocket);
-
-        std::thread clientThread(&Server::HandleClient, this, clientSocket);
-        clientThread.detach();  // Detach the thread to run independently
+        //authicate that they are a user
+        if(login)
+        {
+            login = false;
+            std::thread authenticationThread(&Server::Authenticate, this, clientSocket);
+            authenticationThread.detach();
+        }
+        else
+        {
+            login = true;
+            clientSockets.push_back(clientSocket);
+            std::thread clientThread(&Server::HandleClient, this, clientSocket);
+            clientThread.detach();
+        }
+        //the two lines below were moved to the authentication thread to allow them to wait until the client is authenticated
+        /*std::thread clientThread(&Server::HandleClient, this, clientSocket);
+        clientThread.detach();  // Detach the thread to run independently*/
     }
 }
 
 //What the thread will do for each client 
 void Server::HandleClient(int clientSocket) {
     char buffer[MAXBYTES];
+    //clears out the buffer from any messages that may have been sent during the login process
+    //ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
     Logger chatLog;
 
     while (true) {
@@ -140,4 +157,19 @@ void Server::BroadcastMessage(char* message, int messageLength, int sendClient) 
         }
     }
 
+}
+
+void Server::Authenticate(int clientSocket)
+{
+    //mildly insecure in that it allows infinite tries to login, but that can be fixed later
+    //update: that has been fixed user-side. now a failed login closes the client program
+    ServerAuthenticator auth;
+    bool authenticated = auth.authUser(clientSocket);
+    if(!authenticated)
+    {
+        return;
+    }
+    clientSockets.push_back(clientSocket);
+    std::thread clientThread(&Server::HandleClient, this, clientSocket);
+    clientThread.detach();  // Detach the thread to run independently
 }

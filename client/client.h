@@ -1,6 +1,10 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
+#include "user/user.h"
+#include "user/userCred.h"
+#include "assist/clientAuth.h"
+
 #include <string>
 #include <functional>
 #include <thread>
@@ -25,11 +29,10 @@ public:
 
 protected:
     int clientSocket;
+    
 private:
     std::string serverDomainName = "xe-01.cs.ucr.edu";// Use domain name instead of IP address
     int serverPort = 48566; //the free port that will be used on the server 
-    std::thread sendThread;
-    std::thread receiveThread;
 
     // Function for sending messages in a loop
     void SendLoop();
