@@ -79,6 +79,7 @@ void ClientAuth::Prompt() {
                 std::cout << "This user already exists, please login instead." << std::endl;
                 exit(0);
             }
+            std::cout << "Registration successful!" << std::endl;
             return;
         }
 
@@ -88,6 +89,7 @@ void ClientAuth::Prompt() {
                 std::cout << "Username or password not recognized.\n";
                 exit(0);
             }
+            std::cout << "Login successful!" << std::endl;
             return;
         }
     }
