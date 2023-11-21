@@ -69,38 +69,15 @@
 > * Client Authenticator sends username and password to the server, then prompts user based on server response
 
 
-> ## Phase III
-
+## New Class Diagram with SOLID principles
 > ![newnew drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/c2634155-70f6-4342-983f-fd768ae87b64)
 
-> BEFORE the meeting you should do the following:
 > ##### What SOLID principle(s) did we apply?
 > * One of the updates in our class diagram was the addition of a Client Command Handler class which applied the **single responsibility principle**. We applied it by creating a relationship with the Client class to handle all of the commands the client inputs via a "//..." format. This change helped us write better code by simplifying and making it easier to write unit tests as well as maintaining scalability if we ever want to add more commands in the future that the user can input.
 > * Another update in our class diagram was the addition of the Emoji class which applied the **open closed principle**. We applied it by creating a relationship with the Client Command Handler class to handle all of the current and potential emojis that we are adding in the future via a "//[emoji_name]" format. This change helped us write better code by making the Client Command Handler open to extensions for all the emojis in the Emojis class we created, but closed for modification in the Client Command Handler class itself.
 > * One other update we did that was already modified in the Phase II diagram after being acknowledged about the SOLID principles was creating a Logger class that follows the **single responsibility principle**. We applied it by creating a relationship with the Server class to handle the specific responsibility of just logging all messages sent in the chat room. This change helped us write better code by creating more clarity for what the responsibility of the Logger and the Server class is and possibly creating more member variables and methods within the Logger class itself to the file.txt.
-> * Another update we did after learning about the SOLID principle to the Phase II diagram was separating the Server and Client class to not have any relationships which complies with the **integration segregation principle**. Doing this allowed the client side to not be forced to interact with any of the unneeded server commands that a client should not need. We applied it by essentially having two mini UMLs in one so the Server class can have its own relationships with other classes that follow the SOLID principles; the same for the Client class. This change helped us write better code by allowing for easier unit tests in the sense that we could test Client and Server class independently as well as for scalability as shown from the relationships with other classes. 
-
- > * Considering the SOLID design principles, reflect back on your class diagram and think about how you can use the SOLID principles to improve your design. You should then update the README.md file by adding the following:
- >   * For each update in your class diagram, you must explain in 3-4 sentences:
- >     * What SOLID principle(s) did you apply?
- >     * How did you apply it? i.e. describe the change.
- >     * How did this change help you write better code?
->    ##### What SOLID principle(s) did you apply?
- > * 1) Client command handler: We applied single responsibility principle by deriving a new class from client to handle all the commands for user input. Helped with simplifying unit tests and maintain scalability as a whole.
- > * 2)  Emoji class: Applies Open Closed principle by closing off Client command handler for modification and making it open for extension by creating the Emoji class.
- > * 3) Client Authentication system: The authentication system fits the OCP because adding new functionality to the users (e.g. a friends list) can be done without changing the systems that accept or change user credentials. Also fits the single responsibility principle because each class involved in the authentication of users has a specific responsibility, from taking credentials, to sending them to the server, to encrypting the password.
- > * 4) Logger: Uses single responsibility principle and interface segregation principle by removing the issue of saving a text file to the server.
- >     
- > 
- > 
- > * You should also make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
- 
-> During the meeting with your reader you will discuss: 
- > * How effective your last sprint was (each member should talk about what they did)
- > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- > * What tasks you are planning for this next sprint.
-
+> * Another update we did after learning about the SOLID principle to the Phase II diagram was separating the Server and Client class to not have any relationships which complies with the **integration segregation principle**. Doing this allowed the client side to not be forced to interact with any of the unneeded server commands that a client should not need. We applied it by essentially having two mini UMLs in one so the Server class can have its own relationships with other classes that follow the SOLID principles; the same for the Client class. This change helped us write better code by allowing for easier unit tests in the sense that we could test Client and Server class independently as well as for scalability as shown from the relationships with other classes.
+> * Another update we did to the Phase II diagram prior was creating a UserCred class that follows the dependency inversion principle. Creating a UserCred class allowed for the User class and ClientAuth class to use UserCred as an abstraction to input credential/user info and not the User class just being dependent on ClientAuth. This change helped us write better code for unit tests since it created an abstraction that we could test independently from the other classes. Doing this also helped with understandability and readability on what specific classes are meant to do. 
  
  > ## Final deliverable
  > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
