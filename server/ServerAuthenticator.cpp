@@ -53,7 +53,7 @@ const bool ServerAuthenticator::isUser(char message[])
         in.ignore();
         if(!curr.compare(userAndPass))
         {
-            in.close();
+            //in.close();
             return true;
         }
     }
