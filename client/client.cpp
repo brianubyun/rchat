@@ -76,7 +76,7 @@ void Client::SendLoop(std::string username) { //possibly add an outstream thing 
         }
 
         // Combine the C-style strings
-        std::string combinedMessage = username + " " + buffer;
+        std::string combinedMessage = username + ": " + buffer;
 
         // Send the combined message
         SendMessage(combinedMessage.c_str());
@@ -94,7 +94,7 @@ void Client::ReceiveLoop() {
         }
         
         std::string message(buffer, bytesRead);
-        std::cout << "Received message: " << message << std::endl << std::endl;
+        std::cout << message << std::endl << std::endl;
         
         
     }
