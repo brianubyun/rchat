@@ -49,8 +49,10 @@ void Client::Start() {
 
     ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
     authenticator.Prompt();
+    std::string user = authenticator.GetUser().GetUsername();
 
-    std::thread sendThread(&Client::SendLoop, this);
+
+    std::thread sendThread(&Client::SendLoop, this, user);
     std::thread receiveThread(&Client::ReceiveLoop, this);
 
     // Wait for the threads to finish (you should add proper thread management)
@@ -58,7 +60,7 @@ void Client::Start() {
     receiveThread.join();
 }
 
-void Client::SendLoop() { //possibly add an outstream thing or print function so we can use it for unit tests as well
+void Client::SendLoop(std::string username) { //possibly add an outstream thing or print function so we can use it for unit tests as well
     while (true) {
         char buffer[MAXBYTES];
 
@@ -73,8 +75,11 @@ void Client::SendLoop() { //possibly add an outstream thing or print function so
             std::cin.clear(); //Clears buffer
         }
 
-        // Send the message from the buffer
-        SendMessage(buffer);
+        // Combine the C-style strings
+        std::string combinedMessage = username + " " + buffer;
+
+        // Send the combined message
+        SendMessage(combinedMessage.c_str());
     }
 }
 

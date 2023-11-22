@@ -35,7 +35,7 @@ private:
     int serverPort = 48566; //the free port that will be used on the server 
 
     // Function for sending messages in a loop
-    void SendLoop();
+    void SendLoop(std::string username);
 
     // Function for receiving messages in a loop
     void ReceiveLoop();
