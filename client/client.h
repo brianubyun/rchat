@@ -39,6 +39,8 @@ private:
 
     // Function for receiving messages in a loop
     void ReceiveLoop();
+
+    bool firstMessage;
 };
 
 #endif // CLIENT_H

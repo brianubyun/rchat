@@ -11,6 +11,7 @@
 #define MAXBYTES 4096
 
 Client::Client() {
+    firstMessage = true;
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (clientSocket == -1) {
         std::cerr << "Error creating socket." << std::endl;
@@ -74,10 +75,10 @@ void Client::SendLoop(std::string username) { //possibly add an outstream thing 
             exit(0); //Terminates program since chat program is exited
             std::cin.clear(); //Clears buffer
         }
-
+        std::string combinedMessage = buffer;
         // Combine the C-style strings
-        std::string combinedMessage = username + ": " + buffer;
-
+        if(!firstMessage){combinedMessage = username + ": " + buffer;}
+        else{firstMessage = false;}
         // Send the combined message
         SendMessage(combinedMessage.c_str());
     }
