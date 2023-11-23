@@ -169,7 +169,5 @@ void Server::Authenticate(int clientSocket)
     {
         return;
     }
-    clientSockets.push_back(clientSocket);
-    std::thread clientThread(&Server::HandleClient, this, clientSocket);
-    clientThread.detach();  // Detach the thread to run independently
+    close(clientSocket);
 }
