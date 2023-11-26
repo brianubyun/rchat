@@ -27,4 +27,5 @@ jobs:
             make
             sh run_tests.sh
             ./client_shut_off_test
+            ./server_shut_off_test
             
