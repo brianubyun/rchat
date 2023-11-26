@@ -4,12 +4,12 @@ clear
 pause_duration=0.1
 for i in {1..100}; do
     echo "Running exe $i"
-    ./client_run &
-    printf '1\ntest\ntest\n'
-    sleep "$pause_duration"
-    client_pid=$!
-    kill $client_pid
-    printf '\n'
-    
+    ./client_run <<EOF &
+    1
+    test
+    test
+    $i
+EOF
+    #sleep $pause_duration    
 done
 exit 0
