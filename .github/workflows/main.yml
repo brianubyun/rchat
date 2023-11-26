@@ -2,7 +2,7 @@ name: build on main  #the name of the workflow (continuous integration lab = CI)
 
 on:  #when actions run (triggering events)
   push:  #activates on push to main and pull to main 
-    branches: [ main, master ]
+    branches: [ main, master, mboyd020/testAll ]
   pull_request:
     branches: [ main, master ]
 
