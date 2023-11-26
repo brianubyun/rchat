@@ -25,3 +25,4 @@ jobs:
       run: |
             cmake .
             make
+            sh run_tests.sh
