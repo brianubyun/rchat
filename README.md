@@ -13,8 +13,9 @@
 >  * Clients will run client executable, with terminal prompts for user authentication upon connection. Upon connection, client messages will be broadcast and received by other clients. Client will disconnect upon specific user input format. Server will also terminate upon specific input format by a server admin.
  > * Creating a client/server style chat room serves as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in Embedded Systems, System Programming, Distributed Systems, and Cloud Computing. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it requires proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students.
  > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development. The functionality is supported by libraries for socket programming (networking), multithreading (multiple client handling), JSON file formatting for storing user credentials.
->  * Upon successful login user will be prompted with "Welcome to R'Chat"
->  * Upon unsuccessful login user will be prompted with "That is not a user, try again (y), register(r) or quit(q)"
+>  * Upon asking for authentication, user will be prompted with "Register(0) or Login(1):"
+>  * Upon successful login or registration, user will be prompted with "Login successful!" or "Registration successful!" respectively.
+>  * Upon unsuccessful login or registration user will be prompted with "Username or password not recognized." or "This user already exists, please login instead." respectively.
 >  * Messages from other users will be displayed in format "<username>: message contents"
 
 ## User Interface Specification
@@ -44,7 +45,8 @@
 > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/b709d257-c12c-4bea-ade0-3ffeefc3dbad)
 >
 > This is what the terminal will look like when the user connects to the chat system and is asked to log in (successful).
-> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/0fa691b0-42f0-4168-ba46-63315589166d)
+> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/2dae652f-9467-4239-9bf1-817c591af790)
+
 
 ## Class Diagram
 > ![oldold drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/95ceda37-f2a5-48bd-9eb3-110bc317d5a8)
