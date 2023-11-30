@@ -1,7 +1,6 @@
 #include "../user/user.h"
 #include "../user/userCred.h"
 #include "clientAuth.h"
-
 #include <fstream>
 #include <iostream>
 #include <cstring>
@@ -13,11 +12,11 @@
 #include <thread>
 
 ClientAuth::ClientAuth(int clientSocket, int serverPort, std::string serverDomainName) {
-    this -> authSocket = clientSocket + 1;
-    this -> serverPort = serverPort;
-    this -> serverDomainName = serverDomainName;
+    this->authSocket = clientSocket + 1;
+    this->serverPort = serverPort;
+    this->serverDomainName = serverDomainName;
 
-    authSocket = socket(AF_INET, SOCK_STREAM, 0);
+    authSocket = socket(AF_INET, SOCK_STREAM, 0); 
     if (authSocket == -1) {
         std::cerr << "Error creating socket." << std::endl;
     }
@@ -52,13 +51,12 @@ void ClientAuth::Prompt() {
 
     while(true){
         while (true) {
-            //going to steal this code for the first character of the sending message (0 for register, 1 for login)
+            //Asks user for register or login input
             std::cout << "Register(0) or Login(1): ";
             std::cin >> choice;
 
             if (choice == "0" || choice == "1") {
                 break; // Exit the loop if a valid integer is entered
-                
             } 
             
             else {
@@ -67,16 +65,14 @@ void ClientAuth::Prompt() {
                 std::cin.ignore(); // Discard the input buffer
             }
         }
-
+        //Calls InputCredentials from userCred to ask user to input username and password
         credentials.InputCredentials(std::cout, std::cin);
 
+        //Stores username and password into authUser
         this->authenticationUser = credentials.GetUser();
-
         if (choice == "0"){
-            if(!Register())
-            {
-                //if register fails, and 
-                std::cout << "This user already exists, please login instead." << std::endl;
+            if(!Register()) { //If register failed
+                std::cout << "This user already exists, please login instead." << std::endl; 
                 exit(0);
             }
             std::cout << "Registration successful!" << std::endl;
@@ -84,8 +80,7 @@ void ClientAuth::Prompt() {
         }
 
         else {
-            if(!Login())
-            {
+            if(!Login()) { //If login failed
                 std::cout << "Username or password not recognized.\n";
                 exit(0);
             }
@@ -97,20 +92,20 @@ void ClientAuth::Prompt() {
 }
 
 //This is where we can have the message to be sent to server 
-
 bool ClientAuth::Register() {
     //ALWAYS START REGISTER WITH A 0 AND END WITH A NEWLINE OR IT WONT WORK RIGHT
     //puts the username/password into a single message
     std::string login = loginString();
-    char *message = new char[login.length() + 1];
+    char* message = new char[login.length() + 1];
     message[0] = '0';
     int j = 1;
-    for(char i : login)
-    {
+
+    for(char i : login) {
         message[j] = i;
         ++j;
     }
-    message[login.length()] = '\0';
+    message[login.length()] = '\0'; //Stores null terminator character
+
     //sends the message to the server
     int messageLength = strlen(message);
     int bytesSent = send(authSocket, message, messageLength, 0);
@@ -123,7 +118,6 @@ bool ClientAuth::Register() {
     return ServerResponse();
 }
 
-
 bool ClientAuth::Login() {
     //ALWAYS START LOGIN WITH A 1 AND END WITH A NEWLINE OR IT WONT WORK RIGHT
     //puts the username/password into a single message
@@ -131,12 +125,13 @@ bool ClientAuth::Login() {
     char *message = new char[login.length() + 1];
     message[0] = '1';
     int j = 1;
-    for(char i : login)
-    {
+
+    for(char i : login) {
         message[j] = i;
         ++j;
     }
     message[login.length()] = '\0';
+
     //sends the message to the server
     int messageLength = strlen(message);
     int bytesSent = send(authSocket, message, messageLength, 0);
@@ -154,8 +149,13 @@ bool ClientAuth::ServerResponse() {
     //server only responds with a single character
     char success[2];
     recv(authSocket, success, sizeof(success), 0);
-    if(success[0] == '1'){return true;}
-    else{return false;}
+
+    if(success[0] == '1') {
+        return true;
+    }
+    else {
+        return false;
+    }
     return false;
 }
 
@@ -166,6 +166,7 @@ User ClientAuth::GetUser(){
 
 std::string ClientAuth::loginString()
 {
+    //Sends login information in a specific format
     std::string login;
     login.append(authenticationUser.GetUsername());
     login.push_back(17);

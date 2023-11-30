@@ -7,12 +7,10 @@ UserCred::UserCred() {}
 UserCred::~UserCred() {}
 
 void UserCred::InputCredentials(std::ostream &out, std::istream &in) {
-    
     std::string username;
     std::string password;
 
     while (true) {
-
         out << "Username: ";
         in >> username;
 
@@ -21,7 +19,6 @@ void UserCred::InputCredentials(std::ostream &out, std::istream &in) {
             in.clear(); // Clear the error state
             in.ignore(); // Discard the input buffer
         } 
-        
         else {
             break; // Exit the loop if a valid integer is entered
         }
@@ -36,17 +33,16 @@ void UserCred::InputCredentials(std::ostream &out, std::istream &in) {
             in.clear(); // Clear the error state
             in.ignore(); // Discard the input buffer
         } 
-        
         else {
             break; // Exit the loop if a valid integer is entered
         }
     }
-
+    //Successful username and password
     credentialUser.SetUsername(username);
     credentialUser.SetPassword(password);
 
 }
 
-User UserCred::GetUser(){
+User UserCred::GetUser() {
     return this->credentialUser;
 }
