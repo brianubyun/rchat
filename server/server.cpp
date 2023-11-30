@@ -16,12 +16,10 @@
 using namespace std;
 #define MAXBYTES 4096
 
-
-
 //initialize a socket for the server 
 Server::Server() : isRunning(false) {
-    
     serverSocket = socket(AF_INET, SOCK_STREAM, 0);//AF_INET ---> Address Family Internet, SOCK_STREAM -- > Stream Socket, 0 is for default so it uses TCP 
+
     if (serverSocket == -1) {
         std::cerr << "Error creating server socket." << std::endl;
         exit(EXIT_FAILURE);
@@ -56,7 +54,7 @@ void Server::Start() {
         std::cerr << "Error listening on server socket." << std::endl;
         exit(EXIT_FAILURE);
     }
-
+    //Server successfully started
     isRunning = true;
 
     //create shutoff command thread to check for shut off command
@@ -87,27 +85,25 @@ void Server::Stop() {
 
 //Creates threads for each client 
 void Server::AcceptClients() {
-    std::cout << "listening..." << std::endl;
+    std::cout << "Listening... " << std::endl;
     bool login = false;
+
     while (isRunning) {
         struct sockaddr_in clientAddr;
         socklen_t clientAddrLen = sizeof(clientAddr);
 
         int clientSocket = accept(serverSocket, (struct sockaddr*)&clientAddr, &clientAddrLen);
-
         if (clientSocket == -1) {
             std::cerr << "Error accepting client connection." << std::endl;
             continue;  // Continue to accept other connections
         }
-        //authicate that they are a user
-        if(login)
-        {
+        //Authenticate that they are a user
+        if(login) {
             login = false;
             std::thread authenticationThread(&Server::Authenticate, this, clientSocket);
             authenticationThread.detach();
         }
-        else
-        {
+        else {
             login = true;
             clientSockets.push_back(clientSocket);
             std::thread clientThread(&Server::HandleClient, this, clientSocket);
@@ -132,43 +128,40 @@ void Server::HandleClient(int clientSocket) {
             // Handle client disconnection or error
             break;
         }
-        
         chatLog.logMessage(buffer);
 
         // Process the received data (in this example, we just print it)
         buffer[bytesReceived] = '\0'; // Ensure null-termination
         std::cout << "Received from client: " << buffer << std::endl;
 
-        // You can implement message broadcasting here
         BroadcastMessage(buffer, strlen(buffer), clientSocket);
     }
-
     close(clientSocket);
+
     // Remove the client socket from the list
     clientSockets.erase(std::remove(clientSockets.begin(), clientSockets.end(), clientSocket), clientSockets.end());
 }
 
 
 void Server::BroadcastMessage(char* message, int messageLength, int sendClient) {
-    //for client in clientsockets send the message to them
-    for(int client : clientSockets){
-        if (client != sendClient){ //avoids having their message broadcasted back to them
+    //For client in clientsockets send the message to them
+    for(int client : clientSockets) {
+        if (client != sendClient) { //Avoids having their message broadcasted back to them
             send(client, message, messageLength, 0);
         }
     }
-
 }
 
 void Server::Authenticate(int clientSocket)
 {
     //mildly insecure in that it allows infinite tries to login, but that can be fixed later
     //update: that has been fixed user-side. now a failed login closes the client program
-    ServerAuthenticator auth;
-    bool authenticated = auth.authUser(clientSocket);
-    if(!authenticated)
-    {
+    ServerAuthenticator authentication;
+    bool authenticated = authentication.authUser(clientSocket);
+    if(!authenticated) {
         return;
     }
+    //Successful authentication
     clientSockets.push_back(clientSocket);
     std::thread clientThread(&Server::HandleClient, this, clientSocket);
     clientThread.detach();  // Detach the thread to run independently
