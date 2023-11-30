@@ -24,7 +24,7 @@ ClientAuth::ClientAuth(int clientSocket, int serverPort, std::string serverDomai
     struct sockaddr_in serverAddr;
     struct hostent* serverInfo;
 
-    // Resolve the domain name to an IP address
+    //Domain name to  IP address
     serverInfo = gethostbyname(serverDomainName.c_str());
     if (serverInfo == nullptr) {
         std::cerr << "Error resolving host name." << std::endl;
@@ -34,7 +34,6 @@ ClientAuth::ClientAuth(int clientSocket, int serverPort, std::string serverDomai
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(serverPort);
     memcpy(&serverAddr.sin_addr, serverInfo->h_addr, serverInfo->h_length);
-
     if (connect(authSocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) == -1) {
         std::cerr << "Error connecting to the server." << std::endl;
         exit(0);
@@ -49,7 +48,7 @@ void ClientAuth::Prompt() {
     std::string choice;
     UserCred credentials;
 
-    while(true){
+    while(true) {
         while (true) {
             //Asks user for register or login input
             std::cout << "Register(0) or Login(1): ";
@@ -58,7 +57,6 @@ void ClientAuth::Prompt() {
             if (choice == "0" || choice == "1") {
                 break; // Exit the loop if a valid integer is entered
             } 
-            
             else {
                 std::cout << "Invalid input. Please enter a valid choice." << std::endl;
                 std::cin.clear(); // Clear the error state
@@ -70,17 +68,16 @@ void ClientAuth::Prompt() {
 
         //Stores username and password into authUser
         this->authenticationUser = credentials.GetUser();
-        if (choice == "0"){
-            if(!Register()) { //If register failed
+        if (choice == "0") {
+            if (!Register()) { //If register failed
                 std::cout << "This user already exists, please login instead." << std::endl; 
                 exit(0);
             }
             std::cout << "Registration successful!" << std::endl;
             return;
         }
-
         else {
-            if(!Login()) { //If login failed
+            if (!Login()) { //If login failed
                 std::cout << "Username or password not recognized.\n";
                 exit(0);
             }
@@ -100,7 +97,7 @@ bool ClientAuth::Register() {
     message[0] = '0';
     int j = 1;
 
-    for(char i : login) {
+    for (char i : login) {
         message[j] = i;
         ++j;
     }
@@ -126,7 +123,7 @@ bool ClientAuth::Login() {
     message[0] = '1';
     int j = 1;
 
-    for(char i : login) {
+    for (char i : login) {
         message[j] = i;
         ++j;
     }
@@ -150,7 +147,7 @@ bool ClientAuth::ServerResponse() {
     char success[2];
     recv(authSocket, success, sizeof(success), 0);
 
-    if(success[0] == '1') {
+    if (success[0] == '1') {
         return true;
     }
     else {

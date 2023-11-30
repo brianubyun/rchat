@@ -98,7 +98,7 @@ void Server::AcceptClients() {
             continue;  // Continue to accept other connections
         }
         //Authenticate that they are a user
-        if(login) {
+        if (login) {
             login = false;
             std::thread authenticationThread(&Server::Authenticate, this, clientSocket);
             authenticationThread.detach();
@@ -144,7 +144,7 @@ void Server::HandleClient(int clientSocket) {
 
 void Server::BroadcastMessage(char* message, int messageLength, int sendClient) {
     //For client in clientsockets, send the message to them
-    for(int client : clientSockets) {
+    for (int client : clientSockets) {
         if (client != sendClient) { //Avoids having their message broadcasted back to them
             send(client, message, messageLength, 0);
         }
@@ -156,7 +156,7 @@ void Server::Authenticate(int clientSocket) {
     //update: that has been fixed user-side. now a failed login closes the client program
     ServerAuthenticator authentication;
     bool authenticated = authentication.authUser(clientSocket);
-    if(!authenticated) {
+    if (!authenticated) {
         return;
     }
 
