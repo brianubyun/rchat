@@ -1,5 +1,6 @@
 #ifndef CHATLOGGER_H
 #define CHATLOGGER_H
+
 #include <vector>
 #include <string>
 #include <iostream>
@@ -10,13 +11,11 @@
 
 class Logger {
 public:
-    
-    Logger(std::string saveFileName = "R'ChatLogs.txt"){
+    Logger(std::string saveFileName = "R'ChatLogs.txt") {
         this->saveFile = saveFileName;
     }
 
-    void logMessage(char message[] ){
-
+    void logMessage(char message[] ) {
       // Get the current time
       auto now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
@@ -35,7 +34,6 @@ public:
 
 private:
     std::string saveFile;
-
 };
 
-#endif // SERVER_H
+#endif 
