@@ -151,8 +151,7 @@ void Server::BroadcastMessage(char* message, int messageLength, int sendClient) 
     }
 }
 
-void Server::Authenticate(int clientSocket)
-{
+void Server::Authenticate(int clientSocket) {
     //mildly insecure in that it allows infinite tries to login, but that can be fixed later
     //update: that has been fixed user-side. now a failed login closes the client program
     ServerAuthenticator authentication;
@@ -160,7 +159,7 @@ void Server::Authenticate(int clientSocket)
     if(!authenticated) {
         return;
     }
-    
+
     //Successful authentication
     clientSockets.push_back(clientSocket);
     std::thread clientThread(&Server::HandleClient, this, clientSocket);
