@@ -8,31 +8,28 @@ class Server {
 public:
     bool isRunning;
     
-    // Constructor
     Server();
 
-    // Destructor
     ~Server();
 
-    // Start the server
+    //Starts server
     void Start();
 
-    // Stop the server
+    //Stops server
     void Stop();
 
-    // Accept client connections
+    //Accepts clients into server
     void AcceptClients();
 
-    // Handle client communication
+    //Handles client messaging/messages
     void HandleClient(int clientSocket);
 
-    // Broadcast a message to all connected clients
+    //Broadcasts message to all connected clients
     void BroadcastMessage(char * message, int messageLength, int sendClient);
 
-
-
-    //Authenticates users before they are allowed to send messages
+    //Authenticates users before sending messages
     void Authenticate(int);
+    
 private:
     int serverSocket; 
     int port = 48566;

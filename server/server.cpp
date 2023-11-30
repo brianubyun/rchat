@@ -125,26 +125,25 @@ void Server::HandleClient(int clientSocket) {
     while (true) {
         ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesReceived <= 0) {
-            // Handle client disconnection or error
-            break;
+            break; //Handles client disconnection or error
         }
         chatLog.logMessage(buffer);
 
-        // Process the received data (in this example, we just print it)
-        buffer[bytesReceived] = '\0'; // Ensure null-termination
+        //Data message is received 
+        buffer[bytesReceived] = '\0'; // Adds null-termination so we know when to terminate
         std::cout << "Received from client: " << buffer << std::endl;
 
         BroadcastMessage(buffer, strlen(buffer), clientSocket);
     }
     close(clientSocket);
 
-    // Remove the client socket from the list
+    //Removes client socket from list
     clientSockets.erase(std::remove(clientSockets.begin(), clientSockets.end(), clientSocket), clientSockets.end());
 }
 
 
 void Server::BroadcastMessage(char* message, int messageLength, int sendClient) {
-    //For client in clientsockets send the message to them
+    //For client in clientsockets, send the message to them
     for(int client : clientSockets) {
         if (client != sendClient) { //Avoids having their message broadcasted back to them
             send(client, message, messageLength, 0);
@@ -161,6 +160,7 @@ void Server::Authenticate(int clientSocket)
     if(!authenticated) {
         return;
     }
+    
     //Successful authentication
     clientSockets.push_back(clientSocket);
     std::thread clientThread(&Server::HandleClient, this, clientSocket);
