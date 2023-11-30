@@ -40,25 +40,22 @@ bool Client::Connect() {
         std::cerr << "Error connecting to the server." << std::endl;
         return false;
     }
-
     return true;
 }
 
 void Client::Start() {
-    
-
     ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
     authenticator.Prompt();
 
     std::thread sendThread(&Client::SendLoop, this);
     std::thread receiveThread(&Client::ReceiveLoop, this);
 
-    // Wait for the threads to finish (you should add proper thread management)
+    //Join threads
     sendThread.join();
     receiveThread.join();
 }
 
-void Client::SendLoop() { //possibly add an outstream thing or print function so we can use it for unit tests as well
+void Client::SendLoop() { 
     while (true) {
         char buffer[MAXBYTES];
 
@@ -73,31 +70,30 @@ void Client::SendLoop() { //possibly add an outstream thing or print function so
             std::cin.clear(); //Clears buffer
         }
 
-        // Send the message from the buffer
+        // Send the message from the buffer since //quit was not inputted
         SendMessage(buffer);
     }
 }
 
-//This wont work until Server::Broadcastmessage is completed 
 void Client::ReceiveLoop() {
     char buffer[MAXBYTES];
+
     while (true) {
         int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesRead <= 0) {
             std::cerr << std::endl << "Connection to the server closed." << std::endl;
             exit(0);
         }
-        
+
         std::string message(buffer, bytesRead);
         std::cout << "Received message: " << message << std::endl << std::endl;
-        
-        
     }
 }  
 
 void Client::SendMessage(const char* message) {
     int messageLength = strlen(message);
     int bytesSent = send(clientSocket, message, messageLength, 0);
+    
     if (bytesSent == -1) {
         std::cerr << "Error sending message." << std::endl;
     }
