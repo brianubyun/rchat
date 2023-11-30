@@ -24,3 +24,7 @@ server_shut_off_test
 chatlogging_test
 server_shut_off_test
 users.txt
+
+auth_test
+broadcast_test
+skeleton_test
