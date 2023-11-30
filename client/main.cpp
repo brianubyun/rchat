@@ -4,7 +4,6 @@
 int main() {
     // Create a client instance
     Client client;
-
     
     // Connect to the server
     if (!client.Connect()) {
@@ -14,10 +13,6 @@ int main() {
 
     // Start the client (send and receive messages)
     client.Start();
-
-    // The Start function will block until both send and receive threads finish.
-
-    // You can add additional logic here if needed.
     
     return 0;
 }
