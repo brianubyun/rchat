@@ -25,7 +25,7 @@ bool Client::Connect() {
     struct sockaddr_in serverAddr;
     struct hostent* serverInfo;
 
-    // Resolve the domain name to an IP address
+    //resolves domain name to an IP address
     serverInfo = gethostbyname(serverDomainName.c_str());
     if (serverInfo == nullptr) {
         std::cerr << "Error resolving host name." << std::endl;
@@ -59,18 +59,16 @@ void Client::SendLoop() {
     while (true) {
         char buffer[MAXBYTES];
 
-        // Prompt the user for input and read it into the buffer
+        //prompts user for input and reads into the buffer
         //std::cout << "Enter a message: ";
         std::cin.getline(buffer, MAXBYTES);
 
-        // User sent //quit command and exits chat 
         if (std::string(buffer) == "//quit") {  
             SendMessage("Connection closed. Client disconnected.");
-            exit(0); //Terminates program since chat program is exited
-            std::cin.clear(); //Clears buffer
+            exit(0); 
+            std::cin.clear(); 
         }
 
-        // Send the message from the buffer since //quit was not inputted
         SendMessage(buffer);
     }
 }

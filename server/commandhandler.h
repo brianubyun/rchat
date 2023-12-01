@@ -25,9 +25,6 @@ public:
             std::cout<<"Shutting down server" << std::endl;
             delete server; //call server destructor 
         } 
-        else if (command == "command2") { //Here if we want to implement any other commands
-            std::cout << "Executing Command 2" << std::endl;
-        } 
         else {
             std::cout << "Unknown command: " << command << std::endl;
         }

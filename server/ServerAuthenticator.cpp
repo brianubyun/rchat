@@ -14,9 +14,8 @@
 //#define MAXBYTES 4096
 
 const bool ServerAuthenticator::isUser(std::string username) {
-    //Opens .txt file
     in.open("users.txt");
-    if (!in.is_open()) { //Stops if failure to open file
+    if (!in.is_open()) { 
         abort;
     }
 

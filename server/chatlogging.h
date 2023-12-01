@@ -16,17 +16,17 @@ public:
     }
 
     void logMessage(char message[] ) {
-        // Get the current time
+        //gets current time
         auto now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 
-        // Convert the current time to a string
-        char timeString[100];  // Adjust the size based on your needs
+        //converts time to string
+        char timeString[100];  
         std::strftime(timeString, sizeof(timeString), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
 
-        // Open the file in append mode
+        //opens file in append mode
         std::ofstream ChatLog(this->saveFile, std::ios_base::app);
 
-        // Write the timestamp and message to the file
+        //writes timestamp and msg to file
         ChatLog << "[" << timeString << "] " << message << std::endl;
 
         ChatLog.close();

@@ -15,7 +15,7 @@ public:
     Client();
     ~Client();
 
-    //Client connects to  server
+    //Client connects to server
     bool Connect();
 
     //Client start

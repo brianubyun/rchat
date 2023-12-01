@@ -28,12 +28,12 @@ Server::Server() : isRunning(false) {
     setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(int));
 }
 
-//Will deconstruct the server using stop 
+//will deconstruct the server using stop 
 Server::~Server() {
     Stop();
 }
 
-//Binds the socket to a port and then begin to listen and accept clients 
+//binds the socket to a port and then begin to listen and accept clients 
 void Server::Start() {
     if (isRunning) {
         std::cerr << "Server is already running." << std::endl;
@@ -71,12 +71,12 @@ void Server::Stop() {
         return;
     }
 
-    // Close all client sockets
+    //close each client socket
     for (int clientSocket : clientSockets) {
         close(clientSocket);
     }
 
-    // Close the server socket
+    //finally, close server socket
     close(serverSocket);
     isRunning = false;
     exit(0);
@@ -95,9 +95,9 @@ void Server::AcceptClients() {
         int clientSocket = accept(serverSocket, (struct sockaddr*)&clientAddr, &clientAddrLen);
         if (clientSocket == -1) {
             std::cerr << "Error accepting client connection." << std::endl;
-            continue;  // Continue to accept other connections
+            continue;  //continue to accept other connections
         }
-        //Authenticate that they are a user
+        //authenticate that they are a user
         if (login) {
             login = false;
             std::thread authenticationThread(&Server::Authenticate, this, clientSocket);
@@ -129,23 +129,23 @@ void Server::HandleClient(int clientSocket) {
         }
         chatLog.logMessage(buffer);
 
-        //Data message is received 
-        buffer[bytesReceived] = '\0'; // Adds null-termination so we know when to terminate
+        //data message is received 
+        buffer[bytesReceived] = '\0'; //adds null-termination so we know when to terminate
         std::cout << "Received from client: " << buffer << std::endl;
 
         BroadcastMessage(buffer, strlen(buffer), clientSocket);
     }
     close(clientSocket);
 
-    //Removes client socket from list
+    //removes client socket from list
     clientSockets.erase(std::remove(clientSockets.begin(), clientSockets.end(), clientSocket), clientSockets.end());
 }
 
 
 void Server::BroadcastMessage(char* message, int messageLength, int sendClient) {
-    //For client in clientsockets, send the message to them
+    //for client in clientsockets, send the message to them
     for (int client : clientSockets) {
-        if (client != sendClient) { //Avoids having their message broadcasted back to them
+        if (client != sendClient) { //avoids having their message broadcasted back to them
             send(client, message, messageLength, 0);
         }
     }
@@ -160,8 +160,8 @@ void Server::Authenticate(int clientSocket) {
         return;
     }
 
-    //Successful authentication
+    //successful authentication
     clientSockets.push_back(clientSocket);
     std::thread clientThread(&Server::HandleClient, this, clientSocket);
-    clientThread.detach();  // Detach the thread to run independently
+    clientThread.detach();  //detaches the thread to run independently
 }

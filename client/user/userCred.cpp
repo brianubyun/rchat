@@ -16,11 +16,11 @@ void UserCred::InputCredentials(std::ostream &out, std::istream &in) {
 
         if (in.fail()) {
             out << "Invalid input. Please enter a valid string." << std::endl;
-            in.clear(); // Clear the error state
-            in.ignore(); // Discard the input buffer
+            in.clear(); //clears error state
+            in.ignore(); //discards input buffer
         } 
         else {
-            break; // Exit the loop if a valid integer is entered
+            break; 
         }
     }
 
@@ -30,11 +30,11 @@ void UserCred::InputCredentials(std::ostream &out, std::istream &in) {
 
         if (in.fail()) {
             out << "Invalid input. Please enter a valid string." << std::endl;
-            in.clear(); // Clear the error state
-            in.ignore(); // Discard the input buffer
+            in.clear(); //clears error state
+            in.ignore(); //discards input buffer
         } 
         else {
-            break; // Exit the loop if a valid integer is entered
+            break; 
         }
     }
     //Successful username and password

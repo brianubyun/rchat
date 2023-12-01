@@ -50,26 +50,24 @@ void ClientAuth::Prompt() {
 
     while(true) {
         while (true) {
-            //Asks user for register or login input
             std::cout << "Register(0) or Login(1): ";
             std::cin >> choice;
 
             if (choice == "0" || choice == "1") {
-                break; // Exit the loop if a valid integer is entered
+                break;
             } 
             else {
                 std::cout << "Invalid input. Please enter a valid choice." << std::endl;
-                std::cin.clear(); // Clear the error state
-                std::cin.ignore(); // Discard the input buffer
+                std::cin.clear(); //clears error state
+                std::cin.ignore(); //discards input buffer
             }
         }
         //Calls InputCredentials from userCred to ask user to input username and password
         credentials.InputCredentials(std::cout, std::cin);
 
-        //Stores username and password into authUser
         this->authenticationUser = credentials.GetUser();
         if (choice == "0") {
-            if (!Register()) { //If register failed
+            if (!Register()) { 
                 std::cout << "This user already exists, please login instead." << std::endl; 
                 exit(0);
             }
@@ -77,7 +75,7 @@ void ClientAuth::Prompt() {
             return;
         }
         else {
-            if (!Login()) { //If login failed
+            if (!Login()) { 
                 std::cout << "Username or password not recognized.\n";
                 exit(0);
             }
