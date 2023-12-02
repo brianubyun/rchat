@@ -1,3 +1,6 @@
+#include "user/user.h"
+#include "user/userCred.h"
+#include "assist/clientAuth.h"
 #include "client.h"
 #include "client_command_handler.h"
 #include <iostream>
@@ -43,9 +46,13 @@ bool Client::Connect() {
 }
 
 void Client::Start() {
-    // Start the send and receive threads (you need to implement these)
-    sendThread = std::thread(&Client::SendLoop, this);
-    receiveThread = std::thread(&Client::ReceiveLoop, this);
+    
+
+    ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
+    authenticator.Prompt();
+
+    std::thread sendThread(&Client::SendLoop, this);
+    std::thread receiveThread(&Client::ReceiveLoop, this);
 
     // Wait for the threads to finish (you should add proper thread management)
     sendThread.join();

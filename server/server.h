@@ -31,11 +31,12 @@ public:
 
 
 
+    //Authenticates users before they are allowed to send messages
+    void Authenticate(int);
 private:
     int serverSocket; 
     int port = 48566;
     std::vector<int> clientSockets;
-
 };
 
 #endif // SERVER_H
