@@ -72,7 +72,6 @@ void Server::Start() {
     std::thread commandThread(&CommandHandler::ListenFor, &handler, this);
     commandThread.detach(); //detach shut off thread
     AcceptClients();
-    std::cout << "made it to line 75\n";
     commandThread.join();
     threadsRunning  = false;
 }
