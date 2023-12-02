@@ -71,7 +71,7 @@ void Client::SendLoop() { //possibly add an outstream thing or print function so
 
         // User sent //quit command and exits chat 
         if (std::string(buffer) == "//quit") {  
-            SendMessage("Connection closed. Client disconnected.");
+            //SendMessage("Connection closed. Client disconnected.");
             //exit was here
             killThreads = true;
             char message [2] = "0";

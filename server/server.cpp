@@ -70,11 +70,10 @@ void Server::Start() {
     CommandHandler handler;
     threadsRunning = true;
     std::thread commandThread(&CommandHandler::ListenFor, &handler, this);
-    std::cout << "1\n";
     commandThread.detach(); //detach shut off thread
-    std::cout << "2\n";
     AcceptClients();
-    std::cout << "\n\n\n\n3\n\n\n\n";
+    std::cout << "made it to line 75\n";
+    commandThread.join();
     threadsRunning  = false;
 }
 
@@ -150,9 +149,7 @@ void Server::HandleClient(int clientSocket) {
         }
         if (buffer[0] == '0')
         {
-            char message [2] = "\n";
-            send(clientSocket, message, 2, 0);
-            continue;
+            break;
         }
         chatLog.logMessage(buffer);
 
