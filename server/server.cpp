@@ -11,6 +11,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <algorithm>
+#include <fcntl.h>
 #include "ServerAuthenticator.h"
 
 using namespace std;
@@ -19,7 +20,7 @@ using namespace std;
 
 
 //initialize a socket for the server 
-Server::Server() : isRunning(false) {
+Server::Server() : isRunning(false), threadsRunning(false) {
     
     serverSocket = socket(AF_INET, SOCK_STREAM, 0);//AF_INET ---> Address Family Internet, SOCK_STREAM -- > Stream Socket, 0 is for default so it uses TCP 
     if (serverSocket == -1) {
@@ -28,6 +29,10 @@ Server::Server() : isRunning(false) {
     }
     int optval = 1;
     setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(int));
+    if(fcntl(serverSocket, F_SETFL, fcntl(serverSocket, F_GETFL) | O_NONBLOCK) < 0) {
+        std::cerr << "Error creating server socket." << std::endl;
+        exit(EXIT_FAILURE);
+    }
 }
 
 //Will deconstruct the server using stop 
@@ -63,9 +68,14 @@ void Server::Start() {
     //create shutoff command thread to check for shut off command
     //this is where we implement the command handler thread instead of the shut off thread
     CommandHandler handler;
+    threadsRunning = true;
     std::thread commandThread(&CommandHandler::ListenFor, &handler, this);
+    std::cout << "1\n";
     commandThread.detach(); //detach shut off thread
+    std::cout << "2\n";
     AcceptClients();
+    std::cout << "\n\n\n\n3\n\n\n\n";
+    threadsRunning  = false;
 }
 
 //Stops the server and closes clients 
@@ -85,6 +95,7 @@ void Server::Stop() {
     //exit here (!e)
     //the threads need to be joined here, if the server exits before they actually complete, it causes a memory leak.
     //the problem from command handler also comes in here: it simply calls the deconstructor to the server.
+    while(threadsRunning){}
     exit(0);
 }
 
@@ -100,7 +111,7 @@ void Server::AcceptClients() {
         int clientSocket = accept(serverSocket, (struct sockaddr*)&clientAddr, &clientAddrLen);
 
         if (clientSocket == -1) {
-            std::cerr << "Error accepting client connection." << std::endl;
+            //std::cerr << "Error accepting client connection." << std::endl;
             continue;  // Continue to accept other connections
         }
         //authicate that they are a user
@@ -117,9 +128,10 @@ void Server::AcceptClients() {
             std::thread clientThread(&Server::HandleClient, this, clientSocket);
             clientThread.detach();
         }
-        //the two lines below were moved to the authentication thread to allow them to wait until the client is authenticated
-        /*std::thread clientThread(&Server::HandleClient, this, clientSocket);
-        clientThread.detach();  // Detach the thread to run independently*/
+        if(!isRunning)
+        {
+            return;
+        }
     }
 }
 
@@ -130,7 +142,7 @@ void Server::HandleClient(int clientSocket) {
     //ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
     Logger chatLog;
 
-    while (true) {
+    while (isRunning) {
         ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesReceived <= 0) {
             // Handle client disconnection or error
@@ -178,7 +190,5 @@ void Server::Authenticate(int clientSocket)
     {
         return;
     }
-    clientSockets.push_back(clientSocket);
-    std::thread clientThread(&Server::HandleClient, this, clientSocket);
-    clientThread.detach();  // Detach the thread to run independently
+    close(clientSocket);
 }
