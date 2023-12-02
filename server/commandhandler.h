@@ -21,6 +21,7 @@ public:
          if(strcmp(command, "//exit") == 0){ //If input is exit command
             std::cin.clear();
             std::cout<<"Shutting down server" << std::endl;
+            //this is not the best way to go about this. itd be better to set a flag or smt on the server to tell the server its time to exit, and allow it to do so gracefully.
             delete server; //call server destructor 
         } 
         else if (command == "command2") {

@@ -32,6 +32,7 @@ Server::Server() : isRunning(false) {
 
 //Will deconstruct the server using stop 
 Server::~Server() {
+    //also could join the threads here, which may be better depending on how often stop is called.
     Stop();
 }
 
@@ -81,6 +82,9 @@ void Server::Stop() {
     // Close the server socket
     close(serverSocket);
     isRunning = false;
+    //exit here (!e)
+    //the threads need to be joined here, if the server exits before they actually complete, it causes a memory leak.
+    //the problem from command handler also comes in here: it simply calls the deconstructor to the server.
     exit(0);
 }
 
