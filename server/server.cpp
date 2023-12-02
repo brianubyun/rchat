@@ -136,7 +136,12 @@ void Server::HandleClient(int clientSocket) {
             // Handle client disconnection or error
             break;
         }
-        
+        if (buffer[0] == '0')
+        {
+            char message [2] = "\n";
+            send(clientSocket, message, 2, 0);
+            continue;
+        }
         chatLog.logMessage(buffer);
 
         // Process the received data (in this example, we just print it)

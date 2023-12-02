@@ -53,18 +53,15 @@ void Client::Start() {
 
     std::thread sendThread(&Client::SendLoop, this);
     std::thread receiveThread(&Client::ReceiveLoop, this);
-    std::cout << "Made it here!1";
     // Wait for the threads to finish (you should add proper thread management)
     sendThread.join();
     receiveThread.join();
-    std::cout << "Made it here!4";
 }
 
 void Client::SendLoop() { //possibly add an outstream thing or print function so we can use it for unit tests as well
     while (true) {
         if(killThreads)
         {
-            std::cout << "Made it here6!";
             return;
         }
         char buffer[MAXBYTES];
@@ -77,6 +74,8 @@ void Client::SendLoop() { //possibly add an outstream thing or print function so
             SendMessage("Connection closed. Client disconnected.");
             //exit was here
             killThreads = true;
+            char message [2] = "0";
+            SendMessage(message);
             return; //Terminates program since chat program is exited
             
             std::cin.clear(); //Clears buffer
@@ -93,15 +92,12 @@ void Client::ReceiveLoop() {
     while (true) {
         if(killThreads)
         {
-            std::cout << "Made it here5!";
             return;
         }
-        std::cout << killThreads << std::endl;
         int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesRead <= 0) {
             std::cerr << std::endl << "Connection to the server closed." << std::endl;
             //exit was here
-            std::cout << "Made it here3!";
             killThreads = true;
             return;
         }
