@@ -86,9 +86,33 @@
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
- > Screenshots of the input/output after running your application
+ > Screenshot of input and output after running registration. 
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/fb22854e-8dd4-4d67-9c36-36898e4563eb)
+
+ > Screenshot of input and output after running successful login.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/a1691915-5e6e-4c86-8b27-64d3751c9361)
+
+ > Screenshot of input and output after running the unsuccessful login.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/465d5f6a-0080-4db2-8249-c37c7b8c9c5e)
+
+ > Screenshot of input and output after client registration, login, and sending messages which is broadcasted to the server.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/38fca312-b668-42e5-9837-5c1ccf69e374)
+
+ > Screenshot of input and output of two clients logged in and connected to chat server and talking to each other.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/bd142e38-827c-472e-9d6a-e69c57d04499)
+
+ > Screenshot of input and output of client disconnecting from chat server via //quit.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/a0a9ba10-e3b2-468d-a013-59718ccc0b47)
+
+ > Screenshot of input and output of server closing via //exit and all clients being disconnected as well.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/9ef9a000-2f66-4728-ae3d-8a25134d0adf)
+
  ## Installation/Usage
+ > To install and run our application, you will need to first:
+ -  
  > Instructions on installing and running your application
  ## Testing
+ > Our project was tested/validated by creating unit tests to ensure that each component or unit of code that was added functions as expected via the google test subfolder. Within our unit tests, we tested specific components such as the //quit command to disconnect a client from the chat server or the //exit command to shut down the server. We did this to ensure that the server connected and ran successfully with a specific port and the same for client with their specific client socket. W
+> We also used some CI aspects in our code to make sure that there was not any regression in our code. We did this by creating a workflow that connected to the server and went through baseline tests to ensure everything ran correctly.
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  
