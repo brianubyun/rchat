@@ -20,7 +20,7 @@ using namespace std;
 
 
 //initialize a socket for the server 
-Server::Server() : isRunning(false), threadsRunning(false) {
+Server::Server() : isRunning(false){
     
     serverSocket = socket(AF_INET, SOCK_STREAM, 0);//AF_INET ---> Address Family Internet, SOCK_STREAM -- > Stream Socket, 0 is for default so it uses TCP 
     if (serverSocket == -1) {
@@ -68,20 +68,18 @@ void Server::Start() {
     //create shutoff command thread to check for shut off command
     //this is where we implement the command handler thread instead of the shut off thread
     CommandHandler handler;
-    threadsRunning = true;
-    std::thread commandThread(&CommandHandler::ListenFor, &handler, this);
+    std::thread commandThread;
+    commandThread = std::thread(&CommandHandler::ListenFor, &handler, this);
     commandThread.detach(); //detach shut off thread
     AcceptClients();
-    commandThread.join();
-    threadsRunning  = false;
+    isRunning = false;
+    Stop();
 }
 
 //Stops the server and closes clients 
 void Server::Stop() {
-    if (!isRunning) {
-        return;
-    }
 
+    if(isRunning){ return; }
     // Close all client sockets
     for (int clientSocket : clientSockets) {
         close(clientSocket);
@@ -93,7 +91,6 @@ void Server::Stop() {
     //exit here (!e)
     //the threads need to be joined here, if the server exits before they actually complete, it causes a memory leak.
     //the problem from command handler also comes in here: it simply calls the deconstructor to the server.
-    while(threadsRunning){}
     exit(0);
 }
 
@@ -174,6 +171,11 @@ void Server::BroadcastMessage(char* message, int messageLength, int sendClient) 
         }
     }
 
+}
+
+void Server::SimpleStop()
+{
+    isRunning = false;
 }
 
 void Server::Authenticate(int clientSocket)

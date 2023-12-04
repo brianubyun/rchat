@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <thread>
 #include "server.h"
 
 class CommandHandler {
@@ -22,7 +23,7 @@ public:
             std::cin.clear();
             std::cout<<"Shutting down server" << std::endl;
             //this is not the best way to go about this. itd be better to set a flag or smt on the server to tell the server its time to exit, and allow it to do so gracefully.
-            delete server; //call server destructor 
+            server->SimpleStop(); //call server destructor 
         } 
         else if (command == "command2") {
             std::cout << "Executing Command 2" << std::endl;
