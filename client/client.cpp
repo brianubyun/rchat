@@ -13,9 +13,6 @@
 Client::Client() {
     isRunning = true;
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
-    if (clientSocket == -1) {
-        std::cerr << "Error creating socket." << std::endl;
-    }
 }
 
 Client::~Client() {
@@ -50,10 +47,11 @@ void Client::Start() {
 
     ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
     authenticator.Prompt();
+    std::string user = authenticator.GetUser().GetUsername();
 
-    std::thread sendThread(&Client::SendLoop, this);
+
+    std::thread sendThread(&Client::SendLoop, this, user);
     std::thread receiveThread(&Client::ReceiveLoop, this);
-
     // Wait for the threads to finish (you should add proper thread management)
     sendThread.join();
     receiveThread.join();
@@ -62,7 +60,6 @@ void Client::Start() {
 void Client::SendLoop() { //possibly add an outstream thing or print function so we can use it for unit tests as well
     while (isRunning) {
         char buffer[MAXBYTES];
-
         // Prompt the user for input and read it into the buffer
         //std::cout << "Enter a message: ";
         std::cin.getline(buffer, MAXBYTES);
@@ -79,14 +76,20 @@ void Client::SendLoop() { //possibly add an outstream thing or print function so
 void Client::ReceiveLoop() {
     char buffer[MAXBYTES];
     while (true) {
+        if(killThreads)
+        {
+            return;
+        }
         int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesRead <= 0) {
             std::cerr << std::endl << "Connection to the server closed." << std::endl;
-            exit(0);
+            //exit was here
+            killThreads = true;
+            return;
         }
         
         std::string message(buffer, bytesRead);
-        std::cout << "Received message: " << message << std::endl << std::endl;
+        std::cout << message << std::endl << std::endl;
         
         
     }
