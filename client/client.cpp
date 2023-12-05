@@ -59,17 +59,21 @@ void Client::Start() {
 
 void Client::SendLoop(std::string username) { //possibly add an outstream thing or print function so we can use it for unit tests as well
     while (isRunning) {
-        char buffer[MAXBYTES];
+        char buffer[MAXBYTES] = {0};
         // Prompt the user for input and read it into the buffer
         //std::cout << "Enter a message: ";
         std::cin.getline(buffer, MAXBYTES);
+
+        if(strlen(buffer) == 0) {
+            continue;
+        }
         std::string message = std::string(buffer);
         
         message = username + ": " + message;
 
         // Continue or end client
         if (ClientCommandHandler::HandleCommand(message, this) == false) {  
-            exit(0);
+            Disconnect();
             std::cin.clear(); //Clears buffer
         }
     }
