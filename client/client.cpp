@@ -11,6 +11,7 @@
 #define MAXBYTES 4096
 
 Client::Client() {
+    firstMessage = true;
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     killThreads = false;
     if (clientSocket == -1) {
@@ -50,15 +51,17 @@ void Client::Start() {
 
     ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
     authenticator.Prompt();
+    std::string user = authenticator.GetUser().GetUsername();
 
-    std::thread sendThread(&Client::SendLoop, this);
+
+    std::thread sendThread(&Client::SendLoop, this, user);
     std::thread receiveThread(&Client::ReceiveLoop, this);
     // Wait for the threads to finish (you should add proper thread management)
     sendThread.join();
     receiveThread.join();
 }
 
-void Client::SendLoop() { //possibly add an outstream thing or print function so we can use it for unit tests as well
+void Client::SendLoop(std::string username) { //possibly add an outstream thing or print function so we can use it for unit tests as well
     while (true) {
         if(killThreads)
         {
@@ -80,9 +83,12 @@ void Client::SendLoop() { //possibly add an outstream thing or print function so
             
             std::cin.clear(); //Clears buffer
         }
-
-        // Send the message from the buffer
-        SendMessage(buffer);
+        std::string combinedMessage = buffer;
+        // Combine the C-style strings
+        if(!firstMessage){combinedMessage = username + ": " + buffer;}
+        else{firstMessage = false;}
+        // Send the combined message
+        SendMessage(combinedMessage.c_str());
     }
 }
 
@@ -103,7 +109,7 @@ void Client::ReceiveLoop() {
         }
         
         std::string message(buffer, bytesRead);
-        std::cout << "Received message: " << message << std::endl << std::endl;
+        std::cout << message << std::endl << std::endl;
         
         
     }
