@@ -95,28 +95,28 @@
  > Screenshot of input and output after running the unsuccessful login.
  > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/465d5f6a-0080-4db2-8249-c37c7b8c9c5e)
 
- > Screenshot of input and output after client registration, login, and sending messages which is broadcasted to the server.
- > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/38fca312-b668-42e5-9837-5c1ccf69e374)
+ > Screenshot of input and output after client registration, login, and sending messages which is broadcasted to the server along with the username.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/f4cbebfb-e4aa-4165-ad1b-66bfcdd30c01)
 
  > Screenshot of input and output of two clients logged in and connected to chat server and talking to each other.
- > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/bd142e38-827c-472e-9d6a-e69c57d04499)
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/bc9f8d45-6c64-4a17-bec1-b26ed356e48c)
 
  > Screenshot of input and output of client disconnecting from chat server via //quit.
- > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/a0a9ba10-e3b2-468d-a013-59718ccc0b47)
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/ccafdfd3-db86-475d-938f-b8fb810cf9f2)
 
  > Screenshot of input and output of server closing via //exit and all clients being disconnected as well.
- > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/9ef9a000-2f66-4728-ae3d-8a25134d0adf)
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/e4dddf0e-b53e-4e97-a7b9-bc25a05e9c38)
 
  ## Installation/Usage
- > To install and run our application, you will need to:
- - Require many dependencies such as iostream, cstring, unistd.h, arpa/inet.h, netdb.h, cstdlib, ctime, numeric, vector, chrono, fstream, sys/socket.h, thread, algorithm, and netinet/in.h to be able to complete all the functions and lines of code that we have written.
- - Create multiple classes with a specific purpose for each to follow SRP, such as a Client, Server, User, UserCred, ChatLogging, CommandHandler, ServerAuthenticator, and ClientAuthenticator class to make the functionality of the program relative to our program.
- - Create multiple functions within each class to follow its purpose such as Client dealing with sending and receiving messages, Server dealing with running the chat server and connecting to its port, User dealing with storing user information and using hash functions to hash the password, UserCred dealing with getting input for user credentials and seeing if it matches whatever was stored in the system via hashing, ChatLogging dealing with storing all messages sent in the chat server to a .txt file for later inspection with timestamps, CommandHandler dealing with specific commands the user inputs such as //exit, ServerAuthenticator dealing with authenticating connection to the chat server, and ClientAuthenticator dealing with handling authentication with clients by prompting them to register or login and managing the format and communication of login info sent.
- - Create a CMakeLists.txt to manage all the executables needed for the program to function correctly and cmake . and make.
- - Run the server executable (./server_run) for the server to connect with the port and allow clients to connect to the server via the client executable (./client_run).
- - Send messages via client-side which will be broadcasted to the server and sent to other clients connected to the chat server
- - Have a //quit command to quit or disconnect from the chat server via client-side and //exit to shut down the server completely and disconnect all clients via disconnecting their client sockets.
- - Have other commands to send emojis
+ > To install and run our application after git cloning our repo, you will need to:
+ - Cmake . and make the CMakeLists.txt file to update and be able to run all necessary executables
+ - Run the server executable (./server_run) for the server to connect with the port 
+ - Allow clients to connect to the server via the client executable (./client_run).
+
+ > From there, you can either:
+ - Keep sending messages as a client to other clients that will be broadcast to the server or you can quit the chat server via //quit
+ - Close the server via server-side which would shut down all client connections and their respective client sockets via //exit
+
  ## Testing
  > Our project was tested/validated by creating unit tests to ensure that each component or unit of code that was added functions as expected via the google test subfolder. Within our unit tests, we tested specific components such as the //quit command to disconnect a client from the chat server or the //exit command to shut down the server. We did this to ensure that the server connected and ran successfully with a specific port and the same for clients with their specific client sockets.
  > We also used some CI aspects in our code to make sure that there was not any regression in our code. We did this by creating a workflow that connected to the server and went through baseline tests to ensure everything ran correctly.
