@@ -12,6 +12,8 @@ public:
     static std::string ProcessMessage(std::string message) {
         ReplaceCommandWithEmoji(message, "//smile", ":)");
         ReplaceCommandWithEmoji(message, "//sad", ":(");
+        ReplaceCommandWithEmoji(message, "//angry", ">:(");
+        ReplaceCommandWithEmoji(message, "//sus", "':\\");
         return message;
     }
 
