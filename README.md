@@ -10,13 +10,14 @@
 ## Project Description
  > * R'Chat is a chat room that runs on a server, authenticates, and accepts multiple clients at once, allowing clients to chat in real-time with each other. R'Chat keeps chat logs for later inspection by admin users.
 >  * Discord is a common application that all of the team members use, which is a part of why we are interested in how programming for a chat application works. 
->  * Clients will run client executable, with terminal prompts for user authentication upon connection. Upon connection, client messages will be broadcast and received by other clients. Client will disconnect upon specific user input format (//quit). Server will also terminate upon specific input format by a server admin (//exit).
+>  * Clients will run client executable, with terminal prompts for user authentication upon connection. Upon connection, client messages will be broadcast and received by other clients. On server side where the server was ran, it will have all messages sent listed. Client will disconnect upon specific user input format (//quit). Server will also terminate upon specific input format by a server admin (//exit). Client can also send some emojis to add more variation rather than just messages.
  > * Creating a client/server style chat room serves as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in Embedded Systems, System Programming, Distributed Systems, and Cloud Computing. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it requires proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students.
  > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development. The functionality is supported by libraries for socket programming (networking), multithreading (multiple client handling), and file formatting for storing user credentials.
->  * Upon asking for authentication, user will be prompted with "Register(0) or Login(1):"
->  * Upon successful login or registration, user will be prompted with "Login successful!" or "Registration successful!" respectively.
->  * Upon unsuccessful login or registration user will be prompted with "Username or password not recognized." or "This user already exists, please login instead." respectively.
+>  * Upon asking for authentication, user will be prompted with "Register(0) or Login(1):" and user can either input 1 or 0 depending on what they want to do.
+>  * Upon successful login or registration, output with "Login successful!" or "Registration successful!" will be printed out respectively.
+>  * Upon unsuccessful login or registration, output with "Username or password not recognized." or "This user already exists, please login instead." will be printed out respectively.
 >  * Messages from other users will be displayed in the format "username: message contents"
+>  * Specifically, once connected, the client can send messages as input to another client if they are connected to the server and the message sent as input will be the output for the other client connected.
 
 ## User Interface Specification
 ### Navigation Diagram
@@ -80,7 +81,10 @@
 > * Another update we did to the Phase II diagram prior was creating a UserCred class that follows the **dependency inversion principle**. Creating a UserCred class allowed for the User class and ClientAuth class to use UserCred as an abstraction to input credential/user info and not the User class just being dependent on ClientAuth. This change helped us write better code for unit tests since it created an abstraction that we could test independently from the other classes. Doing this also helped with the understandability and readability on what specific classes are meant to do. 
  
  ## Screenshots
- > Screenshot of input and output after running registration. 
+ > Screenshot of input and output after running server executable to connect to port.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/899797d7-dd12-4472-8a7c-6d88acdf2341)
+ 
+ > Screenshot of input and output after running registration for client. 
  > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/fb22854e-8dd4-4d67-9c36-36898e4563eb)
 
  > Screenshot of input and output after running successful login.
@@ -103,12 +107,17 @@
 
  ## Installation/Usage
  > To install and run our application after git cloning our repo, you will need to:
- - Cmake . and make the CMakeLists.txt file to update and be able to run all necessary executables
+ - Cmake . and make the CMakeLists.txt file to update all executables with the latest code changes and to be able to run all necessary executables
+   - For dependencies, you will need:
+     - googletest folder along with its submodules to compile all test and test files without any error
+     - Terminal on VSCode that is able to run cmake . and make
+     - Pretty recent VSCode version to not run into errors with some libraries within our code that was not implemented in versions prior to the current VSCode 
  - Run the server executable (./server_run) for the server to connect with the port 
- - Allow clients to connect to the server via the client executable (./client_run).
+ - Allow clients to connect to the server via the client executable (./client_run)
+   - If you are just running it by yourself but want to connect another client to see how messages are sent, you can open a new terminal on VSCode and run ./client_run in that terminal
 
  > From there, you can either:
- - Keep sending messages or emojis as a client to other clients that will be broadcast to the server or you can quit the chat server via //quit
+ - Keep sending messages or emojis as a client to other clients that will be broadcast to the server side or you can quit the chat server via //quit
  - Close the server via server-side which would shut down all client connections and their respective client sockets via //exit
 
  ## Testing
@@ -116,6 +125,6 @@
  > We also did regression testing to see if any changes in our code affected past unit tests that previously were successful. We did this with every addition we made to the code.
  > We also did integration testing to see if different classes or functions such as CommandHandler and Server/Client class worked as expected when they were integrated in the code.
  > We also did code reviews so whenever pull requests would be created, either the next sprint meeting we had as a group or with one other group member, we assessed the code to not have any merge issues or have any conflicts with successfully running the code as expected to minimize errors and validate each addition to the project. 
- > We also used some CI aspects in our code to make sure that there was not any regression in our code. We did this by creating a workflow that runs cmake . and make to ensure that all executables are compiled with no error and all executables run as expected with no error. 
+ > We also used some CI aspects in our code to make sure that there was not any regression in our code. We did this by creating a workflow that runs cmake . and make to ensure that all executables inside our CMakeLists.txt are compiled with no error and all executables run as expected with no error. 
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  
