@@ -53,8 +53,8 @@
 
 > * The server class instantiates a server object that uses socket programming and creates threads to handle server input and client connections.
 
-> * Server Authenticator validates registration/login requests from Client Authenticator
->
+> * ServerAuthenticator validates registration/login requests from Client Authenticator
+
 > * Command Handler executes commands by listening in a thread for server-side input
 
 > * Logger timestamps and records all messages sent to the server
@@ -63,27 +63,22 @@
 
 > * User class represents users as their username and password
 
-> * User Credentials class handles the input of user credentials in Client Authenticator
+> * UserCred class handles the input of user credentials in Client Authenticator
 
-> * Client Authenticator sends username and password to the server, then prompts user based on server response
+> * ClientAuth class sends username and password to the server, then prompts user based on server response
+
+> * Emoji class deals with transferring messages into emojis
 
 
 ## New Class Diagram with SOLID principles
-> ![newnew drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/c2634155-70f6-4342-983f-fd768ae87b64)
+> ![updateduml drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/39320f84-e01f-419d-9057-6b6fc79d2758)
 
 > ##### What SOLID principle(s) did we apply?
 > * One of the updates in our class diagram was the addition of a Client Command Handler class which applied the **single responsibility principle**. We applied it by creating a relationship with the Client class to handle all of the commands the client inputs via a "//..." format. This change helped us write better code by simplifying and making it easier to write unit tests as well as maintaining scalability if we ever want to add more commands in the future that the user can input.
 > * Another update in our class diagram was the addition of the Emoji class which applied the **open closed principle**. We applied it by creating a relationship with the Client Command Handler class to handle all of the current and potential emojis that we are adding in the future via a "//[emoji_name]" format. This change helped us write better code by making the Client Command Handler open to extensions for all the emojis in the Emojis class we created, but closed for modification in the Client Command Handler class itself.
 > * One other update we did that was already modified in the Phase II diagram after being acknowledged about the SOLID principles was creating a Logger class that follows the **single responsibility principle**. We applied it by creating a relationship with the Server class to handle the specific responsibility of just logging all messages sent in the chat room. This change helped us write better code by creating more clarity for what the responsibility of the Logger and the Server class is and possibly creating more member variables and methods within the Logger class itself to the file.txt.
 > * Another update we did after learning about the SOLID principle to the Phase II diagram was separating the Server and Client class to not have any relationships which complies with the **interface segregation principle**. Doing this allowed the client side to not be forced to interact with any of the unneeded server commands that a client should not need. We applied it by essentially having two mini UMLs in one so the Server class can have its own relationships with other classes that follow the SOLID principles; the same for the Client class. This change helped us write better code by allowing for easier unit tests in the sense that we could test Client and Server class independently as well as for scalability as shown from the relationships with other classes.
-> * Another update we did to the Phase II diagram prior was creating a UserCred class that follows the **dependency inversion principle**. Creating a UserCred class allowed for the User class and ClientAuth class to use UserCred as an abstraction to input credential/user info and not the User class just being dependent on ClientAuth. This change helped us write better code for unit tests since it created an abstraction that we could test independently from the other classes. Doing this also helped with understandability and readability on what specific classes are meant to do. 
- 
- > ## Final deliverable
- > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Project board.
- > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
+> * Another update we did to the Phase II diagram prior was creating a UserCred class that follows the **dependency inversion principle**. Creating a UserCred class allowed for the User class and ClientAuth class to use UserCred as an abstraction to input credential/user info and not the User class just being dependent on ClientAuth. This change helped us write better code for unit tests since it created an abstraction that we could test independently from the other classes. Doing this also helped with the understandability and readability on what specific classes are meant to do. 
  
  ## Screenshots
  > Screenshot of input and output after running registration. 
@@ -114,7 +109,7 @@
  - Allow clients to connect to the server via the client executable (./client_run).
 
  > From there, you can either:
- - Keep sending messages as a client to other clients that will be broadcast to the server or you can quit the chat server via //quit
+ - Keep sending messages or emojis as a client to other clients that will be broadcast to the server or you can quit the chat server via //quit
  - Close the server via server-side which would shut down all client connections and their respective client sockets via //exit
 
  ## Testing
