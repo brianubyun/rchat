@@ -110,8 +110,16 @@ add_executable(command_tests
         tests/command_tests.cpp
         server/server.h
         server/server.cpp
+        server/ServerAuthenticator.h
+        server/ServerAuthenticator.cpp
         client/client.h
         client/client.cpp
+        client/assist/clientAuth.h
+        client/assist/clientAuth.cpp
+        client/user/user.h
+        client/user/user.cpp 
+        client/user/userCred.h
+        client/user/userCred.cpp
 
         client/emojis.h
         client/client_command_handler.h
@@ -133,5 +141,5 @@ TARGET_COMPILE_DEFINITIONS(baseline_test_run PRIVATE gtest_disable_pthreads=ON)
 TARGET_LINK_LIBRARIES(server_shut_off_test gtest)
 TARGET_COMPILE_DEFINITIONS(baseline_test_run PRIVATE gtest_disable_pthreads=ON)
 
-TARGET_LINK_LIBRARIES(command_tests gtest)
+TARGET_LINK_LIBRARIES(command_tests gtest gtest_main)
 TARGET_COMPILE_DEFINITIONS(baseline_test_run PRIVATE gtest_disable_pthreads=ON)

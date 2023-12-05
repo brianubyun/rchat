@@ -57,7 +57,7 @@ void Client::Start() {
     receiveThread.join();
 }
 
-void Client::SendLoop() { //possibly add an outstream thing or print function so we can use it for unit tests as well
+void Client::SendLoop(std::string username) { //possibly add an outstream thing or print function so we can use it for unit tests as well
     while (isRunning) {
         char buffer[MAXBYTES];
         // Prompt the user for input and read it into the buffer
