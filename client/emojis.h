@@ -10,8 +10,8 @@ public:
     // it unfortunately checks EVERY emoji EVERY message it sends
     // TODO: Only have it call the function if // is used
     static std::string ProcessMessage(std::string message) {
-        ReplaceCommandWithEmoji(message, "//test", "=w=");
-        ReplaceCommandWithEmoji(message, "//test2", "=______=");
+        ReplaceCommandWithEmoji(message, "//smile", ":)");
+        ReplaceCommandWithEmoji(message, "//sad", ":(");
         return message;
     }
 
