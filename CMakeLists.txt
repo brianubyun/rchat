@@ -106,6 +106,17 @@ add_executable(server_shut_off_test
             server/ServerAuthenticator.h
             server/ServerAuthenticator.cpp
             )       
+add_executable(command_tests
+        tests/command_tests.cpp
+        server/server.h
+        server/server.cpp
+        client/client.h
+        client/client.cpp
+
+        client/emojis.h
+        client/client_command_handler.h
+        )
+
             
 target_link_libraries(client_run PRIVATE pthread)
 target_link_libraries(server_run pthread)
@@ -120,4 +131,7 @@ TARGET_LINK_LIBRARIES(client_shut_off_test gtest)
 TARGET_COMPILE_DEFINITIONS(baseline_test_run PRIVATE gtest_disable_pthreads=ON)
 
 TARGET_LINK_LIBRARIES(server_shut_off_test gtest)
+TARGET_COMPILE_DEFINITIONS(baseline_test_run PRIVATE gtest_disable_pthreads=ON)
+
+TARGET_LINK_LIBRARIES(command_tests gtest)
 TARGET_COMPILE_DEFINITIONS(baseline_test_run PRIVATE gtest_disable_pthreads=ON)
