@@ -29,7 +29,7 @@ public:
     // Broadcast a message to all connected clients
     void BroadcastMessage(char * message, int messageLength, int sendClient);
 
-
+    void SimpleStop();
 
     //Authenticates users before they are allowed to send messages
     void Authenticate(int);

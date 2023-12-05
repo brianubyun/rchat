@@ -13,8 +13,9 @@
 >  * Clients will run client executable, with terminal prompts for user authentication upon connection. Upon connection, client messages will be broadcast and received by other clients. Client will disconnect upon specific user input format. Server will also terminate upon specific input format by a server admin.
  > * Creating a client/server style chat room serves as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in Embedded Systems, System Programming, Distributed Systems, and Cloud Computing. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it requires proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students.
  > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development. The functionality is supported by libraries for socket programming (networking), multithreading (multiple client handling), JSON file formatting for storing user credentials.
->  * Upon successful login user will be prompted with "Welcome to R'Chat"
->  * Upon unsuccessful login user will be prompted with "That is not a user, try again (y), register(r) or quit(q)"
+>  * Upon asking for authentication, user will be prompted with "Register(0) or Login(1):"
+>  * Upon successful login or registration, user will be prompted with "Login successful!" or "Registration successful!" respectively.
+>  * Upon unsuccessful login or registration user will be prompted with "Username or password not recognized." or "This user already exists, please login instead." respectively.
 >  * Messages from other users will be displayed in format "<username>: message contents"
 
 ## User Interface Specification
@@ -44,7 +45,8 @@
 > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/b709d257-c12c-4bea-ade0-3ffeefc3dbad)
 >
 > This is what the terminal will look like when the user connects to the chat system and is asked to log in (successful).
-> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/0fa691b0-42f0-4168-ba46-63315589166d)
+> ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/2dae652f-9467-4239-9bf1-817c591af790)
+
 
 ## Class Diagram
 > ![oldold drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/95ceda37-f2a5-48bd-9eb3-110bc317d5a8)
@@ -73,7 +75,7 @@
 > * One of the updates in our class diagram was the addition of a Client Command Handler class which applied the **single responsibility principle**. We applied it by creating a relationship with the Client class to handle all of the commands the client inputs via a "//..." format. This change helped us write better code by simplifying and making it easier to write unit tests as well as maintaining scalability if we ever want to add more commands in the future that the user can input.
 > * Another update in our class diagram was the addition of the Emoji class which applied the **open closed principle**. We applied it by creating a relationship with the Client Command Handler class to handle all of the current and potential emojis that we are adding in the future via a "//[emoji_name]" format. This change helped us write better code by making the Client Command Handler open to extensions for all the emojis in the Emojis class we created, but closed for modification in the Client Command Handler class itself.
 > * One other update we did that was already modified in the Phase II diagram after being acknowledged about the SOLID principles was creating a Logger class that follows the **single responsibility principle**. We applied it by creating a relationship with the Server class to handle the specific responsibility of just logging all messages sent in the chat room. This change helped us write better code by creating more clarity for what the responsibility of the Logger and the Server class is and possibly creating more member variables and methods within the Logger class itself to the file.txt.
-> * Another update we did after learning about the SOLID principle to the Phase II diagram was separating the Server and Client class to not have any relationships which complies with the **integration segregation principle**. Doing this allowed the client side to not be forced to interact with any of the unneeded server commands that a client should not need. We applied it by essentially having two mini UMLs in one so the Server class can have its own relationships with other classes that follow the SOLID principles; the same for the Client class. This change helped us write better code by allowing for easier unit tests in the sense that we could test Client and Server class independently as well as for scalability as shown from the relationships with other classes.
+> * Another update we did after learning about the SOLID principle to the Phase II diagram was separating the Server and Client class to not have any relationships which complies with the **interface segregation principle**. Doing this allowed the client side to not be forced to interact with any of the unneeded server commands that a client should not need. We applied it by essentially having two mini UMLs in one so the Server class can have its own relationships with other classes that follow the SOLID principles; the same for the Client class. This change helped us write better code by allowing for easier unit tests in the sense that we could test Client and Server class independently as well as for scalability as shown from the relationships with other classes.
 > * Another update we did to the Phase II diagram prior was creating a UserCred class that follows the **dependency inversion principle**. Creating a UserCred class allowed for the User class and ClientAuth class to use UserCred as an abstraction to input credential/user info and not the User class just being dependent on ClientAuth. This change helped us write better code for unit tests since it created an abstraction that we could test independently from the other classes. Doing this also helped with understandability and readability on what specific classes are meant to do. 
  
  > ## Final deliverable
@@ -84,9 +86,39 @@
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
- > Screenshots of the input/output after running your application
+ > Screenshot of input and output after running registration. 
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/fb22854e-8dd4-4d67-9c36-36898e4563eb)
+
+ > Screenshot of input and output after running successful login.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/a1691915-5e6e-4c86-8b27-64d3751c9361)
+
+ > Screenshot of input and output after running the unsuccessful login.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/465d5f6a-0080-4db2-8249-c37c7b8c9c5e)
+
+ > Screenshot of input and output after client registration, login, and sending messages which is broadcasted to the server.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/38fca312-b668-42e5-9837-5c1ccf69e374)
+
+ > Screenshot of input and output of two clients logged in and connected to chat server and talking to each other.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/bd142e38-827c-472e-9d6a-e69c57d04499)
+
+ > Screenshot of input and output of client disconnecting from chat server via //quit.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/a0a9ba10-e3b2-468d-a013-59718ccc0b47)
+
+ > Screenshot of input and output of server closing via //exit and all clients being disconnected as well.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/9ef9a000-2f66-4728-ae3d-8a25134d0adf)
+
  ## Installation/Usage
- > Instructions on installing and running your application
+ > To install and run our application, you will need to:
+ - Require many dependencies such as iostream, cstring, unistd.h, arpa/inet.h, netdb.h, cstdlib, ctime, numeric, vector, chrono, fstream, sys/socket.h, thread, algorithm, and netinet/in.h to be able to complete all the functions and lines of code that we have written.
+ - Create multiple classes with a specific purpose for each to follow SRP, such as a Client, Server, User, UserCred, ChatLogging, CommandHandler, ServerAuthenticator, and ClientAuthenticator class to make the functionality of the program relative to our program.
+ - Create multiple functions within each class to follow its purpose such as Client dealing with sending and receiving messages, Server dealing with running the chat server and connecting to its port, User dealing with storing user information and using hash functions to hash the password, UserCred dealing with getting input for user credentials and seeing if it matches whatever was stored in the system via hashing, ChatLogging dealing with storing all messages sent in the chat server to a .txt file for later inspection with timestamps, CommandHandler dealing with specific commands the user inputs such as //exit, ServerAuthenticator dealing with authenticating connection to the chat server, and ClientAuthenticator dealing with handling authentication with clients by prompting them to register or login and managing the format and communication of login info sent.
+ - Create a CMakeLists.txt to manage all the executables needed for the program to function correctly and cmake . and make.
+ - Run the server executable (./server_run) for the server to connect with the port and allow clients to connect to the server via the client executable (./client_run).
+ - Send messages via client-side which will be broadcasted to the server and sent to other clients connected to the chat server
+ - Have a //quit command to quit or disconnect from the chat server via client-side and //exit to shut down the server completely and disconnect all clients via disconnecting their client sockets.
+ - Have other commands to send emojis
  ## Testing
+ > Our project was tested/validated by creating unit tests to ensure that each component or unit of code that was added functions as expected via the google test subfolder. Within our unit tests, we tested specific components such as the //quit command to disconnect a client from the chat server or the //exit command to shut down the server. We did this to ensure that the server connected and ran successfully with a specific port and the same for clients with their specific client sockets.
+ > We also used some CI aspects in our code to make sure that there was not any regression in our code. We did this by creating a workflow that connected to the server and went through baseline tests to ensure everything ran correctly.
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  

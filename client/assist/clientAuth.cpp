@@ -43,7 +43,9 @@ ClientAuth::ClientAuth(int clientSocket, int serverPort, std::string serverDomai
 
 }
 
-ClientAuth::~ClientAuth() {}
+ClientAuth::~ClientAuth() {
+    close(authSocket);
+}
 
 void ClientAuth::Prompt() {
 
