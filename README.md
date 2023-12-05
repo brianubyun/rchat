@@ -8,18 +8,17 @@
 - [Mac Boyd](https://github.com/mboyd020)
 
 ## Project Description
- > * R'Chat is a chat room that runs on a server, authenticates, and accepts multiple clients at once, allowing clients to chat in real-time with each other. R'Chat allows admin users to moderate clients and keeps chat logs for later inspection by admin users.
+ > * R'Chat is a chat room that runs on a server, authenticates, and accepts multiple clients at once, allowing clients to chat in real-time with each other. R'Chat keeps chat logs for later inspection by admin users.
 >  * Discord is a common application that all of the team members use, which is a part of why we are interested in how programming for a chat application works. 
->  * Clients will run client executable, with terminal prompts for user authentication upon connection. Upon connection, client messages will be broadcast and received by other clients. Client will disconnect upon specific user input format. Server will also terminate upon specific input format by a server admin.
+>  * Clients will run client executable, with terminal prompts for user authentication upon connection. Upon connection, client messages will be broadcast and received by other clients. Client will disconnect upon specific user input format (//quit). Server will also terminate upon specific input format by a server admin (//exit).
  > * Creating a client/server style chat room serves as an introduction to using C++ for socket programming and multithreading, both of which are important concepts in Embedded Systems, System Programming, Distributed Systems, and Cloud Computing. It is also a good exercise in using authentication methods and storing data. This project is also complex enough that it requires proper use of OOP concepts to keep code readable and scalable so it is great practice for us as students.
- > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development. The functionality is supported by libraries for socket programming (networking), multithreading (multiple client handling), JSON file formatting for storing user credentials.
+ > * This project is written in C++ and utilizes C++ tools such as CMake for ease of development. The functionality is supported by libraries for socket programming (networking), multithreading (multiple client handling), and file formatting for storing user credentials.
 >  * Upon asking for authentication, user will be prompted with "Register(0) or Login(1):"
 >  * Upon successful login or registration, user will be prompted with "Login successful!" or "Registration successful!" respectively.
 >  * Upon unsuccessful login or registration user will be prompted with "Username or password not recognized." or "This user already exists, please login instead." respectively.
->  * Messages from other users will be displayed in format "<username>: message contents"
+>  * Messages from other users will be displayed in the format "username: message contents"
 
 ## User Interface Specification
-
 ### Navigation Diagram
 ![navigation-graph drawio (1) drawio (1)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/e1aca429-5433-4ced-91c9-f9f380410256)
 
@@ -113,7 +112,10 @@
  - Close the server via server-side which would shut down all client connections and their respective client sockets via //exit
 
  ## Testing
- > Our project was tested/validated by creating unit tests to ensure that each component or unit of code that was added functions as expected via the google test subfolder. Within our unit tests, we tested specific components such as the //quit command to disconnect a client from the chat server or the //exit command to shut down the server. We did this to ensure that the server connected and ran successfully with a specific port and the same for clients with their specific client sockets.
+ > Our project was tested/validated by creating unit tests to ensure that each component or unit of code that was added functions as expected via the Google test subfolder. Within our unit tests, we tested specific components such as the //quit command to disconnect a client from the chat server or the //exit command to shut down the server. We also tested if the server connected successfully to the port by testing if the server connected to the port on its own; the same with clients connecting to the chat server.
+ > We also did regression testing to see if any changes in our code affected past unit tests that previously were successful. We did this with every addition we made to the code.
+ > We also did integration testing to see if different classes or functions such as CommandHandler and Server/Client class worked as expected when they were integrated in the code.
+ > We also did code reviews so whenever pull requests would be created, either the next sprint meeting we had as a group or with one other group member, we assessed the code to not have any merge issues or have any conflicts with successfully running the code as expected to minimize errors and validate each addition to the project. 
  > We also used some CI aspects in our code to make sure that there was not any regression in our code. We did this by creating a workflow that connected to the server and went through baseline tests to ensure everything ran correctly.
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  
