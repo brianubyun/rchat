@@ -9,12 +9,12 @@
 class CommandHandler {
 public:
     void ListenFor(Server* server){
-        char* input;
-        while(server->isRunning){ //While server is running get input
+        char input[10];
+        do{ //While server is running get input
           std::cin.getline(input, 10);
           HandleCommand(input, server);
           std::cin.clear();
-        }   
+        }while(server->isRunning);
     }
 
 
