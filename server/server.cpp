@@ -151,7 +151,7 @@ void Server::HandleClient(int clientSocket) {
 
         // Process the received data (in this example, we just print it)
         buffer[bytesReceived] = '\0'; // Ensure null-termination
-        std::cout << "Received from client: " << buffer << std::endl;
+        std::cout << "Received from " << buffer << std::endl;
 
         // You can implement message broadcasting here
         BroadcastMessage(buffer, strlen(buffer), clientSocket);
