@@ -15,8 +15,7 @@ public:
             return false;
           }
           else { // process the emoji(s) (if any)
-            std::string processedMesssage;
-            processedMesssage = Emoji::ProcessMessage(message);
+            std::string processedMesssage = Emoji::ProcessMessage(message);
             client->SendMessage(processedMesssage.c_str());
             return true;
           }
