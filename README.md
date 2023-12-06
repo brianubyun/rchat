@@ -112,7 +112,7 @@
  ## Installation/Usage
  > To install and run our application, you will need to:
  - Git clone our repository via git clone <repos_link> inside the VSCode terminal (To get our repository link, go to the very top and click on the green code button and copy the HTTPS link given)
- - Cmake . and make the CMakeLists.txt file to update all executables with the latest code changes and to be able to run all necessary executables
+ - Inside the terminal, cmake . and make the CMakeLists.txt file to update all executables with the latest code changes and to be able to run all necessary executables
    - For dependencies, you will need:
      - googletest folder along with its submodules to compile all test and test files without any error
      - Terminal on VSCode that is able to run cmake . and make
