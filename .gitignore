@@ -27,4 +27,4 @@ users.txt
 auth_test
 broadcast_test
 skeleton_test
-command_test
+command_tests

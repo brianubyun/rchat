@@ -72,6 +72,12 @@ void Client::SendLoop(std::string username) { //possibly add an outstream thing 
         message = username + ": " + message;
 
         // Continue or end client
+        if (std::string(buffer) == "//quit") {
+            killThreads = true;
+            char message[2] = "0";
+            SendMessage(message);
+            return;
+        }
         if (ClientCommandHandler::HandleCommand(message, this) == false) {  
             Disconnect();
             std::cin.clear(); //Clears buffer
