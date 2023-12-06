@@ -1,4 +1,5 @@
 # R'Chat
+[![build on main](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/actions/workflows/main.yml/badge.svg)](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/actions/workflows/main.yml)
 
  > Authors:
 - [Devin Shaw](https://github.com/DevinRShaw)
@@ -98,6 +99,9 @@
 
  > Screenshot of input and output of two clients logged in and connected to chat server and talking to each other.
  > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/bc9f8d45-6c64-4a17-bec1-b26ed356e48c)
+
+ > Screenshot of input and output of two clients logged in and connected to chat server and using emojis.
+ > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/ebceb948-0515-4589-9302-db1734597266)
 
  > Screenshot of input and output of client disconnecting from chat server via //quit.
  > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/ccafdfd3-db86-475d-938f-b8fb810cf9f2)
