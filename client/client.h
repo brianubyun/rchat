@@ -16,16 +16,12 @@ public:
     Client();
     ~Client();
 
-    // Connect to the server
     bool Connect();
 
-    // Start the client
     void Start();
 
-    // Send a message to the server
     void SendMessage(const char* message);
 
-    // Disconnect from the server
     void Disconnect();
 
 protected:
@@ -33,15 +29,15 @@ protected:
     
 private:
     std::string serverDomainName = "xe-01.cs.ucr.edu";// Use domain name instead of IP address
-    int serverPort = 48566; //the free port that will be used on the server 
+    int serverPort = 48566; //Free port that will be used on the server 
 
-    // Function for sending messages in a loop
+    //Function for sending messages in a loop
     void SendLoop(std::string username);
 
-    // Function for receiving messages in a loop
+    //Function for receiving messages in a loop
     void ReceiveLoop();
     bool firstMessage;
     bool killThreads;
 };
 
-#endif // CLIENT_H
+#endif
