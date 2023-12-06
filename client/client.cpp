@@ -14,6 +14,7 @@
 Client::Client() {
     isRunning = true;
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+    killThreads = false;
 }
 
 Client::~Client() {
@@ -64,9 +65,6 @@ void Client::SendLoop(std::string username) {
         if(strlen(buffer) == 0) {
             continue;
         }
-        std::string message = std::string(buffer);
-        message = username + ": " + message;
-
         // Continue or end client
         if (std::string(buffer) == "//quit") {
             killThreads = true;
@@ -74,10 +72,11 @@ void Client::SendLoop(std::string username) {
             SendMessage(message);
             return;
         }
-        if (ClientCommandHandler::HandleCommand(message, this) == false) {  
-            Disconnect();
-            std::cin.clear(); //Clears buffer
-        }
+        std::string unprocessedMessage = std::string(buffer);
+        ClientCommandHandler handler;
+        std::string message = handler.HandleCommand(unprocessedMessage);
+        message = username + ": " + message;
+        SendMessage(message.c_str());
     }
 }
 
