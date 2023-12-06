@@ -110,7 +110,8 @@
  > ![image](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/e4dddf0e-b53e-4e97-a7b9-bc25a05e9c38)
 
  ## Installation/Usage
- > To install and run our application after git cloning our repo, you will need to:
+ > To install and run our application, you will need to:
+ - Git clone our repository via git clone <repos_link> inside the VSCode terminal (To get our repository link, go to the very top and click on the green code button and copy the HTTPS link given)
  - Cmake . and make the CMakeLists.txt file to update all executables with the latest code changes and to be able to run all necessary executables
    - For dependencies, you will need:
      - googletest folder along with its submodules to compile all test and test files without any error
