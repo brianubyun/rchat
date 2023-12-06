@@ -51,8 +51,9 @@ void Client::Start() {
     std::thread sendThread(&Client::SendLoop, this, user);
     std::thread receiveThread(&Client::ReceiveLoop, this);
 
-    sendThread.join();
     receiveThread.join();
+    sendThread.join();
+    
 }
 
 void Client::SendLoop(std::string username) { 
@@ -60,8 +61,19 @@ void Client::SendLoop(std::string username) {
         char buffer[MAXBYTES] = {0};
         //Prompt the user for input and read it into the buffer
         //std::cout << "Enter a message: ";
+        struct timeval tv;
+        tv.tv_sec = 5;
+        tv.tv_usec = 0;
+        fd_set fds;
+        FD_ZERO (&fds);
+        FD_SET (STDIN_FILENO, &fds);
+        while(!(select (STDIN_FILENO + 1, &fds, NULL, NULL, &tv))){
+            if(killThreads)
+            {
+                return;
+            }
+        }
         std::cin.getline(buffer, MAXBYTES);
-
         if(strlen(buffer) == 0) {
             continue;
         }
