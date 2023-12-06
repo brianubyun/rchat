@@ -12,6 +12,7 @@
 
 class Client {
 public:
+    bool isRunning;
     Client();
     ~Client();
 

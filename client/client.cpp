@@ -2,7 +2,7 @@
 #include "user/userCred.h"
 #include "assist/clientAuth.h"
 #include "client.h"
-
+#include "client_command_handler.h"
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
@@ -11,12 +11,8 @@
 #define MAXBYTES 4096
 
 Client::Client() {
-    firstMessage = true;
+    isRunning = true;
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
-    killThreads = false;
-    if (clientSocket == -1) {
-        std::cerr << "Error creating socket." << std::endl;
-    }
 }
 
 Client::~Client() {
@@ -62,33 +58,24 @@ void Client::Start() {
 }
 
 void Client::SendLoop(std::string username) { //possibly add an outstream thing or print function so we can use it for unit tests as well
-    while (true) {
-        if(killThreads)
-        {
-            return;
-        }
-        char buffer[MAXBYTES];
+    while (isRunning) {
+        char buffer[MAXBYTES] = {0};
         // Prompt the user for input and read it into the buffer
         //std::cout << "Enter a message: ";
         std::cin.getline(buffer, MAXBYTES);
 
-        // User sent //quit command and exits chat 
-        if (std::string(buffer) == "//quit") {  
-            //SendMessage("Connection closed. Client disconnected.");
-            //exit was here
-            killThreads = true;
-            char message [2] = "0";
-            SendMessage(message);
-            return; //Terminates program since chat program is exited
-            
+        if(strlen(buffer) == 0) {
+            continue;
+        }
+        std::string message = std::string(buffer);
+        
+        message = username + ": " + message;
+
+        // Continue or end client
+        if (ClientCommandHandler::HandleCommand(message, this) == false) {  
+            Disconnect();
             std::cin.clear(); //Clears buffer
         }
-        std::string combinedMessage = buffer;
-        // Combine the C-style strings
-        if(!firstMessage){combinedMessage = username + ": " + buffer;}
-        else{firstMessage = false;}
-        // Send the combined message
-        SendMessage(combinedMessage.c_str());
     }
 }
 
@@ -124,6 +111,7 @@ void Client::SendMessage(const char* message) {
 }
 
 void Client::Disconnect() {
+    isRunning = false;
     close(clientSocket);
 }
 

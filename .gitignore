@@ -20,11 +20,11 @@ user_run
 lib
 client_shut_off_test
 server_shut_off_test
-
+R'ChatLogs.txt
 chatlogging_test
 server_shut_off_test
 users.txt
 auth_test
-
 broadcast_test
 skeleton_test
+command_test
