@@ -3,6 +3,7 @@
 #include "assist/clientAuth.h"
 #include "client.h"
 #include "client_command_handler.h"
+
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
@@ -38,29 +39,25 @@ bool Client::Connect() {
         std::cerr << "Error connecting to the server." << std::endl;
         return false;
     }
-
     return true;
 }
 
 void Client::Start() {
-    
-
     ClientAuth authenticator(clientSocket, serverPort, serverDomainName);
     authenticator.Prompt();
     std::string user = authenticator.GetUser().GetUsername();
 
-
     std::thread sendThread(&Client::SendLoop, this, user);
     std::thread receiveThread(&Client::ReceiveLoop, this);
-    // Wait for the threads to finish (you should add proper thread management)
+
     sendThread.join();
     receiveThread.join();
 }
 
-void Client::SendLoop(std::string username) { //possibly add an outstream thing or print function so we can use it for unit tests as well
+void Client::SendLoop(std::string username) { 
     while (isRunning) {
         char buffer[MAXBYTES] = {0};
-        // Prompt the user for input and read it into the buffer
+        //Prompt the user for input and read it into the buffer
         //std::cout << "Enter a message: ";
         std::cin.getline(buffer, MAXBYTES);
 
@@ -68,7 +65,6 @@ void Client::SendLoop(std::string username) { //possibly add an outstream thing 
             continue;
         }
         std::string message = std::string(buffer);
-        
         message = username + ": " + message;
 
         // Continue or end client
@@ -85,26 +81,22 @@ void Client::SendLoop(std::string username) { //possibly add an outstream thing 
     }
 }
 
-//This wont work until Server::Broadcastmessage is completed 
 void Client::ReceiveLoop() {
     char buffer[MAXBYTES];
     while (true) {
-        if(killThreads)
-        {
+        if(killThreads) {
             return;
         }
+
         int bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesRead <= 0) {
             std::cerr << std::endl << "Connection to the server closed." << std::endl;
-            //exit was here
             killThreads = true;
             return;
         }
         
         std::string message(buffer, bytesRead);
         std::cout << message << std::endl << std::endl;
-        
-        
     }
 }  
 

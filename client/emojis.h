@@ -6,9 +6,6 @@
 
 class Emoji {
 public:
-    // function that actually processes the message
-    // it unfortunately checks EVERY emoji EVERY message it sends
-    // TODO: Only have it call the function if // is used
     static std::string ProcessMessage(std::string message) {
         ReplaceCommandWithEmoji(message, "//smile", ":)");
         ReplaceCommandWithEmoji(message, "//sad", ":(");
@@ -18,10 +15,8 @@ public:
     }
 
 private:
-    // message, command, and emoji
     static void ReplaceCommandWithEmoji(std::string& message, const std::string& command, const std::string& emoji) {
         int position = 0;
-        // npos is not-position, but C++ can also interpret it to mean [end of a string]
         while ((position = message.find(command, position)) != std::string::npos) {
                 message.replace(position, command.length(), emoji);
                 position += emoji.length();

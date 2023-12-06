@@ -4,8 +4,7 @@
 #include <fstream>
 #include <string>
 
-class ServerAuthenticator
-{
+class ServerAuthenticator {
     private:
         std::ofstream out;
         std::ifstream in;
@@ -17,4 +16,5 @@ class ServerAuthenticator
         bool writeUser (char[]);
         bool authUser (int);
 };
+
 #endif
