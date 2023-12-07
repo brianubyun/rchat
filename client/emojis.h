@@ -18,8 +18,8 @@ private:
     static void ReplaceCommandWithEmoji(std::string& message, const std::string& command, const std::string& emoji) {
         int position = 0;
         while ((position = message.find(command, position)) != std::string::npos) {
-                message.replace(position, command.length(), emoji);
-                position += emoji.length();
+            message.replace(position, command.length(), emoji);
+            position += emoji.length();
         }
     }
 };

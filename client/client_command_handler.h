@@ -11,7 +11,7 @@
 class ClientCommandHandler {
 public:
     std::string HandleCommand(std::string& message) {
-      // process the emoji(s) (if any)
+      //Process the emoji(s) (if any)
       std::string processedMesssage = Emoji::ProcessMessage(message);
       return processedMesssage;
     }
