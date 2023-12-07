@@ -90,6 +90,7 @@ void Server::Stop() {
     // Close the server socket
     close(serverSocket);
     isRunning = false;
+    while(clientSockets.size() != 0){}
     //exit here (!e)
     //the threads need to be joined here, if the server exits before they actually complete, it causes a memory leak.
     //the problem from command handler also comes in here: it simply calls the deconstructor to the server.
@@ -124,10 +125,10 @@ void Server::AcceptClients() {
             login = true;
             clientSockets.push_back(clientSocket);
             clientThread = std::thread(&Server::HandleClient, this, clientSocket);
-            //clientThread.detach();
+            clientThread.detach();
         }
     }
-    clientThread.join();
+    //clientThread.join();
     std::cout << "\n"; //unsure why this line is needed, but without it theres a memory leak. could not tell you why.
 }
 
@@ -160,6 +161,7 @@ void Server::HandleClient(int clientSocket) {
     close(clientSocket);
     // Remove the client socket from the list
     clientSockets.erase(std::remove(clientSockets.begin(), clientSockets.end(), clientSocket), clientSockets.end());
+    std::cout << "\n";
 }
 
 
