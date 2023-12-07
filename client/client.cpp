@@ -124,7 +124,6 @@ void Client::ReceiveLoop() {
 void Client::SendMessage(const char* message) {
     int messageLength = strlen(message);
     int bytesSent = send(clientSocket, message, messageLength, 0);
-    std::cout << "sending message: " << message << std::endl;
     if (bytesSent == -1) {
         std::cerr << "Error sending message." << std::endl;
     }
