@@ -14,6 +14,7 @@
 Client::Client() {
     isRunning = true;
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+    killThreads = false;
 }
 
 Client::~Client() {
@@ -50,8 +51,9 @@ void Client::Start() {
     std::thread sendThread(&Client::SendLoop, this, user);
     std::thread receiveThread(&Client::ReceiveLoop, this);
 
-    sendThread.join();
     receiveThread.join();
+    sendThread.join();
+    
 }
 
 void Client::SendLoop(std::string username) { 
@@ -59,14 +61,24 @@ void Client::SendLoop(std::string username) {
         char buffer[MAXBYTES] = {0};
         //Prompt the user for input and read it into the buffer
         //std::cout << "Enter a message: ";
+        //code relating to the select function (namely lines 66-77) were adapted from this stackoverflow post: https://stackoverflow.com/a/9732927
+        //select needs a file descriptor set, and a timeval
+        struct timeval tv;
+        tv.tv_sec = 3; //seconds
+        tv.tv_usec = 0; //milliseconds
+        fd_set fds; //declares the file descriptor set
+        FD_ZERO (&fds); //initializes the file descriptor set
+        FD_SET (STDIN_FILENO, &fds); 
+        while(!(select (STDIN_FILENO + 1, &fds, NULL, NULL, &tv))){
+            if(killThreads)
+            {
+                return;
+            }
+        }
         std::cin.getline(buffer, MAXBYTES);
-
         if(strlen(buffer) == 0) {
             continue;
         }
-        std::string message = std::string(buffer);
-        message = username + ": " + message;
-
         // Continue or end client
         if (std::string(buffer) == "//quit") {
             killThreads = true;
@@ -74,10 +86,11 @@ void Client::SendLoop(std::string username) {
             SendMessage(message);
             return;
         }
-        if (ClientCommandHandler::HandleCommand(message, this) == false) {  
-            Disconnect();
-            std::cin.clear(); //Clears buffer
-        }
+        std::string unprocessedMessage = std::string(buffer);
+        ClientCommandHandler handler;
+        std::string message = handler.HandleCommand(unprocessedMessage);
+        message = username + ": " + message;
+        SendMessage(message.c_str());
     }
 }
 
@@ -94,8 +107,16 @@ void Client::ReceiveLoop() {
             killThreads = true;
             return;
         }
-        
         std::string message(buffer, bytesRead);
+        if(message.at(0) == 18)
+        {
+            char endMsg[2];
+            endMsg[1] = (char)(17);
+            endMsg[2] = '\0';
+            SendMessage(endMsg);
+            killThreads = true;
+            return;
+        }
         std::cout << message << std::endl << std::endl;
     }
 }  

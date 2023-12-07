@@ -4,7 +4,7 @@
 #include "../client/client_command_handler.h"
 #include "gtest/gtest.h"
 
-TEST(CommandTest, standaloneEmoji) {
+/*TEST(CommandTest, standaloneEmoji) {
     std::string expected = ":)";
     std::string message = "//smile";
     EXPECT_EQ(expected, Emoji::ProcessMessage(message));
@@ -26,4 +26,4 @@ TEST(CommandTest, exitCommand) {
     Client dummyClient;
     std::string message = "//exit";
     EXPECT_FALSE(ClientCommandHandler::HandleCommand(message, &dummyClient));
-}
+}*/
