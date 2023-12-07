@@ -27,7 +27,7 @@ public:
         } 
         else if (command == "command2") {
             std::cout << "Executing Command 2" << std::endl;
-            // Add your logic for Command 2
+            //Add your logic for Command 2
         } else {
             std::cout << "Unknown command: " << command << std::endl;
         }

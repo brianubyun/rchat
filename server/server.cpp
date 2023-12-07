@@ -19,7 +19,6 @@ using namespace std;
 #define MAXBYTES 4096
 
 
-
 //initialize a socket for the server 
 Server::Server() : isRunning(false){
     
@@ -30,7 +29,7 @@ Server::Server() : isRunning(false){
     }
     int optval = 1;
     setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(int));
-    //this code was adapted from a stackoverflow post: https://stackoverflow.com/a/6326156
+    //Code was adapted from a stackoverflow post: https://stackoverflow.com/a/6326156
     if(fcntl(serverSocket, F_SETFL, fcntl(serverSocket, F_GETFL) | O_NONBLOCK) < 0) {
         std::cerr << "Error creating server socket." << std::endl;
         exit(EXIT_FAILURE);
@@ -39,7 +38,6 @@ Server::Server() : isRunning(false){
 
 //Will deconstruct the server using stop 
 Server::~Server() {
-    //also could join the threads here, which may be better depending on how often stop is called.
     Stop();
 }
 
@@ -113,7 +111,7 @@ void Server::AcceptClients() {
             //std::cerr << "Error accepting client connection." << std::endl;
             continue;  // Continue to accept other connections
         }
-        //authicate that they are a user
+        //authenticate that they are a user
         if(login)
         {
             login = false;
@@ -141,7 +139,7 @@ void Server::HandleClient(int clientSocket) {
     while (isRunning) {
         ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesReceived <= 0) {
-            // Handle client disconnection or error
+            // andle client disconnection or error
             break;
         }
         if (buffer[0] == '0' || buffer[0] == 17)
@@ -150,16 +148,15 @@ void Server::HandleClient(int clientSocket) {
         }
         chatLog.logMessage(buffer);
 
-        // Process the received data (in this example, we just print it)
+        //Process the received data (in this example, we just print it)
         buffer[bytesReceived] = '\0'; // Ensure null-termination
         std::cout << "Received from " << buffer << std::endl;
 
-        // You can implement message broadcasting here
         BroadcastMessage(buffer, strlen(buffer), clientSocket);
     }
 
     close(clientSocket);
-    // Remove the client socket from the list
+    //Removes client from clientSockets
     clientSockets.erase(std::remove(clientSockets.begin(), clientSockets.end(), clientSocket), clientSockets.end());
     std::cout << "\n";
 }
@@ -186,8 +183,7 @@ void Server::SimpleStop()
 
 void Server::Authenticate(int clientSocket)
 {
-    //mildly insecure in that it allows infinite tries to login, but that can be fixed later
-    //update: that has been fixed user-side. now a failed login closes the client program
+    //Fixed: failed login closes connection to client-side 
     ServerAuthenticator auth;
     bool authenticated = auth.authUser(clientSocket);
     if(!authenticated)
