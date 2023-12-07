@@ -71,6 +71,7 @@ bool ServerAuthenticator::writeUser(char message[]) {
     std::string username = userAndPass.substr(0, userAndPass.find(breakChar));
     if (!isUser(username)) {
         out << userAndPass;
+        out << std::endl;
         out.close();
         return true;
     }
