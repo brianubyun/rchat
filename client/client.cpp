@@ -69,7 +69,7 @@ void Client::SendLoop(std::string username) {
         fd_set fds; //declares the file descriptor set
         FD_ZERO (&fds); //initializes the file descriptor set
         FD_SET (STDIN_FILENO, &fds); 
-        while(!(select (STDIN_FILENO + 1, &fds, NULL, NULL, &tv))){
+        if(!(select (STDIN_FILENO + 1, &fds, NULL, NULL, &tv))){
             if(killThreads)
             {
                 return;
@@ -124,6 +124,7 @@ void Client::ReceiveLoop() {
 void Client::SendMessage(const char* message) {
     int messageLength = strlen(message);
     int bytesSent = send(clientSocket, message, messageLength, 0);
+    std::cout << "sending message: " << message << std::endl;
     if (bytesSent == -1) {
         std::cerr << "Error sending message." << std::endl;
     }
