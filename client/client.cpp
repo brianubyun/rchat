@@ -74,6 +74,7 @@ void Client::SendLoop(std::string username) {
             {
                 return;
             }
+            continue;
         }
         std::cin.getline(buffer, MAXBYTES);
         if(strlen(buffer) == 0) {
