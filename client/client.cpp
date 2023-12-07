@@ -61,12 +61,14 @@ void Client::SendLoop(std::string username) {
         char buffer[MAXBYTES] = {0};
         //Prompt the user for input and read it into the buffer
         //std::cout << "Enter a message: ";
+        //code relating to the select function (namely lines 66-77) were adapted from this stackoverflow post: https://stackoverflow.com/questions/9732710/select-stdcin-and-stdgetline-not-playing-well-together
+        //select needs a file descriptor set, and a timeval
         struct timeval tv;
-        tv.tv_sec = 5;
-        tv.tv_usec = 0;
-        fd_set fds;
-        FD_ZERO (&fds);
-        FD_SET (STDIN_FILENO, &fds);
+        tv.tv_sec = 3; //seconds
+        tv.tv_usec = 0; //milliseconds
+        fd_set fds; //declares the file descriptor set
+        FD_ZERO (&fds); //initializes the file descriptor set
+        FD_SET (STDIN_FILENO, &fds); 
         while(!(select (STDIN_FILENO + 1, &fds, NULL, NULL, &tv))){
             if(killThreads)
             {
