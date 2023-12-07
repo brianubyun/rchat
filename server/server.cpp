@@ -12,6 +12,7 @@
 #include <netinet/in.h>
 #include <algorithm>
 #include <fcntl.h>
+#include <errno.h>
 #include "ServerAuthenticator.h"
 
 using namespace std;
@@ -122,15 +123,15 @@ void Server::AcceptClients() {
             login = true;
             clientSockets.push_back(clientSocket);
             clientThread = std::thread(&Server::HandleClient, this, clientSocket);
-            clientThread.detach();
+            //clientThread.detach();
         }
     }
+    clientThread.join();
     std::cout << "\n"; //unsure why this line is needed, but without it theres a memory leak. could not tell you why.
 }
 
 //What the thread will do for each client 
 void Server::HandleClient(int clientSocket) {
-    std::cout << "HandleClient starts!\n";
     char buffer[MAXBYTES];
     //clears out the buffer from any messages that may have been sent during the login process
     //ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
@@ -141,7 +142,7 @@ void Server::HandleClient(int clientSocket) {
             // Handle client disconnection or error
             break;
         }
-        if (buffer[0] == '0')
+        if (buffer[0] == '0' || buffer[0] == 17)
         {
             break;
         }
@@ -158,7 +159,6 @@ void Server::HandleClient(int clientSocket) {
     close(clientSocket);
     // Remove the client socket from the list
     clientSockets.erase(std::remove(clientSockets.begin(), clientSockets.end(), clientSocket), clientSockets.end());
-    std::cout << "HandleClient returns!\n";
 }
 
 
@@ -174,6 +174,10 @@ void Server::BroadcastMessage(char* message, int messageLength, int sendClient) 
 
 void Server::SimpleStop()
 {
+    char endMsg[2];
+    endMsg[0] = (char)18;
+    endMsg[1] = '\0';
+    BroadcastMessage(endMsg, 2, 0);
     isRunning = false;
 }
 

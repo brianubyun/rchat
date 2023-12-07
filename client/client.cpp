@@ -105,8 +105,16 @@ void Client::ReceiveLoop() {
             killThreads = true;
             return;
         }
-        
         std::string message(buffer, bytesRead);
+        if(message.at(0) == 18)
+        {
+            char endMsg[2];
+            endMsg[1] = (char)(17);
+            endMsg[2] = '\0';
+            SendMessage(endMsg);
+            killThreads = true;
+            return;
+        }
         std::cout << message << std::endl << std::endl;
     }
 }  
