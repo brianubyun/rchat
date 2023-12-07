@@ -18,20 +18,18 @@
 using namespace std;
 #define MAXBYTES 4096
 
-
-
 //initialize a socket for the server 
-Server::Server() : isRunning(false){
-    
+Server::Server() : isRunning(false) {
     serverSocket = socket(AF_INET, SOCK_STREAM, 0);//AF_INET ---> Address Family Internet, SOCK_STREAM -- > Stream Socket, 0 is for default so it uses TCP 
     if (serverSocket == -1) {
         std::cerr << "Error creating server socket." << std::endl;
         exit(EXIT_FAILURE);
     }
+
     int optval = 1;
     setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(int));
-    //this code was adapted from a stackoverflow post: https://stackoverflow.com/a/6326156
-    if(fcntl(serverSocket, F_SETFL, fcntl(serverSocket, F_GETFL) | O_NONBLOCK) < 0) {
+    //Code was adapted from a stackoverflow post: https://stackoverflow.com/a/6326156
+    if (fcntl(serverSocket, F_SETFL, fcntl(serverSocket, F_GETFL) | O_NONBLOCK) < 0) {
         std::cerr << "Error creating server socket." << std::endl;
         exit(EXIT_FAILURE);
     }
@@ -39,7 +37,6 @@ Server::Server() : isRunning(false){
 
 //Will deconstruct the server using stop 
 Server::~Server() {
-    //also could join the threads here, which may be better depending on how often stop is called.
     Stop();
 }
 
@@ -80,8 +77,9 @@ void Server::Start() {
 
 //Stops the server and closes clients 
 void Server::Stop() {
-
-    if(isRunning){ return; }
+    if (isRunning) { 
+        return; 
+    }
     // Close all client sockets
     for (int clientSocket : clientSockets) {
         close(clientSocket);
@@ -90,13 +88,12 @@ void Server::Stop() {
     // Close the server socket
     close(serverSocket);
     isRunning = false;
-    while(clientSockets.size() != 0){}
+    while (clientSockets.size() != 0) {}
     //exit here (!e)
     //the threads need to be joined here, if the server exits before they actually complete, it causes a memory leak.
     //the problem from command handler also comes in here: it simply calls the deconstructor to the server.
     exit(0);
 }
-
 
 //Creates threads for each client 
 void Server::AcceptClients() {
@@ -114,21 +111,18 @@ void Server::AcceptClients() {
             continue;  // Continue to accept other connections
         }
         //authicate that they are a user
-        if(login)
-        {
+        if (login) {
             login = false;
             std::thread authenticationThread(&Server::Authenticate, this, clientSocket);
             authenticationThread.detach();
         }
-        else
-        {
+        else {
             login = true;
             clientSockets.push_back(clientSocket);
             clientThread = std::thread(&Server::HandleClient, this, clientSocket);
             clientThread.detach();
         }
     }
-    //clientThread.join();
     std::cout << "\n"; //unsure why this line is needed, but without it theres a memory leak. could not tell you why.
 }
 
@@ -141,25 +135,23 @@ void Server::HandleClient(int clientSocket) {
     while (isRunning) {
         ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
         if (bytesReceived <= 0) {
-            // Handle client disconnection or error
+            //Handle client disconnection or error
             break;
         }
-        if (buffer[0] == '0' || buffer[0] == 17)
-        {
+        if (buffer[0] == '0' || buffer[0] == 17) {
             break;
         }
         chatLog.logMessage(buffer);
 
-        // Process the received data (in this example, we just print it)
+        //Process the received data (in this example, we just print it)
         buffer[bytesReceived] = '\0'; // Ensure null-termination
         std::cout << "Received from " << buffer << std::endl;
 
-        // You can implement message broadcasting here
         BroadcastMessage(buffer, strlen(buffer), clientSocket);
     }
 
     close(clientSocket);
-    // Remove the client socket from the list
+    //Remove client socket from the list
     clientSockets.erase(std::remove(clientSockets.begin(), clientSockets.end(), clientSocket), clientSockets.end());
     std::cout << "\n";
 }
@@ -167,16 +159,15 @@ void Server::HandleClient(int clientSocket) {
 
 void Server::BroadcastMessage(char* message, int messageLength, int sendClient) {
     //for client in clientsockets send the message to them
-    for(int client : clientSockets){
-        if (client != sendClient){ //avoids having their message broadcasted back to them
+    for (int client : clientSockets) {
+        if (client != sendClient) { //avoids having their message broadcasted back to them
             send(client, message, messageLength, 0);
         }
     }
 
 }
 
-void Server::SimpleStop()
-{
+void Server::SimpleStop() {
     char endMsg[2];
     endMsg[0] = (char)18;
     endMsg[1] = '\0';
@@ -184,14 +175,11 @@ void Server::SimpleStop()
     isRunning = false;
 }
 
-void Server::Authenticate(int clientSocket)
-{
-    //mildly insecure in that it allows infinite tries to login, but that can be fixed later
-    //update: that has been fixed user-side. now a failed login closes the client program
+void Server::Authenticate(int clientSocket) {
+    //Fixed: failed login closes client connection 
     ServerAuthenticator auth;
     bool authenticated = auth.authUser(clientSocket);
-    if(!authenticated)
-    {
+    if (!authenticated) {
         return;
     }
     close(clientSocket);

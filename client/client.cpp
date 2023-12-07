@@ -61,7 +61,7 @@ void Client::SendLoop(std::string username) {
         char buffer[MAXBYTES] = {0};
         //Prompt the user for input and read it into the buffer
         //std::cout << "Enter a message: ";
-        //code relating to the select function (namely lines 66-77) were adapted from this stackoverflow post: https://stackoverflow.com/a/9732927
+        //Code relating to the select function (namely lines 66-77) were adapted from this stackoverflow post: https://stackoverflow.com/a/9732927
         //select needs a file descriptor set, and a timeval
         struct timeval tv;
         tv.tv_sec = 3; //seconds
@@ -69,9 +69,8 @@ void Client::SendLoop(std::string username) {
         fd_set fds; //declares the file descriptor set
         FD_ZERO (&fds); //initializes the file descriptor set
         FD_SET (STDIN_FILENO, &fds); 
-        while(!(select (STDIN_FILENO + 1, &fds, NULL, NULL, &tv))){
-            if(killThreads)
-            {
+        while (!(select (STDIN_FILENO + 1, &fds, NULL, NULL, &tv))) {
+            if (killThreads) {
                 return;
             }
         }
@@ -79,7 +78,7 @@ void Client::SendLoop(std::string username) {
         if(strlen(buffer) == 0) {
             continue;
         }
-        // Continue or end client
+        //Continue or end client
         if (std::string(buffer) == "//quit") {
             killThreads = true;
             char message[2] = "0";
@@ -107,9 +106,9 @@ void Client::ReceiveLoop() {
             killThreads = true;
             return;
         }
+
         std::string message(buffer, bytesRead);
-        if(message.at(0) == 18)
-        {
+        if(message.at(0) == 18) {
             char endMsg[2];
             endMsg[1] = (char)(17);
             endMsg[2] = '\0';
