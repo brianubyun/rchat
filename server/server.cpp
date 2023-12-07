@@ -30,7 +30,7 @@ Server::Server() : isRunning(false){
     }
     int optval = 1;
     setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(int));
-    //this code was also adapted from a stackoverflow post: https://stackoverflow.com/questions/6326064/c-c-sockets-and-a-non-blocking-recv
+    //this code was adapted from a stackoverflow post: https://stackoverflow.com/a/6326156
     if(fcntl(serverSocket, F_SETFL, fcntl(serverSocket, F_GETFL) | O_NONBLOCK) < 0) {
         std::cerr << "Error creating server socket." << std::endl;
         exit(EXIT_FAILURE);
