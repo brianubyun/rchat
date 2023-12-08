@@ -72,7 +72,7 @@
 
 
 ## New Class Diagram with SOLID principles
-> ![updateduml drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/39320f84-e01f-419d-9057-6b6fc79d2758)
+![updatedupdateduml drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/146309310/cf4355e8-932a-492e-bc3a-73c02c18f9ba)
 
 > ##### What SOLID principle(s) did we apply?
 > * One of the updates in our class diagram was the addition of a Client Command Handler class which applied the **single responsibility principle**. We applied it by creating a relationship with the Client class to handle all of the commands the client inputs via a "//..." format. This change helped us write better code by simplifying and making it easier to write unit tests as well as maintaining scalability if we ever want to add more commands in the future that the user can input.
