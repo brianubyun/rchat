@@ -118,7 +118,7 @@
      - Terminal on VSCode that is able to run cmake . and make
      - Pretty recent VSCode version to not run into errors with some libraries within our code that was not implemented in versions prior to the current VSCode 
  - Run the server executable (./server_run) for the server to connect with the port 
- - Allow clients to connect to the server via the client executable (./client_run)
+ - Allow clients to connect to the server via the client executable (./client_run) in another terminal
    - If you are just running it by yourself but want to connect another client to see how messages are sent, you can open a new terminal on VSCode and run ./client_run in that terminal
 
  > From there, you can either:
