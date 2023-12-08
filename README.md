@@ -52,7 +52,7 @@
 ## Class Diagram
 > ![oldold drawio](https://github.com/cs100/final-project-azamb015-dshaw013-bbyun004-mcuay001-mboyd020/assets/88609025/95ceda37-f2a5-48bd-9eb3-110bc317d5a8)
 
-> * The server class instantiates a server object that uses socket programming and creates threads to handle server input and client connections.
+> * Server class instantiates a server object that uses socket programming and creates threads to handle server input and client connections.
 
 > * ServerAuthenticator validates registration/login requests from Client Authenticator
 
@@ -68,7 +68,7 @@
 
 > * ClientAuth class sends username and password to the server, then prompts user based on server response
 
-> * Emoji class deals with transferring messages into emojis
+> * Emoji class deals with transferring messages into emojis (not shown in this UML since it is the old one; below is the updated UML).
 
 
 ## New Class Diagram with SOLID principles
