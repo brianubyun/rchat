@@ -69,10 +69,12 @@ void Client::SendLoop(std::string username) {
         fd_set fds; //declares the file descriptor set
         FD_ZERO (&fds); //initializes the file descriptor set
         FD_SET (STDIN_FILENO, &fds); 
-        while (!(select (STDIN_FILENO + 1, &fds, NULL, NULL, &tv))) {
-            if (killThreads) {
+        if(!(select (STDIN_FILENO + 1, &fds, NULL, NULL, &tv))){
+            if(killThreads)
+            {
                 return;
             }
+            continue;
         }
         std::cin.getline(buffer, MAXBYTES);
         if(strlen(buffer) == 0) {
