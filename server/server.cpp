@@ -37,7 +37,7 @@ Server::Server() : isRunning(false) {
 
 //Will deconstruct the server using stop 
 Server::~Server() {
-    Stop();
+    //Stop();
 }
 
 //Binds the socket to a port and then begin to listen and accept clients 
@@ -92,7 +92,7 @@ void Server::Stop() {
     //exit here (!e)
     //the threads need to be joined here, if the server exits before they actually complete, it causes a memory leak.
     //the problem from command handler also comes in here: it simply calls the deconstructor to the server.
-    exit(0);
+    //exit(0);
 }
 
 //Creates threads for each client 
@@ -128,6 +128,7 @@ void Server::AcceptClients() {
 
 //What the thread will do for each client 
 void Server::HandleClient(int clientSocket) {
+    //std::cout << "start\n";
     char buffer[MAXBYTES];
     //clears out the buffer from any messages that may have been sent during the login process
     //ssize_t bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
@@ -153,7 +154,7 @@ void Server::HandleClient(int clientSocket) {
     close(clientSocket);
     //Remove client socket from the list
     clientSockets.erase(std::remove(clientSockets.begin(), clientSockets.end(), clientSocket), clientSockets.end());
-    std::cout << "\n";
+    //std::cout << "end\n";
 }
 
 
@@ -179,8 +180,5 @@ void Server::Authenticate(int clientSocket) {
     //Fixed: failed login closes client connection 
     ServerAuthenticator auth;
     bool authenticated = auth.authUser(clientSocket);
-    if (!authenticated) {
-        return;
-    }
     close(clientSocket);
 }
