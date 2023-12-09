@@ -135,3 +135,8 @@
  > We also did code reviews so whenever pull requests would be created, either the next sprint meeting we had as a group or with one other group member, we assessed the code to not have any merge issues or have any conflicts with successfully running the code as expected to minimize errors and validate each addition to the project.
 
  > We also used some CI aspects in our code to make sure that there was not any regression in our code. We did this by creating a workflow that runs cmake . and make to ensure that all executables inside our CMakeLists.txt are compiled with no error and all executables run as expected with no error.  
+
+
+> I (Mac) had to use code from a few online sources. There are comments in the code with links to the sources as it comes up, but to make them easier to find, the links are also given below.
+- https://stackoverflow.com/a/6326156
+- https://stackoverflow.com/a/9732927
