@@ -8,6 +8,9 @@
 - [Abraham Zambrano](https://github.com/StrickVax)
 - [Mac Boyd](https://github.com/mboyd020)
 
+## IMPORTANT
+> This project was done with a group of people on a private repository provided by the school, thus mirroring the original repository to my own public repository contains only my branches.
+
 ## Project Description
  > * R'Chat is a chat room that runs on a server, authenticates, and accepts multiple clients at once, allowing clients to chat in real-time with each other. R'Chat keeps chat logs for later inspection by admin users.
 >  * Discord is a common application that all of the team members use, which is a part of why we are interested in how programming for a chat application works. 
